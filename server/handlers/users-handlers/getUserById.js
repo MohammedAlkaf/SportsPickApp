@@ -25,7 +25,7 @@ try {
             ? res.status(200).json({ status: 200, user: result })
             : res.status(404).json({
                 status: 404,
-                message: `user handle ${handle} not found`,
+                message: `user info at ${handle} not found`,
             });
         });
 

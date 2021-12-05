@@ -31,11 +31,12 @@ caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, input, button, textarea{
     margin: 0;
     padding: 0;
     border: 0;
     vertical-align: baseline;
+    font-family: 'Roboto Slab', serif;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -57,6 +58,7 @@ q:before, q:after {
 
 body {
     line-height: 1.25;
+    font-family: 'Roboto Slab', serif;
 }
 
 `;

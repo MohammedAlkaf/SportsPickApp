@@ -1,22 +1,26 @@
 import React from "react";
-import LoginPage from "./components/login/LoginPage";
-import Profile from "./components/profile-page/Profile";
-import { useAuth0 } from "@auth0/auth0-react";
 import GlobalStyles from "./GlobalStyles";
+import LoginSignupPage from "./components/login-signup-pages/LoginSignupPage";
+import LoginPage from "./components/login-signup-pages/LoginPage";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import SignupPage from "./components/login-signup-pages/SignupPage";
+import styled from "styled-components";
 
 function App() {
-  // const { isLoading, isAuthenticated } = useAuth0();
-  // if( isLoading ) return <div>Loading ...</div>
-  // if( !isAuthenticated ) return <LoginPage/>
 
   return (
       <BrowserRouter>
       <GlobalStyles />
-      <div>
+      <Wrapper>
         <Switch>
           <Route exact path="/">
-            This page show all available acitvity in the area based on user city in profile
+            <LoginSignupPage/>
+          </Route>
+          <Route path="/signup">
+            <SignupPage/>
+          </Route>
+          <Route path="/login">
+            <LoginPage/>
           </Route>
           <Route exact path="/profile/:id">
             This page displays a user's profile page
@@ -35,9 +39,14 @@ function App() {
           </Route>
           <Route path="">404: Oops!</Route>
         </Switch>
-      </div>
+      </Wrapper>
     </BrowserRouter>
   );
 }
+
+const Wrapper = styled.div`
+width: 100vw;
+height: 100vh;
+`;
 
 export default App;
