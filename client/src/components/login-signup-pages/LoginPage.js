@@ -1,28 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { HiOutlineMail } from "react-icons/hi";
-
+import { CurrentUserContext } from "../all-contexts/currentUserContext";
 const LoginPage = () => {
 
-    const [ userInfo, setUserInfo ] = useState({ email: ""});
+    const [ userEmail, setUserEmaill ] = useState("");
     const [ loginButtonStatus, SetLoginButtonStatus] = useState('idle');
-    const [ errorStatus, setErrorStatus ] = useState({status: 'idle', error: 'no error'});
 
-    const handleInputChnage = (name,value) => {
-        setUserInfo({ [name]:value });
+    const {
+        updateCurrentUser,
+        currentUser,
+        setCurrentUser,
+        currentUserStatus,
+        setCurrentUserStatus,
+        setErrorStatus,
+        errorStatus } = useContext(CurrentUserContext);
+
+    const handleInputChnage = (value) => {
+        setUserEmaill(value);
         setErrorStatus({status: 'idle', error: 'no error'});
     }
 
+
+    const handleSubmit = (ev) => {
+        SetLoginButtonStatus("loading");
+        ev.preventDefault();
+        updateCurrentUser(userEmail);
+        console.log(userEmail);
+    }
     return (
         <Wrapper>
             <h1>Welcome Back !</h1>
-            <Form>
+            <Form onSubmit = {(ev)=>handleSubmit(ev)}>
                 <InputContainer>
                         <HiOutlineMail size = {35}/>
                         <Input 
                             placeholder = 'Email Address' 
                             type = 'email'
-                            onChange = {(ev) => {handleInputChnage('email',ev.target.value)}}
+                            onChange = {(ev) => {handleInputChnage(ev.target.value)}}
                         />
                 </InputContainer>
                 <Error>
@@ -66,7 +81,7 @@ const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 `;
 
 const LoginButton = styled.button`
@@ -104,10 +119,11 @@ const Input = styled.input`
 `;
 
 const Error = styled.div`
-    height: 20px;
-    margin-top: 20px;
+    padding:0px 5px;
+    height: 30px;
+    margin:15px 0px;
     color: red;
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-align: center;
 `;
 export default LoginPage
