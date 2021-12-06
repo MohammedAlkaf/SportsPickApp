@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { CurrentUserContext } from './components/all-contexts/currentUserContext';
 import NavBar from "./components/nav-bar/NavBar";
 import Profile from "./components/profile-page/Profile";
-
+import Home from "./components/homefeed/Home";
 function App() {
 
   const { isUserLoggedIn } = useContext(CurrentUserContext);
@@ -28,7 +28,7 @@ function App() {
             <LoginPage/>
           </Route>
           {/* { isUserLoggedIn && */}
-          { isUserLoggedIn &&
+          { true &&
             <MainAppContainer>
               <Container>
                 <Route exact path="/profile/:_id">
@@ -44,8 +44,8 @@ function App() {
                 <Route path="/create-acitvity">
                   This page shows form to create an activity
                 </Route>
-                <Route path="/homefeed">
-                  This page shows homefeed 
+                <Route path="/home">
+                  <Home/>
                 </Route>
                 <Route path="/activity/:id">
                   This page shows form to create an activity

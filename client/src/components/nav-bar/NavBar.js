@@ -14,8 +14,6 @@ const NavBar = () => {
         setActive(tabId);
         history.push(`/${path}`);
     }
-
-    console.log(currentUser?._id);
     
     return(
         <Wrapper>
@@ -28,7 +26,7 @@ const NavBar = () => {
             <Button active = {active === 3} onClick = {() => handleClick(3,'create-acitvity')}>
                 <FiPlusCircle size = {45} color = {'EE6C4D'}/>
             </Button>
-            <Button active = {active === 4} onClick = {() => handleClick(4,'homefeed')}>
+            <Button active = {active === 4} onClick = {() => handleClick(4,'home')}>
                 <FiHome size = {45} color = {'EE6C4D'}/>
             </Button>
         </Wrapper>

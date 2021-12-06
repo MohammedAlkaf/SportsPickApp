@@ -21,7 +21,7 @@ export const CurrentUserProvider = ({ children }) => {
                 localStorage.setItem('currentUser', JSON.stringify(data.result));
                 setIsUserLoggedIn(true);
                 console.log(data.message);
-                history.push('/homefeed');
+                history.push(`/profile/${data.result._id}`);
             }
             else {
                 setErrorStatus({ status: "err", error: data.message })

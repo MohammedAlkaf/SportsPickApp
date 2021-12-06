@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-
-const Search = () => {
-
+const ActivityJoined = () =>{
     return(
         <div>
-            this is the search page
+            Show all joined activities
         </div>
-    );
+    )
 }
-
-export default Search
+export default ActivityJoined
