@@ -1,18 +1,16 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { HiOutlineMail } from "react-icons/hi";
+import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 const LoginPage = () => {
 
     const [ userEmail, setUserEmaill ] = useState("");
     const [ loginButtonStatus, SetLoginButtonStatus] = useState('idle');
+    const history = useHistory();
 
     const {
         updateCurrentUser,
-        currentUser,
-        setCurrentUser,
-        currentUserStatus,
-        setCurrentUserStatus,
         setErrorStatus,
         errorStatus } = useContext(CurrentUserContext);
 
@@ -25,7 +23,7 @@ const LoginPage = () => {
     const handleSubmit = (ev) => {
         SetLoginButtonStatus("loading");
         ev.preventDefault();
-        updateCurrentUser(userEmail);
+        updateCurrentUser(history,userEmail);
         console.log(userEmail);
     }
     return (

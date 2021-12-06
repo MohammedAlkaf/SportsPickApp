@@ -10,8 +10,8 @@ const options = {
 
 const getUserById = async (req, res) => {
 
-    const { handle } = req.params;
-    const query = { handle };
+    const { _id } = req.params;
+    const query = { _id };
 try {
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
@@ -25,7 +25,7 @@ try {
             ? res.status(200).json({ status: 200, user: result })
             : res.status(404).json({
                 status: 404,
-                message: `user info at ${handle} not found`,
+                message: `user info at ${_id} not found`,
             });
         });
 

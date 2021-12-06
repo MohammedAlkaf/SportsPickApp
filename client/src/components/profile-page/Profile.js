@@ -1,26 +1,123 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../logout/LogoutButton";
-
+import { useParams } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
+import noImg from '../assests/noImg.png';
+import LogoutButton from "../login-signup-pages/LogoutButton";
 
 const Profile = () => {
-    const { user, isAuthenticated } = useAuth0();
-    const loggedUserInfo = JSON.stringify(user,null,2);
+
+    let { _id } = useParams();
+
+    const [profileData,setProfileData] = useState(null);
+    const [profileDataStatus,setProfileDataStatus] = useState("loading");
+
+    useEffect( () => {
+        fetch(`/users/${_id}`)
+        .then(res => res.json())
+        .then(data => {
+            setProfileData(data.user);
+            setProfileDataStatus("idle");
+        })
+    },[]);
+
+    console.log(profileData);
+
+    if( profileDataStatus === 'loading' ){
+        return <CircularProgress/>
+    }
 
     return(
-        <>
-        {isAuthenticated &&
-            <div>
-                <LogoutButton/>
-                <div>{loggedUserInfo}</div>
-                <img src ={user.picture}></img>
-                <h2>{user.name}</h2>
-                <p>{user.email}</p>
-            </div>
-        }
-        </>
-    );
+        <Wrapper>
+            <Banner>
+                
+            </Banner>
+            <UserInfoContainer>
+                <ProfileImg src = { noImg }/>
+                <SubContainer>
+                    <DisplayName>
+                        {profileData.displayName}
+                    </DisplayName>
+                    {/* <FollowButton>
+                        Follow
+                    </FollowButton> */}
+                    <LogoutButton/>
+                </SubContainer>
+                <AccountStats>
+                    <Stat>
+                        {profileData.postedActivities.length}
+                        <span>posts</span>
+                    </Stat>
+                    <Stat>
+                        {profileData.followers.length}
+                        <span>followers</span>
+                    </Stat>
+                    <Stat>
+                        {profileData.following.length}
+                        <span>following</span>
+                    </Stat>
+                </AccountStats>
+            </UserInfoContainer>
+
+        </Wrapper>
+    )
+
 }
 
+const Wrapper = styled.div`
+display:flex;
+flex-direction: column;
+height: 100vh;
+`;
+
+const UserInfoContainer = styled.div`
+display:flex;
+flex-direction: column;
+border:1px red solid;
+`;
+
+const Banner = styled.div`
+width:100%;
+background-color: grey;
+height:20%;
+`;
+
+const ProfileImg = styled.img`
+width: 150px;
+border-radius: 50%;
+background-color: grey;
+border: 5px solid white;
+margin-left:10px;
+margin-top: -75px;
+`
+const SubContainer = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+border: 1px solid green;
+height: 50px;
+`
+
+const DisplayName = styled.div`
+margin: 10px;
+`;
+
+const FollowButton = styled.button`
+padding: 10px 20px;
+margin: 10px;
+`;
+
+const AccountStats = styled.div`
+display: flex;
+justify-content: space-between;
+border: 1px solid yellow;
+`
+
+const Stat = styled.div`
+flex:1;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+`
 export default Profile

@@ -7,6 +7,8 @@ import SignupPage from "./components/login-signup-pages/SignupPage";
 import styled from "styled-components";
 import { CurrentUserContext } from './components/all-contexts/currentUserContext';
 import NavBar from "./components/nav-bar/NavBar";
+import Profile from "./components/profile-page/Profile";
+
 function App() {
 
   const { isUserLoggedIn } = useContext(CurrentUserContext);
@@ -26,15 +28,13 @@ function App() {
             <LoginPage/>
           </Route>
           {/* { isUserLoggedIn && */}
-          { true &&
+          { isUserLoggedIn &&
             <MainAppContainer>
               <Container>
-                <Route exact path="/profile/:id">
-                  This page displays a user's profile page
+                <Route exact path="/profile/:_id">
+                  <Profile/>
                 </Route>
-                <Route exact path="/myProfile">
-                  This page displays my profile page
-                </Route>
+
                 <Route path="/group-chats">
                   This page shows all groups chats
                 </Route>
@@ -44,8 +44,8 @@ function App() {
                 <Route path="/create-acitvity">
                   This page shows form to create an activity
                 </Route>
-                <Route path="/search">
-                  This page shows searched activities 
+                <Route path="/homefeed">
+                  This page shows homefeed 
                 </Route>
                 <Route path="/activity/:id">
                   This page shows form to create an activity

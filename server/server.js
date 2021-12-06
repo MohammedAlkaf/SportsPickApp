@@ -14,7 +14,7 @@ express()
 .use(express.json())
 
 .get("/users", getUsers)
-.get("/users/:handle", getUserById)
+.get("/users/:_id", getUserById)
 .post("/users/add", addNewUser)
 .get("/loggedin/:email", updateCurrentUser)
 
