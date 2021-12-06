@@ -21,7 +21,7 @@ try {
     const user = db.collection("users").findOne(query, async (err, result) => {
 
         if(result){
-            await db.collection("currentUser").insertOne({currentUser: result});
+            await db.collection("currentUser").insertOne({...result});
             client.close();
             console.log("disconnected");
             return res.status(200).json({status:200, result, message:"User logged in successfully"})

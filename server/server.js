@@ -4,6 +4,7 @@ const { getUsers } = require('./handlers/users-handlers/getUsers')
 const { getUserById} = require('./handlers/users-handlers/getUserById')
 const { addNewUser } = require('./handlers/users-handlers/addNewUser')
 const { updateCurrentUser } = require('./handlers/current-user-handler/updateCurrentUser')
+const { deleteCurrentUser } = require('./handlers/current-user-handler/deleteCurrentUser')
 const cors = require("cors");
 
 const PORT = 8000;
@@ -17,6 +18,7 @@ express()
 .get("/users/:_id", getUserById)
 .post("/users/add", addNewUser)
 .get("/loggedin/:email", updateCurrentUser)
+.delete("/loggedout/:email", deleteCurrentUser)
 
 
 .listen(PORT, function () {

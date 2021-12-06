@@ -11,8 +11,8 @@ export const CurrentUserProvider = ({ children }) => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [errorStatus, setErrorStatus] = useState({ status: "idle", error: "no error" });
 
-    const updateCurrentUser = (history,_id) => {
-        fetch(`/loggedin/${_id}`)
+    const updateCurrentUser = (history,email) => {
+        fetch(`/loggedin/${email}`)
         .then((res) => res.json())
         .then((data) => {
             if ( data.status === 200 ){

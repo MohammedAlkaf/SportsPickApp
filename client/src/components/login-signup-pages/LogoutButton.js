@@ -6,16 +6,27 @@ import { FiLogOut } from "react-icons/fi";
 
 const LogoutButton = () => {
     const history = useHistory();
-    const { setIsUserLoggedIn } = useContext(CurrentUserContext);
+    const { setIsUserLoggedIn, currentUser } = useContext(CurrentUserContext);
 
     const handleLogout = () => {
 
-        history.push('/');
-        localStorage.clear();
-        setIsUserLoggedIn(false);
+        console.log('logged out');
+
+        fetch(`/loggedout/${currentUser.email}`,
+        {
+            method: 'DELETE',
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.message);
+            history.push('/');
+            localStorage.clear();
+            setIsUserLoggedIn(false);
+        });
+
     }
     return(
-        <Button onClick = {() => {handleLogout()}}>
+        <Button onClick = {() => handleLogout()}>
             <span>Logout</span> <FiLogOut/>
         </Button>
     );
