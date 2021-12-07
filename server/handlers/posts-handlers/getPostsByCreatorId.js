@@ -8,14 +8,18 @@ const options = {
     useUnifiedTopology: true,
 };
 
-const getPosts = async (req, res) => {
+const getPostsByCreatorId = async (req, res) => {
 try {
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
     console.log("connected");
 
+    const { _id } = req.params;
+
+    const query = { 'creator._id':_id };
+
     const db = client.db("SportsPickApp");
-    const posts = await db.collection("posts").find().toArray();
+    const posts = await db.collection("posts").find(query).toArray();
 
     client.close();
     console.log("disconnected");
@@ -29,4 +33,4 @@ try {
 }
 };
 
-module.exports = { getPosts }
+module.exports = { getPostsByCreatorId }

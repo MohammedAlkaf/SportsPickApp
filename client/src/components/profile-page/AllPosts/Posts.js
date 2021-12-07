@@ -6,7 +6,7 @@ import ActivityPosted from "./ActivityPosted";
 const Posts = () => {
 
     const [ displayedPage, setDisplayedPage ] = useState(1);
-
+    
     return(
         <Wrapper>
             <ToggleBar setDisplayedPage = { setDisplayedPage }/>

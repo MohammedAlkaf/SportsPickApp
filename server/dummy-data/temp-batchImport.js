@@ -1,4 +1,4 @@
-const { users } = require('./app-initial-data');
+const { users, posts } = require('./app-initial-data');
 const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
@@ -18,6 +18,8 @@ const batchImport = async () => {
     
         const db = client.db('SportsPickApp');
         await db.collection("users").insertMany (users);
+        await db.collection("posts").insertMany (posts);
+
     
         client.close();
         console.log('disconnected');

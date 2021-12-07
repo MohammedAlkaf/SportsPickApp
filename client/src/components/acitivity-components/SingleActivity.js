@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
+import moment from 'moment';
 
-const SingleActivity = () => {
+// Here I should be passing the data of the activity I want to show.. no fetch here 
+const SingleActivity = ({ post }) => {
+
+    console.log(post);
 
     const iconSize = 25;
 
@@ -12,33 +16,33 @@ const SingleActivity = () => {
                 <FiCalendar size = {40}/>
                 <SubContainer1>
                     <ActivityDate>
-                        13 Dec 2021
+                        {post.activityDate.date}
                     </ActivityDate>
                     
                     <ActivityTime>
-                        4:00 PM - 6:00PM
+                    {moment(post.activityDate.from , 'HH:mm').format('hh:mm A')} - {moment(post.activityDate.to , 'HH:mm').format('hh:mm A')}
                     </ActivityTime>
                 </SubContainer1>
             </Conatiner>
             <Text>
                 <FiMapPin size = {iconSize}/>
-                <span>Montreal, QC, Canada</span>
+                <span>{post.activityAddress.city}, {post.activityAddress.province}, Canada</span>
             </Text>
 
             <SubContainer2>
                 <Text>
                     <FiFlag size = {iconSize}/>
-                    <span>Soccer</span>
+                    <span>{post.activityType}</span>
                 </Text>
 
                 <Text>
                     <FiAnchor size = {iconSize}/>
-                    <span>Beginner</span>
+                    <span>{post.level}</span>
                 </Text>
             </SubContainer2>
             <Text>
                 <FiClipboard size = {iconSize}/>
-                <span>3 spots remaining</span>
+                <span>{post.limit - post.joining.length} remaining spots</span>
             </Text>
 
         </Wrapper>

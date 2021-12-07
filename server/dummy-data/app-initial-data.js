@@ -209,4 +209,4 @@ const posts = [
         level: 'average',
     }
 ]
-module.exports = { users };
+module.exports = { users, posts };
