@@ -19,6 +19,8 @@ const Posts = () => {
 }
 
 const Wrapper = styled.div`
+height: 50%;
+z-index: 0;
 `;
 
 export default Posts

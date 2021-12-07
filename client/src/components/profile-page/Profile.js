@@ -93,7 +93,7 @@ padding-bottom: 10px;
 
 const Banner = styled.div`
 width:100%;
-height:20%;
+height:15%;
 `;
 
 const ProfileImg = styled.img`

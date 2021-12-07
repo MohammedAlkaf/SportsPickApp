@@ -1,11 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import SingleActivity from "../../acitivity-components/SingleActivity";
 
-const ActivityPosted = () =>{
+const ActivityPosted = () => {
+
     return(
-        <div>
-            Show all posted activities
-        </div>
+        <Wrapper>
+            <SingleActivity/>
+            <SingleActivity/>
+            <SingleActivity/>
+            <SingleActivity/>
+            <SingleActivity/>
+            <SingleActivity/>
+        </Wrapper>
     )
 }
+
+const Wrapper = styled.div`
+overflow: auto;
+height: calc(100% - 35px);
+z-index:0;
+`;
 export default ActivityPosted
