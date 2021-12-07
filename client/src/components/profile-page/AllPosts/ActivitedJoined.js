@@ -28,14 +28,23 @@ const ActivityJoined = () => {
         </CircleWrapper>
         )
     }
-
     return(
-        <Wrapper>
-            { postsData.map( (post) => {
-                return <SingleActivity post = {post}/>
-            })}
-            
-        </Wrapper>
+        <> 
+        {
+            postsData.length === 0
+            ?
+            <CircleWrapper>
+                You have not joined any activity
+            </CircleWrapper>
+            :
+            <Wrapper>
+                { postsData.map( (post) => {
+                    return <SingleActivity post = {post}/>
+                })}
+                
+            </Wrapper>
+        }
+        </>
     )
 }
 

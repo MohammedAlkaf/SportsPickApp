@@ -14,6 +14,8 @@ const Posts = () => {
             ? <ActivityPosted/>
             : <ActivityJoined/>
             }
+            <br/>
+            <br/>
         </Wrapper>
     );
 }

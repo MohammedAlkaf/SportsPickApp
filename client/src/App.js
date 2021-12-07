@@ -9,6 +9,8 @@ import { CurrentUserContext } from './components/all-contexts/currentUserContext
 import NavBar from "./components/nav-bar/NavBar";
 import Profile from "./components/profile-page/Profile";
 import Home from "./components/homefeed/Home";
+import ActivityForm from "./components/create-activity-page/ActivityForm";
+
 function App() {
 
   const { isUserLoggedIn } = useContext(CurrentUserContext);
@@ -42,7 +44,7 @@ function App() {
                   This page shows all groups chats
                 </Route>
                 <Route path="/create-acitvity">
-                  This page shows form to create an activity
+                  <ActivityForm/>
                 </Route>
                 <Route path="/home">
                   <Home/>

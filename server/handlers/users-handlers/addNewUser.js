@@ -51,7 +51,7 @@ const addNewUser = async (req, res) => {
         console.log("connected");
 
         const db = client.db("SportsPickApp");
-        await db.collection("users").insert(newUserInfo);
+        await db.collection("users").insertOne(newUserInfo);
 
         client.close();
         console.log("disconnected");

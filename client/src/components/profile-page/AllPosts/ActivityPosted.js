@@ -29,12 +29,22 @@ const ActivityPosted = () => {
     }
 
     return(
-        <Wrapper>
-            { postsData.map( (post) => {
-                return <SingleActivity post = {post}/>
-            })}
-            
-        </Wrapper>
+        <>
+        {
+            postsData.length === 0 
+            ?
+            <CircleWrapper>
+                You have not posted any activity
+            </CircleWrapper>
+            :
+            <Wrapper>
+                { postsData.map( (post) => {
+                    return <SingleActivity post = {post}/>
+                })}
+                
+            </Wrapper>
+        }
+        </>
     )
 }
 

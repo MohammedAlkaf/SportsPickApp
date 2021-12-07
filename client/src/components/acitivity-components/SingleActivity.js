@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
 import moment from 'moment';
+import SportsBackground from '../assests/SportsBackground.jpg';
 
 // Here I should be passing the data of the activity I want to show.. no fetch here 
 const SingleActivity = ({ post }) => {
@@ -16,11 +17,11 @@ const SingleActivity = ({ post }) => {
                 <FiCalendar size = {40}/>
                 <SubContainer1>
                     <ActivityDate>
-                        {post.activityDate.date}
+                        {moment(post.activityDate.date, 'YYYY-MM-DD').format('ddd MMMM Do YYYY')}
                     </ActivityDate>
                     
                     <ActivityTime>
-                    {moment(post.activityDate.from , 'HH:mm').format('hh:mm A')} - {moment(post.activityDate.to , 'HH:mm').format('hh:mm A')}
+                        {moment(post.activityDate.from , 'HH:mm').format('hh:mm A')} - {moment(post.activityDate.to , 'HH:mm').format('hh:mm A')}
                     </ActivityTime>
                 </SubContainer1>
             </Conatiner>
@@ -51,7 +52,6 @@ const SingleActivity = ({ post }) => {
 
 const Wrapper = styled.div`
 /* border: 1px solid red; */
-padding: 5px;
 margin:15px;
 border-radius: 10px;
 background: #293241;
@@ -62,8 +62,11 @@ display: flex;
 align-items: center;
 /* border: 1px solid green; */
 border-radius: 10px 10px 0px 0px;
-padding:10px;
-background: rgba(61, 90, 128, 0.8);
+padding:20px 10px;
+background-image: url(${SportsBackground});
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 `
 
 const SubContainer1 = styled.div`
@@ -80,6 +83,7 @@ const ActivityTime = styled.div``;
 
 const Text = styled.div`
 /* border: 1px solid red; */
+padding-bottom: 6px;
 margin:4px;
 display: flex;
 align-items: center;

@@ -1,13 +1,16 @@
 const path = require("path");
 const express = require("express");
-const { getUsers } = require('./handlers/users-handlers/getUsers')
-const { getUserById} = require('./handlers/users-handlers/getUserById')
-const { addNewUser } = require('./handlers/users-handlers/addNewUser')
-const { updateCurrentUser } = require('./handlers/current-user-handler/updateCurrentUser')
-const { deleteCurrentUser } = require('./handlers/current-user-handler/deleteCurrentUser')
-const { getPosts } = require('./handlers/posts-handlers/getPostsHandler')
-const { getPostsByCreatorId } = require('./handlers/posts-handlers/getPostsByCreatorId')
-const { getPostsByJoinerId } = require('./handlers/posts-handlers/getPostsByJoinerId')
+const { getUsers } = require('./handlers/users-handlers/getUsers');
+const { getUserById} = require('./handlers/users-handlers/getUserById');
+const { addNewUser } = require('./handlers/users-handlers/addNewUser');
+const { updateCurrentUser } = require('./handlers/current-user-handler/updateCurrentUser');
+const { deleteCurrentUser } = require('./handlers/current-user-handler/deleteCurrentUser');
+const { getPosts } = require('./handlers/posts-handlers/getPostsHandler');
+const { getPostsByCreatorId } = require('./handlers/posts-handlers/getPostsByCreatorId');
+const { getPostsByJoinerId } = require('./handlers/posts-handlers/getPostsByJoinerId');
+const { postNewActivityPost } = require('./handlers/posts-handlers/postNewActivityPost');
+const { deletePostById } = require('./handlers/posts-handlers/deletePostByPostId');
+
 const cors = require("cors");
 
 const PORT = 8000;
@@ -27,12 +30,17 @@ express()
 .get("/loggedin/:email", updateCurrentUser)
 // When a user signs out, clear the data from 'currentUser' collection
 .delete("/loggedout/:email", deleteCurrentUser)
+
 // Get all posts in the database
 .get('/posts', getPosts)
 // Get all posts by creator _id
 .get('/posts/:_id', getPostsByCreatorId)
 // Get allposts a user is joining
 .get('/posts/joiner/:_id', getPostsByJoinerId )
+// Post a new activity 
+.post('/posts/add', postNewActivityPost)
+// Delete an existing post
+.delete('/posts/delete/:_id',deletePostById)
 
 .listen(PORT, function () {
     console.info("🌍 Listening on port " + PORT);

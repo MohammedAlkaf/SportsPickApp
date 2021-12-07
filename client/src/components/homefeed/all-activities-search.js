@@ -19,6 +19,9 @@ const Search = ({postsData, postDataStatus}) => {
                     return <SingleActivity post = {post}/>
                 })
             }
+            <br/>
+            <br/>
+            <br/>
         </Wrapper>
     )
 }
@@ -27,6 +30,7 @@ const Wrapper = styled.div`
 overflow: auto;
 height: 100%;
 z-index:-100;
+
 `;
 
 export default Search
