@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams, useHistory } from "react-router";
 import { FaShieldAlt, FaArrowLeft } from "react-icons/fa";
 import CircularProgress from '@mui/material/CircularProgress';
-import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
+import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard, FiCheckCircle, FiXCircle} from "react-icons/fi";
 import moment from 'moment';
-
+import JoinButton from './JoinButton';
 
 const ActivityDetails = () => {
+
     const history = useHistory();
     const { _id } = useParams();
     const [ postData, setPostData] = useState(null);
@@ -15,7 +16,6 @@ const ActivityDetails = () => {
 
     // Create an endpoint to fetch a specific post information
     useEffect(()=>{
-        
         fetch(`/posts/${_id}`)
         .then( res => res.json())
         .then( data =>{
@@ -40,6 +40,7 @@ const ActivityDetails = () => {
             </ReturnBar>
             <Summary>
                 <FaShieldAlt size = {100} color = {'#EE6C4D'}/>
+                <JoinButton postData = {postData} />
                 <Type>
                     <span>{postData.activityType}</span>
                     {" - "}
@@ -50,7 +51,7 @@ const ActivityDetails = () => {
                 </Date>
                 <Time>
                     {moment(postData.activityDate.from , 'HH:mm').format('hh:mm A')} to {moment(postData.activityDate.to , 'HH:mm').format('hh:mm A')}
-                </Time>
+                </Time> 
                 <SubContainer>
                     <Text>
                         <FiClipboard size = {20}/>
@@ -62,6 +63,7 @@ const ActivityDetails = () => {
                     </Text>
                 </SubContainer>
             </Summary>
+
             <Container>
                 <Description>
                     <h2>Desciption</h2>
@@ -157,7 +159,6 @@ margin-top:5px;
 font-size: 1.2em;
 `;
 const Type = styled.div`
-margin-top: 15px;
 font-weight: 600;
 font-size: 1.6em;
 color: #EE6C4D;
