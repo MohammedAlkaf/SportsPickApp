@@ -39,21 +39,14 @@ const postNewActivityPost = async (req, res) => {
         
         // Validate the form's inputs data
         if (
-            Number(limit) === 0 ||
-            Number(limit) === 1 ||
-            Number(limit) < 0 ||
-            Number(limit) > 99
-        ) {
-            return res
-            .status(400)
-            .json({ status: 404, limit, message: "The limit should from 2 to 99" });
-        } else if (
             activityDate.date === undefined ||
             activityDate.date === null ||
             activityDate.date === ""
         ) {
             return res.status(400).json({ status: 404, message: "Please enter a valid date" });
-        } else if (
+        }
+
+        else if (
             activityDate.from === undefined ||
             activityDate.from === null ||
             activityDate.from === ""
@@ -64,7 +57,9 @@ const postNewActivityPost = async (req, res) => {
                 status: 404,
                 message: "Please enter a valid activity start time",
             });
-        } else if (
+        } 
+
+        else if (
             activityDate.to === undefined ||
             activityDate.to === null ||
             activityDate.to === ""
@@ -72,7 +67,9 @@ const postNewActivityPost = async (req, res) => {
             return res
             .status(400)
             .json({ status: 404, message: "Please enter a valid activity end time" });
-        } else if (
+        }
+        
+        else if (
             activityAddress.street === "" ||
             activityAddress.city === "" ||
             activityAddress.province === "" ||
@@ -81,15 +78,32 @@ const postNewActivityPost = async (req, res) => {
             return res
             .status(400)
             .json({ status: 404, message: "Please enter a valid address  info" });
-        } else if (activityType === "select") {
+        } 
+        
+        else if (activityType === "Select") {
             return res
             .status(400)
             .json({ status: 404, message: "Please select the type of activity" });
-        } else if (level === "select") {
+        } 
+        
+        else if (level === "select") {
             return res
             .status(400)
             .json({ status: 404, message: "Please select level required" });
-        } else if (desciption.length < 10) {
+        } 
+        
+        else if (
+            Number(limit) === 0 ||
+            Number(limit) === 1 ||
+            Number(limit) < 0 ||
+            Number(limit) > 99
+        ) {
+            return res
+            .status(400)
+            .json({ status: 404, limit, message: "The limit should from 2 to 99" });
+        }
+        
+        else if (desciption.length < 10) {
             return res
             .status(400)
             .json({
@@ -128,7 +142,7 @@ const postNewActivityPost = async (req, res) => {
             .json({
             status: 200,
             data: newPostInfo,
-            message: "The new posts have been submitted and published",
+            message: "The new post have been submitted and published",
             });
     }
     catch(err){

@@ -193,7 +193,7 @@ const Input = styled.input`
   box-shadow: none;
 
   &::-webkit-calendar-picker-indicator {
-    color: white;
+    filter: invert(1);
   }
 `;
 

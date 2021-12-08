@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard, FiCheckCircle, FiXCircle} from "react-icons/fi";
 import moment from 'moment';
 import JoinButton from './JoinButton';
+import { CurrentUserContext } from "../all-contexts/currentUserContext";
 
 const ActivityDetails = () => {
 
@@ -13,6 +14,7 @@ const ActivityDetails = () => {
     const { _id } = useParams();
     const [ postData, setPostData] = useState(null);
     const [ postStatus, setPostStatus ] = useState('loading');
+    const { currentUser } = useContext(CurrentUserContext);
 
     // Create an endpoint to fetch a specific post information
     useEffect(()=>{
@@ -40,7 +42,7 @@ const ActivityDetails = () => {
             </ReturnBar>
             <Summary>
                 <FaShieldAlt size = {100} color = {'#EE6C4D'}/>
-                <JoinButton postData = {postData} />
+                { postData.creator._id !== currentUser._id && <JoinButton postData = {postData} />}
                 <Type>
                     <span>{postData.activityType}</span>
                     {" - "}
@@ -55,7 +57,7 @@ const ActivityDetails = () => {
                 <SubContainer>
                     <Text>
                         <FiClipboard size = {20}/>
-                        <span>{postData.limit} spots left</span>
+                        <span>{postData.limit - postData.joining.length} spots left</span>
                     </Text>
                     <Text>
                         <FiMapPin size = {20}/>

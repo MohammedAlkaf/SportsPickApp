@@ -43,7 +43,7 @@ const JoinButton = ({ postData }) => {
                         <FiCheckCircle size = {20} color = {'lightgreen'}/> 
                         <span>You have joined this activity</span>
                     </Status>
-                    <Button onClick = {()=> handleJoining()}>
+                    <Button onClick = {()=> handleJoining()} style = { { background:'red' }}>
                         withdraw
                     </Button>
                 </>
@@ -53,7 +53,7 @@ const JoinButton = ({ postData }) => {
                         <FiXCircle size = {20} color = {'red'}/> 
                         <span style ={{color:'red'}}>You have not joined this activity</span>
                     </Status>
-                    <Button onClick = {()=> handleJoining()}>
+                    <Button onClick = {()=> handleJoining()} style = { { background:'green' }}>
                         join
                     </Button>
                 </>
@@ -63,10 +63,9 @@ const JoinButton = ({ postData }) => {
 }
 
 const Button = styled.button`
-background: none;
 margin:10px;
 color: inherit;
-border: 1px solid red;
+border: 2px solid white;
 height: 40px;
 width:100px;
 padding: 5px 0px;
@@ -77,6 +76,7 @@ outline: inherit;
 `;
 
 const JoiningStatus = styled.div`
+margin-top: 5px;
 display: flex;
 flex-direction: column;
 align-items: center;
