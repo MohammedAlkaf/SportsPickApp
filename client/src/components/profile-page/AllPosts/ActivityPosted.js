@@ -11,7 +11,7 @@ const ActivityPosted = () => {
 
     useEffect(()=>{
         // get the data of all posts in the system
-        fetch(`/posts/${currentUser._id}`)
+        fetch(`/posts/creator/${currentUser._id}`)
         .then(res=> res.json())
         .then(data => {
             setPostsData(data.posts); // Store all posts data in postsData state variable

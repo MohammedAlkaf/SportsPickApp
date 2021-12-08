@@ -10,7 +10,7 @@ import NavBar from "./components/nav-bar/NavBar";
 import Profile from "./components/profile-page/Profile";
 import Home from "./components/homefeed/Home";
 import ActivityForm from "./components/create-activity-page/ActivityForm";
-
+import ActivityDetails from "./components/acitivity-components/ActivityDetails";
 function App() {
 
   const { isUserLoggedIn } = useContext(CurrentUserContext);
@@ -49,8 +49,8 @@ function App() {
                 <Route path="/home">
                   <Home/>
                 </Route>
-                <Route path="/activity/:id">
-                  This page shows form to create an activity
+                <Route path="/activity/:_id">
+                  <ActivityDetails/>
                 </Route>
               </Container>
               <NavBar/>

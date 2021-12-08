@@ -10,7 +10,8 @@ const { getPostsByCreatorId } = require('./handlers/posts-handlers/getPostsByCre
 const { getPostsByJoinerId } = require('./handlers/posts-handlers/getPostsByJoinerId');
 const { postNewActivityPost } = require('./handlers/posts-handlers/postNewActivityPost');
 const { deletePostById } = require('./handlers/posts-handlers/deletePostByPostId');
-
+const { getPostById } = require('./handlers/posts-handlers/getPostByPostId')
+const { putjoinByUserId } = require('./handlers/posts-handlers/putJoinActivity')
 const cors = require("cors");
 
 const PORT = 8000;
@@ -34,13 +35,18 @@ express()
 // Get all posts in the database
 .get('/posts', getPosts)
 // Get all posts by creator _id
-.get('/posts/:_id', getPostsByCreatorId)
+.get('/posts/creator/:_id', getPostsByCreatorId)
 // Get allposts a user is joining
 .get('/posts/joiner/:_id', getPostsByJoinerId )
 // Post a new activity 
 .post('/posts/add', postNewActivityPost)
 // Delete an existing post
 .delete('/posts/delete/:_id',deletePostById)
+// Get post by it's unique _id
+.get('/posts/:_id', getPostById )
+
+// Handle current user joining or withdrawing from an activity
+.put('/post/updateJoining', putjoinByUserId)
 
 .listen(PORT, function () {
     console.info("🌍 Listening on port " + PORT);

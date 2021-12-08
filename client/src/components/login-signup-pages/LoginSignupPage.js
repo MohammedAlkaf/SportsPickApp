@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import SportsBackground from '../assests/SportsBackground1.jpg'
 
 const LoginSignupPage = () => {
 
@@ -16,6 +17,7 @@ const LoginSignupPage = () => {
     return(
 
         <Wrapper>
+            <BackgroundImg src = {SportsBackground}/>
             <Title>SportsPick</Title>
             <ButtonContainer>
                 <Quotes>
@@ -46,19 +48,28 @@ const LoginSignupPage = () => {
 }
 
 const Wrapper = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width:100%;
-    height:100%;
-    background: #293241;
-    background: -webkit-linear-gradient(to bottom, #141e30, #243b55); 
-    background: linear-gradient(to bottom, #141e30, #243b55);
-    align-items: center;
-    font-weight: 400;
-    padding:10px;
-    color: white;
+position: relative;
+display: flex;
+flex-direction: column;
+width:100%;
+height:100%;
+background: #293241;
+background: -webkit-linear-gradient(to bottom, #141e30, #243b55); 
+background: linear-gradient(to bottom, #141e30, #243b55);
+align-items: center;
+font-weight: 400;
+padding:10px;
+color: white;
+overflow: hidden;
 `;
+
+const BackgroundImg = styled.img`
+position:absolute;
+left:-50%;
+opacity: 0.2;
+transform: rotate(-90deg);
+`;
+
 
 const Title = styled.div`
     font-size: 2em;
