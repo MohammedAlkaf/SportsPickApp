@@ -34,7 +34,11 @@ const ActivityJoined = ( { profileData }) => {
             postsData.length === 0
             ?
             <CircleWrapper>
-                You have not joined any activity
+                {
+                    currentUser._id === profileData._id
+                    ? "You have not joined any activity"
+                    : "This user has not joined any activity"
+                }
             </CircleWrapper>
             :
             <Wrapper>

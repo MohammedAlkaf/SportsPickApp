@@ -18,6 +18,7 @@ const Profile = () => {
     const { currentUser } = useContext(CurrentUserContext);
     
     useEffect( () => {
+        setProfileDataStatus('loading')
         fetch(`/users/${_id}`)
         .then(res => res.json())
         .then(data => {
@@ -37,18 +38,17 @@ const Profile = () => {
 
     return(
         <Wrapper>
-            { currentUser._id !== profileData._id &&
-                <ReturnBar>
-                    <ReturnButton onClick = {() => history.goBack()}>
-                        <FaArrowLeft size ={30}/>
-                    </ReturnButton>
-                </ReturnBar>
-            }
             <Banner>
-                
+                { currentUser._id !== profileData._id &&
+                    <ReturnBar>
+                        <ReturnButton onClick = {() => history.goBack()}>
+                            <FaArrowLeft size ={30}/>
+                        </ReturnButton>
+                    </ReturnBar>
+                }
             </Banner>
             <UserInfoContainer>
-                <ProfileImg src = { noImg }/>
+                <ProfileImg src = { profileData.imgSrc !== '' ? profileData.imgSrc : noImg }/>
                 <SubContainer>
                     <DisplayName>
                         {profileData.displayName}
@@ -86,20 +86,21 @@ const Profile = () => {
 
 const CircleWrapper = styled.div`
 display: flex;
-height: 100vh;
+height: 100%;
 justify-content: center;
 align-items: center;
 `;
 const Wrapper = styled.div`
 display:flex;
 flex-direction: column;
-height: 100vh;
+height: 100%;
 `;
 
 const UserInfoContainer = styled.div`
 display:flex;
 flex-direction: column;
 /* border:1px red solid; */
+height: 35%;
 background: #293241;
 padding-bottom: 10px;
 `;
@@ -107,10 +108,12 @@ padding-bottom: 10px;
 const Banner = styled.div`
 width:100%;
 height:15%;
+/* border: 1px solid red; */
 `;
 
 const ProfileImg = styled.img`
 width: 150px;
+height: 150px;
 border-radius: 50%;
 background-color: grey;
 border: 5px solid #293241;
@@ -137,13 +140,16 @@ margin: 10px;
 
 const Bio = styled.div`
 margin: 10px;
+height: calc( 100% - 50px - 70px ) ;
 font-size: 0.9em;
+/* border: 1px solid yellow; */
 `;
 
 const AccountStats = styled.div`
 display: flex;
 justify-content: space-between;
 /* border: 1px solid yellow; */
+height: 70px;
 `
 
 const Stat = styled.div`
@@ -152,6 +158,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+
 `
 
 

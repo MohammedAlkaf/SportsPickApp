@@ -34,7 +34,7 @@ const ActivityParticipant = ({ role, _id }) => {
                     {role}
                 </Role>
                 <SubContainer>
-                    <UserImg src = {noImg} />
+                    <UserImg src = { userData.imgSrc !== '' ? userData.imgSrc : noImg } />
                     <Username>
                         {userData.displayName}
                     </Username>
@@ -68,7 +68,7 @@ color: #98C1D9;
 
 const SubContainer = styled.div`
 display: flex;
-justify-content: center;
+width: 100%;
 align-items: center;
 margin: 5px 0px;
 /* border: 1px solid white; */

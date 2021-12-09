@@ -34,7 +34,11 @@ const ActivityPosted = ({ profileData }) => {
             postsData.length === 0 
             ?
             <CircleWrapper>
-                You have not posted any activity
+                {
+                    currentUser._id === profileData._id
+                    ? "You have not posted any activity"
+                    : "This user has not posted any activity"
+                }
             </CircleWrapper>
             :
             <Wrapper>

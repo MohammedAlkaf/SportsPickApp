@@ -70,13 +70,14 @@ const Wrapper = styled.div`
 `;
 
 const MainAppContainer = styled.div`
-  width: 100vw;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `
 
 const Container = styled.div`
-  height: calc(100vh - 70px);
+  height: calc(100% - 70px);
   background: #293241;
   background: -webkit-linear-gradient(to bottom, #141e30, #243b55); 
   background: linear-gradient(to bottom, #141e30, #243b55);
