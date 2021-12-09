@@ -4,14 +4,14 @@ import SingleActivity from "../../acitivity-components/SingleActivity";
 import { CurrentUserContext } from '../../all-contexts/currentUserContext';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const ActivityPosted = () => {
+const ActivityPosted = ({ profileData }) => {
     const { currentUser } = useContext(CurrentUserContext)
     const [ postsData, setPostsData ] = useState([]);
     const [ postDataStatus, setPostDataStatus ] = useState('loading');
 
     useEffect(()=>{
         // get the data of all posts in the system
-        fetch(`/posts/creator/${currentUser._id}`)
+        fetch(`/posts/creator/${profileData._id}`)
         .then(res=> res.json())
         .then(data => {
             setPostsData(data.posts); // Store all posts data in postsData state variable

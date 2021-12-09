@@ -16,7 +16,7 @@ try {
 
     const { _id } = req.params;
 
-    const query = { 'creator._id':_id };
+    const query = { 'creator_id':_id };
 
     const db = client.db("SportsPickApp");
     const posts = await db.collection("posts").find(query).toArray();

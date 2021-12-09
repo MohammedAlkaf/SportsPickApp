@@ -7,6 +7,7 @@ import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard, FiCheckCircle, FiX
 import moment from 'moment';
 import JoinButton from './JoinButton';
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
+import ActivityParticipant from "./ActivityParticipant";
 
 const ActivityDetails = () => {
 
@@ -42,7 +43,7 @@ const ActivityDetails = () => {
             </ReturnBar>
             <Summary>
                 <FaShieldAlt size = {100} color = {'#EE6C4D'}/>
-                { postData.creator._id !== currentUser._id && <JoinButton postData = {postData} />}
+                { postData.creator_id !== currentUser._id && <JoinButton postData = {postData} />}
                 <Type>
                     <span>{postData.activityType}</span>
                     {" - "}
@@ -84,6 +85,25 @@ const ActivityDetails = () => {
                     </p>
                 </Address>
             </Container>
+            <Container>
+                <Description>
+                    <h2>Participants</h2>
+                    <ParticipantsContainer>
+                        <ActivityParticipant role = {'Activity Host'} _id = {postData.creator_id} />
+                        {
+                            postData.joining.map( (participant) => {
+                                if ( participant._id !==  postData.creator_id){
+                                    return(
+                                        <ActivityParticipant role = {'Participant'} _id = {participant._id} />
+                                        )
+                                }
+                            })
+                        }
+                    </ParticipantsContainer>
+                </Description>
+            </Container>
+            <br/>
+            <br/>
         </Wrapper>
     );
 }
@@ -181,4 +201,11 @@ span{
     margin-left:7px;
 }
 `;
+
+const ParticipantsContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+margin-top: 10px;
+`;
+
 export default ActivityDetails

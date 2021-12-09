@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ToggleBar from "./ToggleBar";
 import ActivityJoined from "./ActivitedJoined";
 import ActivityPosted from "./ActivityPosted";
-const Posts = () => {
+const Posts = ({ profileData }) => {
 
     const [ displayedPage, setDisplayedPage ] = useState(1);
     
@@ -11,8 +11,8 @@ const Posts = () => {
         <Wrapper>
             <ToggleBar setDisplayedPage = { setDisplayedPage }/>
             { displayedPage === 1
-            ? <ActivityPosted/>
-            : <ActivityJoined/>
+            ? <ActivityPosted profileData = { profileData }/>
+            : <ActivityJoined profileData = { profileData }/>
             }
             <br/>
             <br/>

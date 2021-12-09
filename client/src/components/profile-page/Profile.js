@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router";
 import CircularProgress from '@mui/material/CircularProgress';
 import noImg from '../assests/noImg.png';
 import LogoutButton from "../login-signup-pages/LogoutButton";
 import Posts from "./AllPosts/Posts";
+import { CurrentUserContext } from "../all-contexts/currentUserContext";
+import { FaArrowLeft } from "react-icons/fa";
+
 
 const Profile = () => {
-
+    let history = useHistory();
     let { _id } = useParams();
 
     const [profileData,setProfileData] = useState(null);
     const [profileDataStatus,setProfileDataStatus] = useState("loading");
-
+    const { currentUser } = useContext(CurrentUserContext);
+    
     useEffect( () => {
         fetch(`/users/${_id}`)
         .then(res => res.json())
@@ -20,7 +24,7 @@ const Profile = () => {
             setProfileData(data.user);
             setProfileDataStatus("idle");
         })
-    },[]);
+    },[_id]);
 
     console.log(profileData);
 
@@ -33,6 +37,13 @@ const Profile = () => {
 
     return(
         <Wrapper>
+            { currentUser._id !== profileData._id &&
+                <ReturnBar>
+                    <ReturnButton onClick = {() => history.goBack()}>
+                        <FaArrowLeft size ={30}/>
+                    </ReturnButton>
+                </ReturnBar>
+            }
             <Banner>
                 
             </Banner>
@@ -45,7 +56,9 @@ const Profile = () => {
                     {/* <FollowButton>
                         Follow
                     </FollowButton> */}
-                    <LogoutButton/>
+                    { currentUser._id === profileData._id &&
+                        <LogoutButton/>
+                    }
                 </SubContainer>
                 <Bio>
                     {profileData.bio}
@@ -65,7 +78,7 @@ const Profile = () => {
                     </Stat>
                 </AccountStats>
             </UserInfoContainer>
-            <Posts/>
+            <Posts profileData = {profileData} />
         </Wrapper>
     )
 
@@ -140,4 +153,20 @@ flex-direction: column;
 align-items: center;
 justify-content: center;
 `
+
+
+const ReturnBar = styled.div`
+/* border: 1px solid red; */
+padding: 10px 10px;
+`;
+
+const ReturnButton = styled.button`
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+`;
 export default Profile

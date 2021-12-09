@@ -114,7 +114,7 @@ const users =
 const posts = [
     {
         _id: 'd978f0d6-97f3-43fd-b6b5-3945270ea03e',
-        creator: { _id  : '7687930d-aa57-4c34-aebc-167c668a148a'},
+        creator_id  : '7687930d-aa57-4c34-aebc-167c668a148a',
         limit: 8,
         joining: 
         [
@@ -146,7 +146,7 @@ const posts = [
     },
     {
         _id: 'd041be9f-212c-4b54-a400-42fcb96e1d56',
-        creator: { _id  : '897d755b-89bd-4e82-a51e-e81e93a0d246'},
+        creator_id  : '897d755b-89bd-4e82-a51e-e81e93a0d246',
         limit: 7,
         joining: 
         [
@@ -178,7 +178,7 @@ const posts = [
     },
     {
         _id: '870fe55a-1d2d-44b7-a2e9-b96f23a1f795',
-        creator: { _id  : '571abf88-b57d-41a1-9f35-f47141a42363'},
+        creator_id  : '571abf88-b57d-41a1-9f35-f47141a42363',
         limit: 4,
         joining: 
         [

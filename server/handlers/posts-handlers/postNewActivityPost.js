@@ -31,7 +31,7 @@ const postNewActivityPost = async (req, res) => {
         // Create the object for the new post to be added
         const newPostInfo = {
             ...req.body,
-            creator: { _id: creator_id }, // creator id
+            creato_id: creator_id , // creator id
             _id: uuidv4(), // Post id
             joining: [{ _id: creator_id }], // Adding creator as a joiner also
             dateCreated: todayDate,
