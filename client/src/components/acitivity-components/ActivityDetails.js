@@ -80,8 +80,7 @@ const ActivityDetails = () => {
                     <p>
                     {postData.activityAddress.street}{', '}
                     {postData.activityAddress.city}{', '}
-                    {postData.activityAddress.province}{', '}
-                    {postData.activityAddress.postalCode}
+                    {postData.activityAddress.province}
                     </p>
                 </Address>
             </Container>

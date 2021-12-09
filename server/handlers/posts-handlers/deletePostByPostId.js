@@ -53,6 +53,8 @@ const deletePostById = async (req, res) => {
             });
     }
     catch(err){
+        client.close();
+        console.log("disconnected");
         console.log("Error:", err);
     }
 }

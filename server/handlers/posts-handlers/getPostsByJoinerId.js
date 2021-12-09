@@ -29,6 +29,8 @@ try {
         posts,
     });
 } catch (err) {
+    client.close();
+    console.log("disconnected");
     console.log("Error:", err);
 }
 };

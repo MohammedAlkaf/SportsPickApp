@@ -5,6 +5,7 @@ import { sports, levels } from "./FormConstants";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
+import AddressSearchBox from "./AddressSearchBox";
 
 const ActivityForm = () => {
     // Get the current user information from the currentUserContext
@@ -27,7 +28,6 @@ const ActivityForm = () => {
             street:'',
             city:'',
             province:'',
-            postalCode:''
         },
         activityType:'Select',
         desciption:'',
@@ -49,12 +49,6 @@ const ActivityForm = () => {
         }
         setIsFormSubmitted(false);
         setFormError({ status: false, message: 'no error'});
-    };
-
-    // A function that handles the change in the activityAddress and updates the state variable 'postForm'
-    const handleAddressChange = (name, value) => {
-        setPostForm({ ...postForm, activityAddress:{...postForm.activityAddress, [name]:value }});
-        handleCloseBar();
     };
 
     // A function that handles the change in the activityDate and updates the state variable 'postForm'
@@ -179,38 +173,8 @@ const ActivityForm = () => {
                     <Title>
                         {'Activity Address'}
                     </Title>
-                    <DateContainer>
-                        <Input
-                            type="text"
-                            placeholder = 'Street'
-                            style = { { width: '100%'}}
-                            value = {postForm.activityAddress.street}
-                            onChange = {(ev) => handleAddressChange("street",ev.target.value)}
-                        />
-                    </DateContainer>
-                    <DateContainer>
-                        <Input
-                            type="text"
-                            placeholder = 'City'
-                            value = {postForm.activityAddress.city}
-                            style = { { width: '100px'}}
-                            onChange = {(ev) => handleAddressChange("city",ev.target.value)}
-                        />
-                        <Input
-                            type="text"
-                            placeholder = 'Province'
-                            style = { { width: '100px'}}
-                            value = {postForm.activityAddress.province}
-                            onChange = {(ev) => handleAddressChange("province",ev.target.value)}
-                        />
-                        <Input
-                            type="text"
-                            placeholder = 'Postal Code'
-                            style = { { width: '120px'}}
-                            value = {postForm.activityAddress.postalCode}
-                            onChange = {(ev) => handleAddressChange("postalCode",ev.target.value)}
-                        />
-                    </DateContainer>
+                    <br/>
+                    <AddressSearchBox postForm = { postForm } setPostForm = { setPostForm }/>
                 </Conatiner>
                 <Conatiner>
                     <Title>

@@ -38,6 +38,8 @@ const getPostById = async (req,res) => {
             
     }
     catch(err){
+        client.close();
+        console.log("disconnected");
         console.log(err);
     }
 }

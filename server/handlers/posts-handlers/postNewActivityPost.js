@@ -31,7 +31,7 @@ const postNewActivityPost = async (req, res) => {
         // Create the object for the new post to be added
         const newPostInfo = {
             ...req.body,
-            creato_id: creator_id , // creator id
+            creator_id: creator_id , // creator id
             _id: uuidv4(), // Post id
             joining: [{ _id: creator_id }], // Adding creator as a joiner also
             dateCreated: todayDate,
@@ -72,8 +72,7 @@ const postNewActivityPost = async (req, res) => {
         else if (
             activityAddress.street === "" ||
             activityAddress.city === "" ||
-            activityAddress.province === "" ||
-            activityAddress.postalCode === ""
+            activityAddress.province === ""
         ) {
             return res
             .status(400)
