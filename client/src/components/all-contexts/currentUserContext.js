@@ -7,11 +7,12 @@ export const CurrentUserContext = createContext(null);
 export const CurrentUserProvider = ({ children }) => {
 
     const [currentUser, setCurrentUser] = useState(null);
-    const [currentUserStatus, setCurrentUserStatus] = useState("loading");
+    const [currentUserStatus, setCurrentUserStatus] = useState("idle");
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [errorStatus, setErrorStatus] = useState({ status: "idle", error: "no error" });
 
     const updateCurrentUser = (history,email) => {
+        setCurrentUserStatus('loading')
         fetch(`/loggedin/${email}`)
         .then((res) => res.json())
         .then((data) => {
@@ -22,9 +23,11 @@ export const CurrentUserProvider = ({ children }) => {
                 setIsUserLoggedIn(true);
                 console.log(data.message);
                 history.push(`/profile/${data.result._id}`);
+                setCurrentUserStatus('idle')
             }
             else {
                 setErrorStatus({ status: "err", error: data.message })
+                setCurrentUserStatus('idle')
             }
         })
     };

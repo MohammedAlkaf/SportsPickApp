@@ -12,6 +12,10 @@ const updateCurrentUser = async (req, res) => {
 
     const { email } = req.params;
     const query = { email };
+
+    if( email === ''){
+        return res.status(400).json({status: 404, message: "Please enter your email address"})
+    }
 try {
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();

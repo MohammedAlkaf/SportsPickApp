@@ -10,6 +10,7 @@ import {
 } from "react-icons/fi";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { useHistory } from "react-router";
+import LoadingCircule from "../loading-components/loadingCircule";
 
 const SignupPage = () => {
   const history = useHistory();
@@ -59,7 +60,7 @@ const SignupPage = () => {
         if (status === 200) {
           console.log(data);
           console.log(message);
-          updateCurrentUser(history,data.email);
+          updateCurrentUser(history, data.email);
         } else {
           setErrorStatus({ status: "error", error: message });
           console.log(data);
@@ -144,7 +145,11 @@ const SignupPage = () => {
           <Error>* {errorStatus.error} *</Error>
         )}
         <ButtonContainer>
-          <SignUpButton type="submit">Sign Up</SignUpButton>
+          <SignUpButton type="submit">
+          {
+            signupButtonStatus === 'loading' ? <LoadingCircule/> : 'Sign Up'
+          }
+          </SignUpButton>
         </ButtonContainer>
       </Form>
     </Wrapper>

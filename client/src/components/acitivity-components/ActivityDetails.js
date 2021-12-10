@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useParams, useHistory } from "react-router";
 import { FaShieldAlt, FaArrowLeft } from "react-icons/fa";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -107,11 +107,30 @@ const ActivityDetails = () => {
     );
 }
 
+const PuffInCenter = keyframes`
+    0% {
+        -webkit-transform: scale(2);
+                transform: scale(2);
+        -webkit-filter: blur(4px);
+                filter: blur(4px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        -webkit-filter: blur(0px);
+                filter: blur(0px);
+        opacity: 1;
+    }
+`;
+
+
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
 height: 100%;
 overflow: auto;
+animation: ${PuffInCenter} 0.4s both;
 `;
 
 const CircleWrapper = styled.div`

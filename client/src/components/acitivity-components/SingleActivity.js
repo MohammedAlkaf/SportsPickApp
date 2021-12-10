@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { keyframes } from 'styled-components'
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
 import moment from 'moment';
 import SportsBackground from '../assests/SportsBackground.jpg';
@@ -56,12 +57,30 @@ const SingleActivity = ({ post }) => {
     );
 }
 
+const slideIn = keyframes`
+0% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
+`;
+
 const Wrapper = styled.div`
 /* border: 1px solid red; */
 margin:15px;
 border-radius: 10px;
 background: #293241;
 box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+animation: ${slideIn} 0.5s ease-in-out;
 
 `
 const Conatiner = styled.div`

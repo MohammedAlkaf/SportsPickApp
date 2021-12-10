@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useParams, useHistory } from "react-router";
 import CircularProgress from '@mui/material/CircularProgress';
 import noImg from '../assests/noImg.png';
@@ -90,16 +90,37 @@ height: 100%;
 justify-content: center;
 align-items: center;
 `;
+
+const PuffInCenter = keyframes`
+    0% {
+        -webkit-transform: scale(2);
+                transform: scale(2);
+        -webkit-filter: blur(4px);
+                filter: blur(4px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        -webkit-filter: blur(0px);
+                filter: blur(0px);
+        opacity: 1;
+    }
+`;
+
 const Wrapper = styled.div`
 display:flex;
 flex-direction: column;
 height: 100%;
+animation: ${PuffInCenter} 0.4s both;
+
 `;
 
 const UserInfoContainer = styled.div`
 display:flex;
 flex-direction: column;
 /* border:1px red solid; */
+justify-content: flex-end;
 height: 35%;
 background: #293241;
 padding-bottom: 10px;
@@ -112,13 +133,14 @@ height:15%;
 `;
 
 const ProfileImg = styled.img`
+position: absolute;
 width: 150px;
 height: 150px;
 border-radius: 50%;
 background-color: grey;
 border: 5px solid #293241;
-margin-left:10px;
-margin-top: -75px;
+top: 18px;
+left: 13px;
 `
 const SubContainer = styled.div`
 display: flex;
@@ -140,7 +162,6 @@ margin: 10px;
 
 const Bio = styled.div`
 margin: 10px;
-height: calc( 100% - 50px - 70px ) ;
 font-size: 0.9em;
 /* border: 1px solid yellow; */
 `;
@@ -149,7 +170,6 @@ const AccountStats = styled.div`
 display: flex;
 justify-content: space-between;
 /* border: 1px solid yellow; */
-height: 70px;
 `
 
 const Stat = styled.div`

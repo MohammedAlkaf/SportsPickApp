@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { sports, levels } from "./FormConstants";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
 import AddressSearchBox from "./AddressSearchBox";
+import LoadingCircule from "../loading-components/loadingCircule";
 
 const ActivityForm = () => {
     // Get the current user information from the currentUserContext
@@ -40,6 +41,7 @@ const ActivityForm = () => {
 
     // State variables to monitor the form submission and form errors
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+    const [ formStatus, setFormStatus ] = useState('idle');
     const [ formError, setFormError] = useState({ status: false, message: 'no error'});
 
     // Function that handles the snackbar alert
@@ -67,6 +69,7 @@ const ActivityForm = () => {
 
     // The function handles the submission of the form by calling the endpoint handler in charge of adding a new post
     const handleSubmit = (ev) => {
+        setFormStatus('loading');
         ev.preventDefault();
         fetch('/posts/add',{
             method: "POST",
@@ -80,14 +83,14 @@ const ActivityForm = () => {
         .then( json =>{
             const { data, status, message } = json;
             if( status === 200 ){
-                console.log(message)
                 setFormError({ status: false, message: 'no error'});
                 setPostForm(initialFormValues);
                 setIsFormSubmitted(true);
+                setFormStatus('idle');
             }
             else {
                 setFormError({ status: true, message: message});
-                console.log(message);
+                setFormStatus('idle');
             }
         })
     }
@@ -193,7 +196,9 @@ const ActivityForm = () => {
                     <SubmitButton
                         type = 'submit'
                     >
-                        Post
+                        {
+                            formStatus === 'loading' ? <LoadingCircule/> : 'Post'
+                        }
                     </SubmitButton>
                     <RestButton
                         type="reset"
@@ -225,6 +230,49 @@ const ActivityForm = () => {
         </Wrapper>
     )
 }
+const PuffInCenter = keyframes`
+    0% {
+        -webkit-transform: scale(2);
+                transform: scale(2);
+        -webkit-filter: blur(4px);
+                filter: blur(4px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        -webkit-filter: blur(0px);
+                filter: blur(0px);
+        opacity: 1;
+    }
+`;
+
+const shakeBottom = keyframes`
+  0%,
+  100% {
+            transform: rotate(0deg);
+            transform-origin: 50% 100%;
+  }
+  10% {
+            transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+            transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+            transform: rotate(4deg);
+  }
+  80% {
+            transform: rotate(-2deg);
+  }
+  90% {
+            transform: rotate(2deg);
+  }
+`;
 
 const Wrapper = styled.div`
     position: relative;
@@ -241,6 +289,8 @@ const Wrapper = styled.div`
     overflow: auto;
 `;
 
+
+
 const Form = styled.form`
     position: relative;
     width: 100%;
@@ -254,6 +304,7 @@ const Conatiner = styled.div`
     justify-content: center;
     /* border: 1px solid red; */
     padding:10px 15px;
+    animation: ${PuffInCenter} 0.4s both;
 `;
 
 const ButtonConatiner = styled.div`

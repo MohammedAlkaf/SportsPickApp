@@ -3,15 +3,17 @@ import styled from "styled-components";
 import { HiOutlineMail } from "react-icons/hi";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
+import LoadingCircule from "../loading-components/loadingCircule";
+
 const LoginPage = () => {
 
     const [ userEmail, setUserEmaill ] = useState("");
-    const [ loginButtonStatus, SetLoginButtonStatus] = useState('idle');
     const history = useHistory();
 
     const {
         updateCurrentUser,
         setErrorStatus,
+        currentUserStatus,
         errorStatus } = useContext(CurrentUserContext);
 
     const handleInputChnage = (value) => {
@@ -21,10 +23,9 @@ const LoginPage = () => {
 
 
     const handleSubmit = (ev) => {
-        SetLoginButtonStatus("loading");
         ev.preventDefault();
         updateCurrentUser(history,userEmail);
-        console.log(userEmail);
+
     }
     return (
         <Wrapper>
@@ -43,7 +44,9 @@ const LoginPage = () => {
                 </Error>
                 <ButtonContainer>
                     <LoginButton>
-                        Log In
+                        {
+                            currentUserStatus === 'loading' ? <LoadingCircule/> : 'Log In'
+                        }
                     </LoginButton>
                 </ButtonContainer>
             </Form>

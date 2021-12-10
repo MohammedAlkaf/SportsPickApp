@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
     GoogleMap,
     useLoadScript,
@@ -110,10 +110,28 @@ const Map = ({ postsData, postDataStatus }) => {
     );
 };
 
+const PuffInCenter = keyframes`
+    0% {
+        -webkit-transform: scale(2);
+                transform: scale(2);
+        -webkit-filter: blur(4px);
+                filter: blur(4px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        -webkit-filter: blur(0px);
+                filter: blur(0px);
+        opacity: 1;
+    }
+`;
+
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
   height: calc(100% - 50px);
+  animation: ${PuffInCenter} 0.4s both;
 `;
 
 const Title = styled.h1`
