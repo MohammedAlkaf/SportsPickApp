@@ -25,7 +25,7 @@ const Home = () => {
             <ToggleBar setDisplayedPage = { setDisplayedPage }/>
             { displayedPage === 1
             ? <Search postsData = { postsData } postDataStatus ={ postDataStatus } />
-            : <Map/>
+            : <Map postsData = { postsData } postDataStatus ={ postDataStatus } />
             }
         </Wrapper>
     );

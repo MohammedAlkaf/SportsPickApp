@@ -35,7 +35,7 @@ const AddressSearchBox = ( { postForm, setPostForm }) => {
     return (
         <Wrapper>
             <GooglePlacesAutocomplete
-                apiKey = {process.env.REACT_APP_GOOGLE_MAP_API_KAY}
+                apiKey = {process.env.REACT_APP_GOOGLE_MAP_API_KEY}
                 selectProps={{
                     address,
                     onChange: setaddress,
