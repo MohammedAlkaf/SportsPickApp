@@ -124,13 +124,27 @@ const PuffInCenter = keyframes`
     }
 `;
 
+const slideIn = keyframes`
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
 
 const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
 height: 100%;
 overflow: auto;
-animation: ${PuffInCenter} 0.4s both;
+/* animation: ${PuffInCenter} 0.4s both; */
+animation: ${slideIn} 0.4s ease-out both;
 `;
 
 const CircleWrapper = styled.div`

@@ -34,6 +34,19 @@ const JoinButton = ({ postData }) => {
         setIsCurreuntUserJoined(!isCurrentUserJoined);
         
     }
+
+    if( postData.limit - postData.joining.length === 0){
+
+        return(
+            <JoiningStatus>
+                <Status>
+                    <FiXCircle size = {20} color = {'red'}/> 
+                    <span style ={{color:'red'}}>No remaining spots for this activity</span>
+                </Status>
+                <br/>
+            </JoiningStatus>
+        )
+    }
     return(
         <JoiningStatus>
             { isCurrentUserJoined 

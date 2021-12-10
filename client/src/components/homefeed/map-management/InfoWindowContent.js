@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import SingleActivity from "../../acitivity-components/SingleActivity";
+import SingleActivityInfoWindow from "../../acitivity-components/ActivityInfoWindow";
 const InfoWindowContent = ({selected})=> {
     return(
         <Wrapper>
-            <SingleActivity post = {selected}/>
+            <SingleActivityInfoWindow post = {selected}/>
         </Wrapper>
     )
 }
