@@ -9,8 +9,11 @@ export const activityPosContext = createContext(null);
 export const activityPosProvider = ({ children }) => {
     
 }
+
+console.log(process.env.REACT_APP_GOOGLE_MAP_API_KEY);
+
 // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-Geocode.setApiKey("AIzaSyA86Qyi8S6qwBe1hAaEwsDkHQ21pdMwaBk");
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAP_API_KEY);
 
 // set response language. Defaults to english.
 Geocode.setLanguage("en");
