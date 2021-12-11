@@ -81,7 +81,7 @@ const Map = ({ postsData, postDataStatus }) => {
                                     }}
                                     icon = {{
                                         url: orangeMarker,
-                                        scaledSize: new window.google.maps.Size(30,50)
+                                        scaledSize: new window.google.maps.Size(35,50)
                                     }}
                                     onClick={() => {
                                         setSelected(post);
