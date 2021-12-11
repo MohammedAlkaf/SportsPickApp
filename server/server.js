@@ -16,38 +16,39 @@ const cors = require("cors");
 
 const PORT = 8000;
 
-express()
-.use(cors())
+const app = express();
 
-.use(express.json())
+app.use(cors());
+
+app.use(express.json());
 
 // Get all users
-.get("/users", getUsers)
+app.get("/users", getUsers);
 // Get a single user by unique _id number
-.get("/users/:_id", getUserById)
+app.get("/users/:_id", getUserById);
 // When a user signs up with a new account, post the new user info 
-.post("/users/add", addNewUser)
+app.post("/users/add", addNewUser);
 // Store user info in 'current user collection' when a user sigs in or sings up
-.get("/loggedin/:email", updateCurrentUser)
+app.get("/loggedin/:email", updateCurrentUser);
 // When a user signs out, clear the data from 'currentUser' collection
-.delete("/loggedout/:email", deleteCurrentUser)
+app.delete("/loggedout/:email", deleteCurrentUser);
 
 // Get all posts in the database
-.get('/posts', getPosts)
+app.get('/posts', getPosts);
 // Get all posts by creator _id
-.get('/posts/creator/:_id', getPostsByCreatorId)
+app.get('/posts/creator/:_id', getPostsByCreatorId);
 // Get allposts a user is joining
-.get('/posts/joiner/:_id', getPostsByJoinerId )
+app.get('/posts/joiner/:_id', getPostsByJoinerId );
 // Post a new activity 
-.post('/posts/add', postNewActivityPost)
+app.post('/posts/add', postNewActivityPost);
 // Delete an existing post
-.delete('/posts/delete/:_id',deletePostById)
+app.delete('/posts/delete/:_id',deletePostById);
 // Get post by it's unique _id
-.get('/posts/:_id', getPostById )
+app.get('/posts/:_id', getPostById );
 
 // Handle current user joining or withdrawing from an activity
-.put('/post/updateJoining', putjoinByUserId)
+app.put('/post/updateJoining', putjoinByUserId)
 
-.listen(PORT, function () {
+var server = app.listen(PORT, function () {
     console.info("🌍 Listening on port " + PORT);
 });

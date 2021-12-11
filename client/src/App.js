@@ -11,6 +11,7 @@ import Profile from "./components/profile-page/Profile";
 import Home from "./components/homefeed/Home";
 import ActivityForm from "./components/create-activity-page/ActivityForm";
 import ActivityDetails from "./components/acitivity-components/ActivityDetails";
+import ChatSys from "./components/chat-page/ChatSys";
 function App() {
 
   const { isUserLoggedIn } = useContext(CurrentUserContext);
@@ -38,7 +39,7 @@ function App() {
                 </Route>
 
                 <Route path="/group-chats">
-                  This page shows all groups chats
+                  <ChatSys/>
                 </Route>
                 <Route path="/group-chats/:id">
                   This page shows all groups chats

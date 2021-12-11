@@ -35,7 +35,7 @@ const JoinButton = ({ postData }) => {
         
     }
 
-    if( postData.limit - postData.joining.length === 0){
+    if( postData.limit - postData.joining.length === 0 && !isCurrentUserJoined ){
 
         return(
             <JoiningStatus>
