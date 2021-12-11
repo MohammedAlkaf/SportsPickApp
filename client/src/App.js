@@ -83,5 +83,6 @@ const Container = styled.div`
   background: -webkit-linear-gradient(to bottom, #141e30, #243b55); 
   background: linear-gradient(to bottom, #141e30, #243b55);
   color: white;
+  overflow: hidden;
   `;
 export default App;

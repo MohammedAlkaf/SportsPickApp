@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
-import { db } from '../firebase'
-import SendMessage from './SendMessage'
+import { db } from '../firebase';
+import SendMessage from './SendMessage';
+import moment from 'moment';
 
 const Chat = ({ currentUser })=> {
 
@@ -16,20 +17,31 @@ const Chat = ({ currentUser })=> {
     return (
         <Wrapper>
             <MessagesContainer ref={scroll}>
-                {messages.map(({ id, text, photoURL, uid }) => (
+                {messages.map(({ id, text, photoURL, uid, displayName, createdAt }) => (
                     <div>
                         {
                             uid === currentUser._id 
                             ? 
-                            <MessageSent key={id} >
+                            <MessageContainerSent>
                                 <UserImg src={photoURL} alt="" />
-                                <Text>{text}</Text>
-                            </MessageSent>
-                            : 
-                            <MessageReceived key={id} >
+                                <MessageInfoSent>
+                                    <MessageSent key={id} >
+                                        <Text>{text}</Text>
+                                    </MessageSent>
+                                    <Time>{moment(createdAt).calendar()}</Time>
+                                </MessageInfoSent>
+                            </MessageContainerSent>
+                            :
+                            <MessageContainerReceived>
                                 <UserImg src={photoURL} alt="" />
-                                <Text>{text}</Text>
-                            </MessageReceived>
+                                <MessageInfo>
+                                    <Sender>{displayName}</Sender>
+                                    <MessageReceived key={id} >
+                                        <Text>{text}</Text>
+                                    </MessageReceived>
+                                    <Time>{moment(createdAt).calendar()}</Time>
+                                </MessageInfo>
+                            </MessageContainerReceived>
                         }
                     </div>
                 ))}
@@ -41,6 +53,7 @@ const Chat = ({ currentUser })=> {
 
 const Wrapper = styled.div`
 height:100%;
+padding-top:10px;
 `;
 
 const MessagesContainer = styled.div`
@@ -50,9 +63,42 @@ const MessagesContainer = styled.div`
     overflow: auto;
 `;
 
+const MessageContainer = styled.div`
+display:flex;
+/* border:1px solid red; */
+padding:5px;
+`;
+
+const MessageInfo = styled.div`
+display: flex;
+flex-direction:column;
+align-items: baseline;
+`;
+
+const MessageInfoSent = styled(MessageInfo)`
+	align-items: flex-end;
+`;
+
+const Sender = styled.div`
+font-size:0.7em;
+margin-left: 9px;
+margin-bottom:3px;
+`;
+const MessageContainerSent = styled(MessageContainer)`
+flex-direction: row-reverse;
+`;
+
+const Time = styled.div`
+font-size:0.7em;
+margin: 3px 20px;
+color: grey;
+`;
+
+const MessageContainerReceived = styled(MessageContainer)`
+`;
+
 const Message = styled.div`
     display: flex;
-    margin: 20px;
     border-radius: 30px;
     align-items: center;
     color:black;
@@ -65,6 +111,7 @@ const Message = styled.div`
 `;
 
 const MessageSent = styled(Message)`
+    margin-right:10px;
     background-color: #3C4552;
     color: white;
     border-top-right-radius: 0px;
@@ -74,6 +121,7 @@ const MessageSent = styled(Message)`
 `;
 
 const MessageReceived = styled(Message)`
+    margin-left:10px;
     border: 1px solid lightgray;
     background-color: #FAFAFA;
     border-top-left-radius: 0px;
@@ -83,13 +131,12 @@ const MessageReceived = styled(Message)`
 const UserImg = styled.img`
     border-radius: 50%;
     height: 45px;
-    margin-top: -20px;
-    border: 2px solid black;
+    border: 2px solid white;
 `;
 
 const Text = styled.p`
-    font-weight: 500;
-    font-size: 1.1em;
+    padding: 0px 5px;
+    font-size: 1em;
     margin-left: 10px;
     margin-right: 10px;
     overflow-wrap: break-word;

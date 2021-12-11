@@ -7,6 +7,7 @@ import LogoutButton from "../login-signup-pages/LogoutButton";
 import Posts from "./AllPosts/Posts";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { FaArrowLeft } from "react-icons/fa";
+import moment from 'moment';
 
 
 const Profile = () => {
@@ -51,7 +52,8 @@ const Profile = () => {
                 <ProfileImg src = { profileData.imgSrc !== '' ? profileData.imgSrc : noImg }/>
                 <SubContainer>
                     <DisplayName>
-                        {profileData.displayName}
+                        <span>{profileData.displayName}</span>
+                        <div>Joined on {moment(profileData.joined).format("MMM Do, YYYY")}</div>
                     </DisplayName>
                     {/* <FollowButton>
                         Follow
@@ -167,6 +169,11 @@ height: 50px;
 const DisplayName = styled.div`
 margin: 10px;
 font-size: large;
+div{
+    padding: 2px 0px;
+    font-size: 0.8em;
+    color:grey;
+}
 `;
 
 const FollowButton = styled.button`

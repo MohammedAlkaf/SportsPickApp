@@ -10,13 +10,15 @@ function SendMessage({ scroll, currentUser }) {
     const sendMessage = async (ev) => {
 
         ev.preventDefault()
-        const { _id, imgSrc } = currentUser
+        const { _id, imgSrc, displayName} = currentUser
+        const date = new Date;
 
         await db.collection('messages1').add({
+            displayName,
             text: msg,
             photoURL: imgSrc !== '' ? imgSrc : noImg ,
             uid: _id,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            createdAt: date.toISOString()
         })
         setMsg('')
         scroll.current.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
