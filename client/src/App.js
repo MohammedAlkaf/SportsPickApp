@@ -79,7 +79,7 @@ const MainAppContainer = styled.div`
 `
 
 const Container = styled.div`
-  height: calc(100% - 70px);
+  height: calc(100% - 60px);
   background: #293241;
   background: -webkit-linear-gradient(to bottom, #141e30, #243b55); 
   background: linear-gradient(to bottom, #141e30, #243b55);

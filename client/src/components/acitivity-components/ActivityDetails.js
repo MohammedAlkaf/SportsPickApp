@@ -69,10 +69,10 @@ const ActivityDetails = () => {
 
             <Container>
                 <Description>
-                    <h2>Desciption</h2>
+                    <h2>Description</h2>
                     <p>
-                        {postData.desciption}
-                        {postData.desciption}
+                        {postData.description}
+                        {postData.description}
                     </p>
                 </Description>
                 <Address>

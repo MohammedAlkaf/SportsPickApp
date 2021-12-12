@@ -19,7 +19,7 @@ const postNewActivityPost = async (req, res) => {
             activityDate,
             activityAddress,
             activityType,
-            desciption,
+            description,
             level,
             creator_id,
         } = req.body;
@@ -102,7 +102,7 @@ const postNewActivityPost = async (req, res) => {
             .json({ status: 404, limit, message: "The limit should from 2 to 99" });
         }
         
-        else if (desciption.length < 10) {
+        else if (description.length < 10) {
             return res
             .status(400)
             .json({

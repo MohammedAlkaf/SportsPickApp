@@ -141,7 +141,7 @@ const posts = [
             postalCode: "H2G 2J8"
         },
         activityType: 'soccer',
-        desciption: 'Hi, I am looking for people to play indoor soccer 4 vs 4. Please prepare to wear indoor soccer shoes. I would be great if you get bring an extra ball.',
+        description: 'Hi, I am looking for people to play indoor soccer 4 vs 4. Please prepare to wear indoor soccer shoes. I would be great if you get bring an extra ball.',
         level: 'average',
     },
     {
@@ -173,7 +173,7 @@ const posts = [
             postalCode: "H3X 3N3"
         },
         activityType: 'basketball',
-        desciption: 'Me and my freinds are looking for some beginner-level basketball players for a 2 hour training. We are missing 7 poeple.',
+        description: 'Me and my freinds are looking for some beginner-level basketball players for a 2 hour training. We are missing 7 poeple.',
         level: 'beginner',
     },
     {
@@ -205,7 +205,7 @@ const posts = [
             postalCode: "H1W 2V3"
         },
         activityType: 'Tennis',
-        desciption: 'Hi there !, do play tennis ? Did you say yes ?! great ! I am looking for some people to join mr for a one-hour tennis session. Please join us if you are avaiable !',
+        description: 'Hi there !, do play tennis ? Did you say yes ?! great ! I am looking for some people to join mr for a one-hour tennis session. Please join us if you are avaiable !',
         level: 'average',
     }
 ]

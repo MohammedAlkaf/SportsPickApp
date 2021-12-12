@@ -32,12 +32,12 @@ const SingleActivity = ({ post }) => {
                         </ActivityTime>
                 </SubContainer1>
             </Conatiner>
-            <Text>
+            <Text style = { { marginTop:'6px'}}>
                 <FiMapPin size = {iconSize}/>
                 <span>{post.activityAddress.city}, {post.activityAddress.province}, Canada</span>
             </Text>
 
-            <SubContainer2>
+            <SubContainer2 style = { { marginTop:'6px'}} >
                 <Text>
                     <FiFlag size = {iconSize}/>
                     <span>{post.activityType}</span>
@@ -48,7 +48,7 @@ const SingleActivity = ({ post }) => {
                     <span>{post.level}</span>
                 </Text>
             </SubContainer2>
-            <Text>
+            <Text style = { { marginTop:'6px', paddingBottom:'15px'}} >
                 <FiClipboard size = {iconSize}/>
                 <span>{post.limit - post.joining.length} remaining spots</span>
             </Text>
@@ -90,7 +90,8 @@ align-items: center;
 border-radius: 10px 10px 0px 0px;
 padding:20px 10px;
 z-index: 1;
-`
+color: white;
+text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);`
 
 const BackgroundImg = styled.img`
 position: absolute;
@@ -115,11 +116,10 @@ const ActivityTime = styled.div``;
 
 const Text = styled.div`
 /* border: 1px solid red; */
-padding-bottom: 9px;
 padding-left: 6px;
-margin:4px;
 display: flex;
 align-items: center;
+color: darkgrey;
 span{
     margin: 0px 5px;
 }

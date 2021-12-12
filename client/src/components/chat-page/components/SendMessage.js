@@ -44,6 +44,7 @@ const SendMessageContainer = styled.div`
     width: 100%;
     padding: 10px;
     background-color: #293241;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 
 `;
 

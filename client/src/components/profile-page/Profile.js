@@ -6,7 +6,7 @@ import noImg from '../assests/noImg.png';
 import LogoutButton from "../login-signup-pages/LogoutButton";
 import Posts from "./AllPosts/Posts";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
-import { FaArrowLeft } from "react-icons/fa";
+import { FiChevronLeft } from "react-icons/fi";
 import moment from 'moment';
 
 
@@ -43,7 +43,7 @@ const Profile = () => {
                 { currentUser._id !== profileData._id &&
                     <ReturnBar>
                         <ReturnButton onClick = {() => history.goBack()}>
-                            <FaArrowLeft size ={30}/>
+                            <FiChevronLeft size ={30}/>
                         </ReturnButton>
                     </ReturnBar>
                 }
@@ -137,14 +137,14 @@ display:flex;
 flex-direction: column;
 /* border:1px red solid; */
 justify-content: flex-end;
-height: 35%;
+height: 30%;
 background: #293241;
 padding-bottom: 10px;
 `;
 
 const Banner = styled.div`
 width:100%;
-height:15%;
+height:20%;
 /* border: 1px solid red; */
 `;
 
@@ -155,7 +155,7 @@ height: 150px;
 border-radius: 50%;
 background-color: grey;
 border: 5px solid #293241;
-top: 18px;
+top: 28px;
 left: 13px;
 `
 const SubContainer = styled.div`
@@ -205,7 +205,7 @@ justify-content: center;
 
 const ReturnBar = styled.div`
 /* border: 1px solid red; */
-padding: 10px 10px;
+padding: 5px 5px;
 `;
 
 const ReturnButton = styled.button`

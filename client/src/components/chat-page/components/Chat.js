@@ -3,8 +3,12 @@ import styled from "styled-components";
 import { db } from '../firebase';
 import SendMessage from './SendMessage';
 import moment from 'moment';
+import { FiChevronLeft } from "react-icons/fi";
+import { useHistory } from "react-router";
 
 const Chat = ({ currentUser, activityId })=> {
+
+    let history  = useHistory();
 
     const scroll = useRef();
     const [messages, setMessages] = useState([]);
@@ -16,6 +20,11 @@ const Chat = ({ currentUser, activityId })=> {
 
     return (
         <Wrapper>
+            <ReturnBar>
+                <ReturnButton onClick = {() => history.goBack()}>
+                    <FiChevronLeft size ={30}/>
+                </ReturnButton>
+            </ReturnBar>
             <MessagesContainer ref={scroll}>
                 {messages.map(({ id, text, photoURL, uid, displayName, createdAt }) => (
                     <div>
@@ -53,12 +62,11 @@ const Chat = ({ currentUser, activityId })=> {
 
 const Wrapper = styled.div`
 height:100%;
-padding-top:10px;
 `;
 
 const MessagesContainer = styled.div`
     display: flex;
-    height: calc( 100% - 60px);
+    height: calc( 100% - 60px - 40px);
     flex-direction: column;
     overflow: auto;
 `;
@@ -140,6 +148,24 @@ const Text = styled.p`
     margin-left: 10px;
     margin-right: 10px;
     overflow-wrap: break-word;
+`;
+
+const ReturnBar = styled.div`
+/* border: 1px solid red; */
+display: flex;
+align-items: center;
+height: 40px;
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+`;
+
+const ReturnButton = styled.button`
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
 `;
 
 export default Chat

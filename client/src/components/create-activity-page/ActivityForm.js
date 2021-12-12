@@ -31,7 +31,7 @@ const ActivityForm = () => {
             province:'',
         },
         activityType:'Select',
-        desciption:'',
+        description:'',
         level:'All',
         creator_id:currentUser?._id,
     }
@@ -181,13 +181,13 @@ const ActivityForm = () => {
                 </Conatiner>
                 <Conatiner>
                     <Title>
-                        {'Desciption & Instructions'}
+                        {'Description & Instructions'}
                     </Title>
                     <DateContainer style={{ height: "120px" }}>
                         <Textfield
                             placeholder="Anything participants need to know before joining ?"
                             type="text"
-                            onChange = {(ev) => handleOtherChanges("desciption",ev.target.value)}
+                            onChange = {(ev) => handleOtherChanges("description",ev.target.value)}
                         />
                     </DateContainer>
                 </Conatiner>
