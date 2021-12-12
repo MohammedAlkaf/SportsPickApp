@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import GlobalStyles from "./GlobalStyles";
 import LoginSignupPage from "./components/login-signup-pages/LoginSignupPage";
 import LoginPage from "./components/login-signup-pages/LoginPage";
@@ -40,7 +40,7 @@ function App() {
                 </Route>
 
                 <Route path="/group-chats">
-                  <ChatLists/>
+                  <ChatLists />
                 </Route>
                 <Route path ="/chats/:_id">
                   <ChatSys/>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, memo } from "react";
 import styled from "styled-components";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -19,11 +19,12 @@ const ChatLists = () => {
         fetch(`/posts/joiner/${currentUser._id}`)
         .then( res => res.json())
         .then( (data) => {
-            console.log(data.posts);
             setJoinedActivities(data.posts);
             setPostsStatus('idle');
         });
     },[]);
+
+    console.log(joinedActivities);
 
     if( postsStatus === 'loading'){
         return (
@@ -51,7 +52,7 @@ const ChatLists = () => {
             }
         </Wrapper>
     )
-}
+};
 
 const Wrapper = styled.div`
 
