@@ -4,7 +4,7 @@ import { db, auth } from '../firebase';
 import firebase from 'firebase';
 import noImg from '../../assests/noImg.png';
 
-function SendMessage({ scroll, currentUser }) {
+function SendMessage({ scroll, currentUser, activityId }) {
     const [msg, setMsg] = useState('')
 
     const sendMessage = async (ev) => {
@@ -13,7 +13,7 @@ function SendMessage({ scroll, currentUser }) {
         const { _id, imgSrc, displayName} = currentUser
         const date = new Date;
 
-        await db.collection('messages1').add({
+        await db.collection(`activityId_${activityId}`).add({
             displayName,
             text: msg,
             photoURL: imgSrc !== '' ? imgSrc : noImg ,

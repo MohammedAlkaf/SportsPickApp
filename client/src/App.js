@@ -5,6 +5,7 @@ import LoginPage from "./components/login-signup-pages/LoginPage";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import SignupPage from "./components/login-signup-pages/SignupPage";
 import styled from "styled-components";
+import ChatLists from "./components/chat-page/AllJoinedChatsLists";
 import { CurrentUserContext } from './components/all-contexts/currentUserContext';
 import NavBar from "./components/nav-bar/NavBar";
 import Profile from "./components/profile-page/Profile";
@@ -39,10 +40,10 @@ function App() {
                 </Route>
 
                 <Route path="/group-chats">
-                  <ChatSys/>
+                  <ChatLists/>
                 </Route>
-                <Route path="/group-chats/:id">
-                  This page shows all groups chats
+                <Route path ="/chats/:_id">
+                  <ChatSys/>
                 </Route>
                 <Route path="/create-acitvity">
                   <ActivityForm/>

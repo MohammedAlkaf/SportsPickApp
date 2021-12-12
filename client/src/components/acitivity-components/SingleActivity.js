@@ -16,7 +16,7 @@ const SingleActivity = ({ post }) => {
     const handleClick = () => {
         history.push(`/activity/${post._id}`)
     }
-    console.log(post);
+
     return (
         <Wrapper onClick = {() => handleClick()}>
             <Conatiner>
@@ -58,18 +58,14 @@ const SingleActivity = ({ post }) => {
 }
 
 const slideIn = keyframes`
-0% {
-    -webkit-transform: rotateX(-100deg);
-            transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
-            transform-origin: top;
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
     opacity: 0;
   }
   100% {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-    -webkit-transform-origin: top;
-            transform-origin: top;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
     opacity: 1;
   }
 `;

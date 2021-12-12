@@ -2,8 +2,11 @@ import React,{ useContext } from 'react';
 import styled,{ keyframes } from "styled-components";
 import Chat from './components/Chat';
 import { CurrentUserContext } from '../all-contexts/currentUserContext';
+import { useParams } from 'react-router';
 
 const ChatSys = () => {
+
+  const { _id } = useParams();
 
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -13,9 +16,11 @@ const ChatSys = () => {
 
   }
 
+  console.log(_id);
+  
   return (
     <Wrapper>
-      <Chat currentUser = { currentUser }/>
+      <Chat currentUser = { currentUser } activityId = { _id }/>
     </Wrapper>
   );
 }

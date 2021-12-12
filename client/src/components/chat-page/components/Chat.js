@@ -4,15 +4,15 @@ import { db } from '../firebase';
 import SendMessage from './SendMessage';
 import moment from 'moment';
 
-const Chat = ({ currentUser })=> {
+const Chat = ({ currentUser, activityId })=> {
 
     const scroll = useRef();
     const [messages, setMessages] = useState([]);
     useEffect(() => {
-        db.collection('messages1').orderBy('createdAt').limit(50).onSnapshot(snapshot => {
+        db.collection(`activityId_${activityId}`).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
             setMessages(snapshot.docs.map(doc => doc.data()))
         })
-    }, []);
+    }, [activityId]);
 
     return (
         <Wrapper>
@@ -46,7 +46,7 @@ const Chat = ({ currentUser })=> {
                     </div>
                 ))}
             </MessagesContainer>
-            <SendMessage scroll={scroll} currentUser = { currentUser }/>
+            <SendMessage scroll={scroll} currentUser = { currentUser } activityId = { activityId }/>
         </Wrapper>
     )
 }
