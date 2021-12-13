@@ -16,7 +16,7 @@ const ChatLists = () => {
     // Get the data of all joined Activities for the current user
     useEffect( ()=> {
         setPostsStatus('loading');
-        fetch(`/posts/joiner/${currentUser._id}`)
+        fetch(`/posts/joiner/${currentUser?._id}`)
         .then( res => res.json())
         .then( (data) => {
             setJoinedActivities(data.posts);
@@ -47,7 +47,7 @@ const ChatLists = () => {
             <h2>Joined Activties Chats</h2>
             {
                 joinedActivities.map( (activity) => {
-                    return <SingleGroupChatItem activity ={ activity } />
+                    return <SingleGroupChatItem key = {activity._id} activity ={ activity } />
                 })
             }
         </Wrapper>

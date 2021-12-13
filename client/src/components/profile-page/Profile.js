@@ -11,22 +11,25 @@ import moment from 'moment';
 
 
 const Profile = () => {
+    
     let history = useHistory();
     let { _id } = useParams();
 
-    const [profileData,setProfileData] = useState(null);
-    const [profileDataStatus,setProfileDataStatus] = useState("loading");
     const { currentUser } = useContext(CurrentUserContext);
+    const [profileData,setProfileData] = useState(currentUser);
+    const [profileDataStatus,setProfileDataStatus] = useState("loading");
     
     useEffect( () => {
-        setProfileDataStatus('loading')
-        fetch(`/users/${_id}`)
-        .then(res => res.json())
-        .then(data => {
-            setProfileData(data.user);
-            setProfileDataStatus("idle");
-        })
-    },[_id]);
+
+            setProfileDataStatus('loading')
+            fetch(`/users/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                setProfileData(data.user);
+                setProfileDataStatus("idle");
+            })
+
+    },[]);
 
     console.log(profileData);
 

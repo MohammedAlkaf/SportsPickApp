@@ -13,6 +13,7 @@ import Home from "./components/homefeed/Home";
 import ActivityForm from "./components/create-activity-page/ActivityForm";
 import ActivityDetails from "./components/acitivity-components/ActivityDetails";
 import ChatSys from "./components/chat-page/ChatSys";
+
 function App() {
 
   const { isUserLoggedIn } = useContext(CurrentUserContext);

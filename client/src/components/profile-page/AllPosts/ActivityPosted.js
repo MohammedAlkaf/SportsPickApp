@@ -43,7 +43,7 @@ const ActivityPosted = ({ profileData }) => {
             :
             <Wrapper>
                 { postsData.map( (post) => {
-                    return <SingleActivity post = {post}/>
+                    return <SingleActivity key = {post._id} post = {post}/>
                 })}
                 
             </Wrapper>

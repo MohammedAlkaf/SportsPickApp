@@ -133,34 +133,41 @@ const ActivityForm = () => {
                     </Title>
                     <TypeContainer>
                             <SubContainer>
-                            <span>Sport: </span>
-                            <SelecConatiner>
-                                <Select 
-                                    name = 'sports'
-                                    value = {postForm.activityType}
-                                    onChange = {(ev) => handleOtherChanges("activityType",ev.target.value)}
-                                >
-                                    {
-                                        sports.map ( (sport) => {
-                                            return <Option value = {sport}>{sport}</Option>
-                                        } )
-                                    }
-                                </Select>
-                            </SelecConatiner>
-                            <span>Level: </span>
-                            <SelecConatiner>
-                                <Select 
-                                    name = 'levels'
-                                    value = {postForm.level}
-                                    onChange = {(ev) => handleOtherChanges("level",ev.target.value)}
-                                >
-                                    {
-                                        levels.map ( (level) => {
-                                            return <Option value = {level}>{level}</Option>
-                                        } )
-                                    }
-                                </Select>
-                            </SelecConatiner>
+
+                                <SubSubContainer>
+                                    <span>Sport: </span>
+                                    <SelecConatiner>
+                                        <Select 
+                                            name = 'sports'
+                                            value = {postForm.activityType}
+                                            onChange = {(ev) => handleOtherChanges("activityType",ev.target.value)}
+                                        >
+                                            {
+                                                sports.map ( (sport) => {
+                                                    return <Option key = {sport} value = {sport}>{sport}</Option>
+                                                } )
+                                            }
+                                        </Select>
+                                    </SelecConatiner>
+                                </SubSubContainer>
+
+                                <SubSubContainer>
+                                    <span>Level: </span>
+                                    <SelecConatiner>
+                                        <Select 
+                                            name = 'levels'
+                                            value = {postForm.level}
+                                            onChange = {(ev) => handleOtherChanges("level",ev.target.value)}
+                                        >
+                                            {
+                                                levels.map ( (level) => {
+                                                    return <Option key = {level} value = {level}>{level}</Option>
+                                                } )
+                                            }
+                                        </Select>
+                                    </SelecConatiner>
+                                </SubSubContainer>
+
                         </SubContainer>
                         <DateContainer>
                             <span>Limit: </span>
@@ -346,6 +353,13 @@ const SubContainer = styled.div`
     align-items: center;
     font-size: 1.2em;
     justify-content: space-between;
+`;
+
+const SubSubContainer = styled.div`
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Input = styled.input`

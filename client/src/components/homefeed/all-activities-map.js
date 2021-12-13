@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import {
     GoogleMap,
@@ -10,12 +10,15 @@ import mapStyles from "./map-management/mapStyles";
 import InfoWindowContent from "./map-management/InfoWindowContent";
 import orangeMarker from '../assests/orangeMarker.png';
 import CurrentLocationButton from "./map-management/currentLocation";
+import { CurrentUserLocation } from "../all-contexts/currentLocationContext";
 
 const Map = ({ postsData, postDataStatus }) => {
+
     const [selected, setSelected] = useState(null);
+    const { currentLocation } = useContext(CurrentUserLocation);
 
     // import the places libraries
-    const libraries = ["places"];
+    // const libraries = ["places"];
 
     // To avoid map re-rendering
     const mapRef = useRef();
@@ -42,17 +45,14 @@ const Map = ({ postsData, postDataStatus }) => {
     };
 
     // Specify the center of the map when the map loads
-    const center = {
-        lat: 45.508888,
-        lng: -73.561668,
-    };
+    const center = currentLocation;
 
     
 
     // Provide the api key for using Google maps and  libraries
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-        libraries,
+        // libraries,
     });
 
     if (loadError) return <div>Error loading Maps</div>;

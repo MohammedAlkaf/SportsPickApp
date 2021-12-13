@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { FiNavigation } from "react-icons/fi";
-
+import { CurrentUserLocation } from "../../all-contexts/currentLocationContext";
 
 const CurrentLocationButton = ({panTo}) => {
 
+    const { currentLocation } = useContext(CurrentUserLocation);
+
     const handleClick = () => {
-        navigator.geolocation.getCurrentPosition( (position) => {
-            panTo({
-                lat:position.coords.latitude,
-                lng:position.coords.longitude
-            })
-        }, () => null);
+            panTo(currentLocation);
     }
 
     return(

@@ -93,7 +93,7 @@ const ActivityDetails = () => {
                             postData.joining.map( (participant) => {
                                 if ( participant._id !==  postData.creator_id){
                                     return(
-                                        <ActivityParticipant role = {'Participant'} _id = {participant._id} />
+                                        <ActivityParticipant key ={participant._id} role = {'Participant'} _id = {participant._id} />
                                         )
                                 }
                             })
