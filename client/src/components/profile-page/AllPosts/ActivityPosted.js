@@ -18,6 +18,11 @@ const ActivityPosted = ({ profileData }) => {
             console.log(data.posts);
             setPostDataStatus('idle');
         })
+
+        return () => {
+            setPostsData([]);
+            setPostDataStatus('loading');
+        }
     },[])
 
     if( postDataStatus === 'loading'){

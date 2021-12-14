@@ -10,14 +10,25 @@ import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import ActivityParticipant from "./ActivityParticipant";
 
 const ActivityDetails = () => {
-
-    const history = useHistory();
-    const { _id } = useParams();
-    const [ postData, setPostData] = useState(null);
-    const [ postStatus, setPostStatus ] = useState('loading');
+    // Get the current user data from the context
     const { currentUser } = useContext(CurrentUserContext);
+    const history = useHistory();
 
-    // Create an endpoint to fetch a specific post information
+    // Get the post id for fetching 
+    const { _id } = useParams();
+
+    // A state variable store single post data aftet fetching
+    const [ postData, setPostData] = useState(null);
+
+    // A state variable to handle the loading screen until data is fetched
+    const [ postStatus, setPostStatus ] = useState('loading');
+
+    // A state variable to handle the update of remaning sports in the activity 
+    // The State varibale is for user interaction to show a realtime update in the number 
+    // of remanining sports in the activity. The backend already is built to update the remaining spots for an activity
+    const [ numOfRemaniningSpots, SetNumOfRemaniningSpots ] = useState(undefined);
+
+    // Create an endpoint to fetch specific post information
     useEffect(()=>{
         fetch(`/posts/${_id}`)
         .then( res => res.json())
@@ -25,6 +36,7 @@ const ActivityDetails = () => {
             console.log(data.post);
             setPostData(data.post);
             setPostStatus('idle');
+            SetNumOfRemaniningSpots(data.post.limit - data.post.joining.length);
         })
     },[]);
 
@@ -43,7 +55,14 @@ const ActivityDetails = () => {
             </ReturnBar>
             <Summary>
                 <FaShieldAlt size = {100} color = {'#EE6C4D'}/>
-                { postData.creator_id !== currentUser._id && <JoinButton postData = {postData} />}
+                { 
+                    postData.creator_id !== currentUser._id && 
+                    <JoinButton 
+                        postData = {postData} 
+                        numOfRemaniningSpots = {numOfRemaniningSpots} 
+                        SetNumOfRemaniningSpots = {SetNumOfRemaniningSpots}
+                    />
+                }
                 <Type>
                     <span>{postData.activityType}</span>
                     {" - "}
@@ -58,7 +77,7 @@ const ActivityDetails = () => {
                 <SubContainer>
                     <Text>
                         <FiClipboard size = {20}/>
-                        <span>{postData.limit - postData.joining.length} spots left</span>
+                        <span>{numOfRemaniningSpots} spots left</span>
                     </Text>
                     <Text>
                         <FiMapPin size = {20}/>

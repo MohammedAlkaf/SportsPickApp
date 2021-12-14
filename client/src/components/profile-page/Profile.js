@@ -7,6 +7,7 @@ import LogoutButton from "../login-signup-pages/LogoutButton";
 import Posts from "./AllPosts/Posts";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { FiChevronLeft } from "react-icons/fi";
+import FollowButton from "./AllPosts/FollowButton";
 import moment from 'moment';
 
 
@@ -14,11 +15,21 @@ const Profile = () => {
     
     let history = useHistory();
     let { _id } = useParams();
-
+    
+    // Get current user information from the currentUser Context
     const { currentUser } = useContext(CurrentUserContext);
+    // A state variable to store the data for the user profile
     const [profileData,setProfileData] = useState(currentUser);
     const [profileDataStatus,setProfileDataStatus] = useState("idle");
+
+    // A state variable to update the number of followers in profile in the 
+    // frontend only since backend takes sometimes to update the frontend,
+    // this state variable is just for user interaction to see the update in frontend
+    // the backend already knows if it's asked to follow or unfollow
+    const [ numOfFollowers, setNumOfFollowers ] = useState(undefined);
     
+    // When the profile component is mounted, fetch the profile data of the
+    // user with the provided _id in useParams();
     useEffect( () => {
 
         setProfileDataStatus('loading')
@@ -27,6 +38,7 @@ const Profile = () => {
         .then(data => {
             setProfileData(data.user);
             setProfileDataStatus("idle");
+            setNumOfFollowers(data.user.followers.length);
         })
 
     },[_id]);
@@ -56,9 +68,14 @@ const Profile = () => {
                         <span>{profileData.displayName}</span>
                         <div>Joined on {moment(profileData.joined).format("MMM Do, YYYY")}</div>
                     </DisplayName>
-                    {/* <FollowButton>
-                        Follow
-                    </FollowButton> */}
+                    { currentUser._id !== profileData._id &&
+                        <FollowButton 
+                            currentUser={currentUser}
+                            targetedUser = { profileData }
+                            numOfFollowers = {numOfFollowers}
+                            setNumOfFollowers = {setNumOfFollowers}
+                        />
+                    }
                     { currentUser._id === profileData._id &&
                         <LogoutButton/>
                     }
@@ -72,7 +89,7 @@ const Profile = () => {
                         <span>posts</span>
                     </Stat>
                     <Stat>
-                        {profileData.followers.length}
+                        {numOfFollowers}
                         <span>followers</span>
                     </Stat>
                     <Stat>
@@ -175,11 +192,6 @@ div{
     font-size: 0.8em;
     color:grey;
 }
-`;
-
-const FollowButton = styled.button`
-padding: 10px 20px;
-margin: 10px;
 `;
 
 const Bio = styled.div`

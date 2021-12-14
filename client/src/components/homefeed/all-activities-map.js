@@ -9,6 +9,7 @@ import {
 import mapStyles from "./map-management/mapStyles";
 import InfoWindowContent from "./map-management/InfoWindowContent";
 import orangeMarker from '../assests/orangeMarker.png';
+import currentLocationImg from '../assests/currentLocationImg.png'; 
 import CurrentLocationButton from "./map-management/currentLocation";
 import { CurrentUserLocation } from "../all-contexts/currentLocationContext";
 
@@ -18,7 +19,7 @@ const Map = ({ postsData, postDataStatus }) => {
     const { currentLocation } = useContext(CurrentUserLocation);
 
     // import the places libraries
-    // const libraries = ["places"];
+    const libraries = ["places"];
 
     // To avoid map re-rendering
     const mapRef = useRef();
@@ -52,7 +53,8 @@ const Map = ({ postsData, postDataStatus }) => {
     // Provide the api key for using Google maps and  libraries
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
-        // libraries,
+        libraries,
+
     });
 
     if (loadError) return <div>Error loading Maps</div>;
@@ -71,6 +73,15 @@ const Map = ({ postsData, postDataStatus }) => {
             >
                 {postDataStatus !== "loading" && (
                     <>
+                        <Marker
+                                    key={Math.random()*10000}
+                                    position={currentLocation}
+                                    icon = {{
+                                        url: currentLocationImg,
+                                        scaledSize: new window.google.maps.Size(35,35)
+                                    }}
+                        />
+                        
                         {postsData.map((post) => {
                             return (
                                 <Marker
@@ -86,6 +97,7 @@ const Map = ({ postsData, postDataStatus }) => {
                                     onClick={() => {
                                         setSelected(post);
                                     }}
+                                    animation={window.google.maps.Animation.DROP}
                                 />
                             );
                         })}

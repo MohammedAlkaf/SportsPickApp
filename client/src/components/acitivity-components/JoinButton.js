@@ -4,17 +4,29 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { CurrentUserContext } from '../all-contexts/currentUserContext';
 import { FiCheckCircle, FiXCircle} from "react-icons/fi";
 
-const JoinButton = ({ postData }) => {
+const JoinButton = ({ postData, numOfRemaniningSpots, SetNumOfRemaniningSpots }) => {
 
+    // Get the current user data from the context
     const { currentUser } = useContext(CurrentUserContext);
 
+    // Check the current status of joining ( before clicking on the join/withdraw button )
+    // If the user has already joined, then the initial value for isCurrentUserJoined is set to true
+    // If the user has not joined, then the initial value for isCurrentUserJoined is set to false
+    console.log(currentUser);
     const initialJoiningStatus = postData.joining.some( (user) => user._id === currentUser._id) ? true: false;
     const [ isCurrentUserJoined, setIsCurreuntUserJoined ] = useState(initialJoiningStatus);
 
     const handleJoining = () => {
-        
+        // This update is for userinteraction to change the button style based on
+        // the current status of joining
         setIsCurreuntUserJoined(!isCurrentUserJoined);
 
+        // This is also for frontend to increment/decrement num of spots in the activity
+        isCurrentUserJoined 
+        ? SetNumOfRemaniningSpots( numOfRemaniningSpots + 1)
+        : SetNumOfRemaniningSpots( numOfRemaniningSpots - 1);
+
+        // Now let's let the backend does its work to update the joining status + the num of remaning spots
         fetch('/post/updateJoining',
         {
             method: "PUT",
@@ -35,7 +47,7 @@ const JoinButton = ({ postData }) => {
         
     }
 
-    if( postData.limit - postData.joining.length === 0 && !isCurrentUserJoined ){
+    if( postData.limit - postData.joining.length === 0 && !initialJoiningStatus ){
 
         return(
             <JoiningStatus>
