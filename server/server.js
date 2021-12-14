@@ -10,8 +10,10 @@ const { getPostsByCreatorId } = require('./handlers/posts-handlers/getPostsByCre
 const { getPostsByJoinerId } = require('./handlers/posts-handlers/getPostsByJoinerId');
 const { postNewActivityPost } = require('./handlers/posts-handlers/postNewActivityPost');
 const { deletePostById } = require('./handlers/posts-handlers/deletePostByPostId');
-const { getPostById } = require('./handlers/posts-handlers/getPostByPostId')
-const { putjoinByUserId } = require('./handlers/posts-handlers/putJoinActivity')
+const { getPostById } = require('./handlers/posts-handlers/getPostByPostId');
+const { putjoinByUserId } = require('./handlers/posts-handlers/putJoinActivity');
+const { updateFollowingUsers} = require('./handlers/current-user-handler/followUsers');
+
 const cors = require("cors");
 
 const PORT = 8000;
@@ -32,6 +34,8 @@ app.post("/users/add", addNewUser);
 app.get("/loggedin/:email", updateCurrentUser);
 // When a user signs out, clear the data from 'currentUser' collection
 app.delete("/loggedout/:email", deleteCurrentUser);
+// Update the following array for the current user and the followers arrays for the user that's being followed
+app.put("/users/follow", updateFollowingUsers);
 
 // Get all posts in the database
 app.get('/posts', getPosts);

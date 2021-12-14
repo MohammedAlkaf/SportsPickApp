@@ -270,7 +270,6 @@ const Wrapper = styled.div`
     color: white;
     overflow: auto;
     animation: ${PuffInCenter} 0.4s both;
-
 `;
 
 const Form = styled.form`

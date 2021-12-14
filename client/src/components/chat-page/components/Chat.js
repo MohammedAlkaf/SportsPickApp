@@ -31,8 +31,8 @@ const Chat = ({ currentUser, activityId })=> {
                         {
                             uid === currentUser._id 
                             ? 
-                            <MessageContainerSent>
-                                <UserImg src={photoURL} alt="" />
+                            <MessageContainerSent key={id}>
+                                <UserImg src={photoURL} alt="" key={id} />
                                 <MessageInfoSent>
                                     <MessageSent key={id} >
                                         <Text>{text}</Text>
@@ -41,8 +41,8 @@ const Chat = ({ currentUser, activityId })=> {
                                 </MessageInfoSent>
                             </MessageContainerSent>
                             :
-                            <MessageContainerReceived>
-                                <UserImg src={photoURL} alt="" />
+                            <MessageContainerReceived key={id}>
+                                <UserImg src={photoURL} alt="" key={id} />
                                 <MessageInfo>
                                     <Sender>{displayName}</Sender>
                                     <MessageReceived key={id} >

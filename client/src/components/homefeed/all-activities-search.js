@@ -15,7 +15,7 @@ const Search = ({postsData, postDataStatus}) => {
     if( postsData.length === 0 ){
         return(
             <CircleWrapper>
-                    <span>There are no activities with the provided Specifications </span>
+                    <span>There are no activities with the provided specifications </span>
             </CircleWrapper>
         )
     }

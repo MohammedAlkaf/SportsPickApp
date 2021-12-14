@@ -55,6 +55,9 @@ function App() {
                 <Route path="/activity/:_id">
                   <ActivityDetails/>
                 </Route>
+                <Route path="/notifications">
+                  This is the notifications page
+                </Route>
               </Container>
               <NavBar/>
             </MainAppContainer>

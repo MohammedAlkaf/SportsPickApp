@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
-import { FiUser, FiMessageCircle, FiHome, FiPlusCircle } from "react-icons/fi";
+import { FiBell, FiUser, FiMessageCircle, FiHome, FiPlusCircle } from "react-icons/fi";
 
 const NavBar = () => {
 
@@ -28,7 +28,10 @@ const NavBar = () => {
             <Button active = {active === 3} onClick = {() => handleClick(3,'create-acitvity')}>
                 <FiPlusCircle size = {iconSize} color = {'EE6C4D'}/>
             </Button>
-            <Button active = {active === 4} onClick = {() => handleClick(4,'home')}>
+            <Button active = {active === 4} onClick = {() => handleClick(4,'notifications')}>
+                <FiBell size = {iconSize} color = {'EE6C4D'}/>
+            </Button>
+            <Button active = {active === 5} onClick = {() => handleClick(5,'home')}>
                 <FiHome size = {iconSize} color = {'EE6C4D'}/>
             </Button>
         </Wrapper>
