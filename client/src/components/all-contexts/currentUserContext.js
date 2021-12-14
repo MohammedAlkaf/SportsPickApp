@@ -10,7 +10,14 @@ export const CurrentUserProvider = ({ children }) => {
     const [currentUserStatus, setCurrentUserStatus] = useState("idle");
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [errorStatus, setErrorStatus] = useState({ status: "idle", error: "no error" });
-
+    
+    useEffect(() => {
+        const ls = window.localStorage.getItem("currentUser");
+        if (ls !== undefined && ls !== null) {
+            setCurrentUser(JSON.parse(ls));
+        }
+    }, []);
+    
     const updateCurrentUser = (history,email) => {
         setCurrentUserStatus('loading')
         fetch(`/loggedin/${email}`)
@@ -32,12 +39,6 @@ export const CurrentUserProvider = ({ children }) => {
         })
     };
 
-    useEffect(() => {
-        const ls = window.localStorage.getItem("currentUser");
-        if (ls !== undefined && ls !== null) {
-            setCurrentUser(JSON.parse(ls));
-        }
-    }, []);
 
     return (
         <CurrentUserContext.Provider

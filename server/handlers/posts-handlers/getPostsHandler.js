@@ -10,12 +10,30 @@ const options = {
 
 const getPosts = async (req, res) => {
 try {
+
+    const { activityType, level } = req.query;
+
+    let query = {};
+
+    if( activityType === "All" && level === "All" ){
+        query = {};
+    }
+    else if( activityType && level === "All" ){
+        query = { activityType };
+    }
+    else if ( activityType === "All" && level ){
+        query = { level };
+    }
+    else if( activityType && level ){
+        query = { activityType, level };
+    }
+
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
     console.log("connected");
 
     const db = client.db("SportsPickApp");
-    const posts = await db.collection("posts").find().toArray();
+    const posts = await db.collection("posts").find(query).toArray();
 
     client.close();
     console.log("disconnected");

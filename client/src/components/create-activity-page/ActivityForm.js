@@ -33,7 +33,7 @@ const ActivityForm = () => {
         activityType:'Select',
         description:'',
         level:'All',
-        creator_id:currentUser?._id,
+        creator_id:currentUser._id,
     }
 
     // Set a state variable for post form data
@@ -179,6 +179,7 @@ const ActivityForm = () => {
                         </DateContainer>
                     </TypeContainer>
                 </Conatiner>
+
                 <Conatiner>
                     <Title>
                         {'Activity Address'}
@@ -190,7 +191,7 @@ const ActivityForm = () => {
                     <Title>
                         {'Description & Instructions'}
                     </Title>
-                    <DateContainer style={{ height: "120px" }}>
+                    <DateContainer>
                         <Textfield
                             placeholder="Anything participants need to know before joining ?"
                             type="text"
@@ -254,32 +255,6 @@ const PuffInCenter = keyframes`
     }
 `;
 
-const shakeBottom = keyframes`
-  0%,
-  100% {
-            transform: rotate(0deg);
-            transform-origin: 50% 100%;
-  }
-  10% {
-            transform: rotate(2deg);
-  }
-  20%,
-  40%,
-  60% {
-            transform: rotate(-4deg);
-  }
-  30%,
-  50%,
-  70% {
-            transform: rotate(4deg);
-  }
-  80% {
-            transform: rotate(-2deg);
-  }
-  90% {
-            transform: rotate(2deg);
-  }
-`;
 
 const Wrapper = styled.div`
     position: relative;
@@ -294,9 +269,9 @@ const Wrapper = styled.div`
     font-weight: 400;
     color: white;
     overflow: auto;
+    animation: ${PuffInCenter} 0.4s both;
+
 `;
-
-
 
 const Form = styled.form`
     position: relative;
@@ -311,7 +286,6 @@ const Conatiner = styled.div`
     justify-content: center;
     /* border: 1px solid red; */
     padding:10px 15px;
-    animation: ${PuffInCenter} 0.4s both;
 `;
 
 const ButtonConatiner = styled.div`

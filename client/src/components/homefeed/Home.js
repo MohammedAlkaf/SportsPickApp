@@ -5,7 +5,6 @@ import Map from "./all-activities-map";
 import Search from "./all-activities-search";
 import FilterBar from "./filterBar";
 import { CurrentUserLocation } from "../all-contexts/currentLocationContext";
-
 const Home = () => {
     const { currentLocation, getDistance } = useContext(CurrentUserLocation);
 
@@ -17,14 +16,16 @@ const Home = () => {
     const [ sportLevel, setSportLevel ] = useState('All');
 
     useEffect(()=>{
+        setPostDataStatus('loading');
+
         // get the data of all posts in the system
-        fetch('/posts')
+        fetch(`/posts?activityType=${sportType}&level=${sportLevel}`)
         .then(res=> res.json())
         .then(data => {
             setPostsData(data.posts); // Store all posts data in postsData state variable
             setPostDataStatus('idle');
         })
-    },[])
+    },[sportType, sportLevel])
 
     // Add distance from current location for each post
     const updatePostsData = postsData.map( (post) => {

@@ -36,10 +36,14 @@ const AddressSearchBox = ( { postForm, setPostForm }) => {
         <Wrapper>
             <GooglePlacesAutocomplete
                 apiKey = {process.env.REACT_APP_GOOGLE_MAP_API_KEY}
+                apiOptions={{ language: 'en', region: 'ca' }}
                 selectProps={{
                     address,
                     onChange: setaddress,
                 }}
+                onLoadFailed={(error) => (
+                    console.error("Could not inject Google script", error)
+                )}
             />
         </Wrapper>
     );

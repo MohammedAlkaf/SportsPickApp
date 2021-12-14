@@ -5,7 +5,8 @@ import { sports, levels } from '../create-activity-page/FormConstants';
 const FilterBar = ({ sportType, setSportType, sportLevel, setSportLevel })=>{
     
     //Replace the first element in sports const array with 'All' instead of 'Select for the first element
-    sports[0] = "All";
+    const updateSports = sports;
+    updateSports[0] = "All";
     
     return(
         <Wrapper>
@@ -19,7 +20,7 @@ const FilterBar = ({ sportType, setSportType, sportLevel, setSportLevel })=>{
                             onChange = {(ev) => setSportType(ev.target.value)}
                         >
                             {
-                                sports.map ( (sport) => {
+                                updateSports.map ( (sport) => {
                                     return <Option key = {sport} value = {sport}>{sport}</Option>
                                 } )
                             }
@@ -49,6 +50,7 @@ const FilterBar = ({ sportType, setSportType, sportLevel, setSportLevel })=>{
 }
 
 const Wrapper = styled.div`
+    height:40px;
     display: flex;
     align-items: center;
     justify-content: space-between;

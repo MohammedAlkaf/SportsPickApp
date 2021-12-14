@@ -130,7 +130,7 @@ const PuffInCenter = keyframes`
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc( 100% - 50px - 40px );
   animation: ${PuffInCenter} 0.4s both;
 `;
 

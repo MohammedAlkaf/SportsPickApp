@@ -17,21 +17,19 @@ const Profile = () => {
 
     const { currentUser } = useContext(CurrentUserContext);
     const [profileData,setProfileData] = useState(currentUser);
-    const [profileDataStatus,setProfileDataStatus] = useState("loading");
+    const [profileDataStatus,setProfileDataStatus] = useState("idle");
     
     useEffect( () => {
 
-            setProfileDataStatus('loading')
-            fetch(`/users/${_id}`)
-            .then(res => res.json())
-            .then(data => {
-                setProfileData(data.user);
-                setProfileDataStatus("idle");
-            })
+        setProfileDataStatus('loading')
+        fetch(`/users/${_id}`)
+        .then(res => res.json())
+        .then(data => {
+            setProfileData(data.user);
+            setProfileDataStatus("idle");
+        })
 
-    },[]);
-
-    console.log(profileData);
+    },[_id]);
 
     if( profileDataStatus === 'loading' ){
         return (

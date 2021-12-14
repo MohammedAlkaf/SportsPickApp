@@ -34,7 +34,7 @@ const SingleActivity = ({ post }) => {
             </Conatiner>
             <Text style = { { marginTop:'6px'}}>
                 <FiMapPin size = {iconSize}/>
-                <span>{post.distance} km -</span>
+                { post.distance !== undefined && <span>{post.distance} km -</span>} 
                 <span>{post.activityAddress.city}, {post.activityAddress.province}, Canada</span>
             </Text>
 

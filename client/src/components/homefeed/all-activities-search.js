@@ -2,11 +2,8 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import SingleActivity from "../acitivity-components/SingleActivity";
 import CircularProgress from '@mui/material/CircularProgress';
-import { CurrentUserLocation } from "../all-contexts/currentLocationContext";
 
 const Search = ({postsData, postDataStatus}) => {
-
-    const { currentLocation, getDistance } = useContext(CurrentUserLocation);
 
     if(postDataStatus === 'loading'){
         return (
@@ -15,13 +12,13 @@ const Search = ({postsData, postDataStatus}) => {
             </CircleWrapper>)
     }
 
-    // // Add distance from current location for each post
-    // const updatePostsData = postsData.map( (post) => {
-    //     const newPost = { ...post, distance: getDistance(currentLocation, post.activityAddress.coordinates ) };
-    //     return newPost
-    // })
-
-    // const sortedPostsData = updatePostsData.sort( (a,b) => a.distance - b.distance);
+    if( postsData.length === 0 ){
+        return(
+            <CircleWrapper>
+                    <span>There are no activities with the provided Specifications </span>
+            </CircleWrapper>
+        )
+    }
 
     return(
         <Wrapper>
@@ -39,7 +36,7 @@ const Search = ({postsData, postDataStatus}) => {
 
 const Wrapper = styled.div`
 overflow: auto;
-height: 100%;
+height: calc( 100% - 50px - 40px );
 z-index:-100;
 `;
 
@@ -48,6 +45,10 @@ display: flex;
 height: 100%;
 justify-content: center;
 align-items: center;
+
+span{
+    text-align:center;
+}
 `;
 
 export default Search

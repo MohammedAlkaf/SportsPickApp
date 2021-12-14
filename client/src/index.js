@@ -7,10 +7,10 @@ import { CurrentUserLocationProvider } from './components/all-contexts/currentLo
 ReactDOM.render(
 
   <CurrentUserProvider>
-    <CurrentUserLocationProvider>      
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+    <CurrentUserLocationProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
     </CurrentUserLocationProvider>
   </CurrentUserProvider>,
   document.getElementById("root")
