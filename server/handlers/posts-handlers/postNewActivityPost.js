@@ -122,8 +122,8 @@ const postNewActivityPost = async (req, res) => {
         
         // add the new post id to the current user profile data, specefically to joinedActivities and postedActivities array
         const query = { _id: creator_id };
-        const newValueForPostedActivities = { $addToSet: { postedActivities: newPostInfo._id } };
-        const newValueForJoinedActivities = { $addToSet: { joinedActivities: newPostInfo._id } };
+        const newValueForPostedActivities = { $addToSet: { postedActivities: { _id : newPostInfo._id } } };
+        const newValueForJoinedActivities = { $addToSet: { joinedActivities: { _id : newPostInfo._id } } };
 
         // Update the user profile in 'users' collection
         await db.collection("users").updateOne(query, newValueForPostedActivities );

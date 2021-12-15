@@ -13,6 +13,7 @@ import Home from "./components/homefeed/Home";
 import ActivityForm from "./components/create-activity-page/ActivityForm";
 import ActivityDetails from "./components/acitivity-components/ActivityDetails";
 import ChatSys from "./components/chat-page/ChatSys";
+import Notifications from "./components/notifications-page/Notifications";
 
 function App() {
 
@@ -56,7 +57,7 @@ function App() {
                   <ActivityDetails/>
                 </Route>
                 <Route path="/notifications">
-                  This is the notifications page
+                  <Notifications/>
                 </Route>
               </Container>
               <NavBar/>

@@ -18,12 +18,12 @@ const FollowButton = ({ currentUser, targetedUser, numOfFollowers, setNumOfFollo
         // following status
         isCurrentUserFollowing 
         ? setNumOfFollowers(numOfFollowers - 1)
-        :setNumOfFollowers(numOfFollowers + 1);
+        : setNumOfFollowers(numOfFollowers + 1);
 
         fetch('/users/follow',
         {
             method: "PUT",
-            body: JSON.stringify( {currentUserId: currentUser._id , followedUserAcount: targetedUser._id }),
+            body: JSON.stringify({ currentUser , targetedUser }),
             headers: {
             Accept: "application/json",
             "Content-Type": "application/json",

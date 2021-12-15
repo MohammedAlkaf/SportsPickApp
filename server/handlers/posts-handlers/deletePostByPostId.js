@@ -33,7 +33,7 @@ const deletePostById = async (req, res) => {
         await db.collection("posts").deleteOne(query);
     
         // Use $pull operator to remove an all given instances from an existing array
-        const removeDeletedPostFromAllUsers = { $pull: { postedActivities: _id , joinedActivities: _id } };
+        const removeDeletedPostFromAllUsers = { $pull: { postedActivities: { _id } , joinedActivities: { _id } } };
     
         // Update all the users profiles in 'users' collection
         await db.collection("users").updateMany({},removeDeletedPostFromAllUsers, { multi: true });

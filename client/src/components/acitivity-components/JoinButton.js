@@ -30,7 +30,7 @@ const JoinButton = ({ postData, numOfRemaniningSpots, SetNumOfRemaniningSpots })
         fetch('/post/updateJoining',
         {
             method: "PUT",
-            body: JSON.stringify({currentUser_id : currentUser._id , post_id: postData._id }),
+            body: JSON.stringify({currentUser , postData }),
             headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
