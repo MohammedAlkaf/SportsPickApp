@@ -1,12 +1,24 @@
 import React, { useContext, useEffect, useState, memo } from "react";
 import styled from "styled-components";
 import moment from 'moment';
+import { useHistory } from "react-router";
 
 const SingleNotification = ({notification}) => {
+
+    const history = useHistory();
+
+    const handleUserProfile = () => {
+        history.push(`/profile/${notification.user._id}`);
+    }
+
+    const handleActivity = () => {
+        history.push(`/activity/${notification.activity._id}`)
+    }
+
     return(
         <Wrapper>
             <Container>
-                <Img src = {notification.user.imgSrc}/>
+                <Img src = {notification.user.imgSrc} onClick={()=> handleUserProfile()}/>
                 <SubContainer>
                     <NotificationDate>
                         {moment(notification.date).calendar()}
@@ -18,18 +30,14 @@ const SingleNotification = ({notification}) => {
                         {' '}
                         {notification.message}
                     </Title>
-                    <Details>
-                        {
-                            notification.activity === null 
-                            ? ' '
-                            : 
-                            <>
-                                {notification.activity.type}
-                                {moment(notification.activity.date.date, 'YYYY-MM-DD').format('ddd MMMM Do YYYY')}
+                    {
+                        notification.activity !== null &&
+                            <Details onClick={()=> handleActivity()}>
+                                {notification.activity.type}{', '}
+                                {moment(notification.activity.date.date, 'YYYY-MM-DD').format('ddd MMMM Do YYYY')}{', '}
                                 {moment(notification.activity.date.from , 'HH:mm').format('hh:mm A')} - {moment(notification.activity.date.to , 'HH:mm').format('hh:mm A')}
-                            </>
-                        } 
-                    </Details>
+                            </Details>
+                    }
                 </SubContainer>
             </Container>
         </Wrapper>

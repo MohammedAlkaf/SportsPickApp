@@ -104,7 +104,7 @@ const putjoinByUserId = async (req, res) => {
                   type:postData.activityType,
                   date:postData.activityDate
                 },
-                message:'joined from your activity',
+                message:'joined your activity',
             }
             
             // Query to find the targetted post activity

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import SportsBackground from '../assests/SportsBackground1.jpg'
+import bgImg from '../assests/bgImg.png';
 
 const LoginSignupPage = () => {
 
@@ -18,12 +19,12 @@ const LoginSignupPage = () => {
 
         <Wrapper>
             <BackgroundImg src = {SportsBackground}/>
-            <Title>SportsPick</Title>
+            {/* <Title>SportsPick</Title> */}
             <ButtonContainer>
+                <Logo src = {bgImg}/>
                 <Quotes>
-                    <p>“Do you know what my favorite part of the game is?
-                    The opportunity to play.”</p>
-                    <span>-Mike Singletary</span>
+                    <p>“One man can be a crucial ingredient on a team, but one man cannot make a team.”</p>
+                    <span>-Kareem Abdul-Jabbar</span>
                 </Quotes>
                 <LoginButton
                     onClick = {() => {handleLogin()}}
@@ -70,6 +71,11 @@ opacity: 0.2;
 transform: rotate(-90deg);
 `;
 
+const Logo = styled.img`
+opacity: 0.8;
+width:350px;
+`;
+
 
 const Title = styled.div`
     font-size: 2em;
@@ -88,6 +94,7 @@ const Quotes = styled.div`
 const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
+    align-items:center;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -104,6 +111,7 @@ const LoginButton = styled.button`
 	padding: 0;
 	cursor: pointer;
     border-radius: 5px;
+    width:90%;
 `;
 
 const SignInButton = styled(LoginButton)`

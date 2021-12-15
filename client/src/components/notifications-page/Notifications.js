@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState, memo } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import SingleNotification from "./SingleNotification";
 import { CurrentUserContext } from "../all-contexts/currentUserContext"
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Notifications = () => {
 
@@ -23,11 +24,12 @@ const Notifications = () => {
     },[]);
 
     if( notificationsStatus === 'loading'){
-        return(
-            <div>
-                loading
-            </div>
+        return (
+            <CircleWrapper>
+                <CircularProgress style={{'color': '#EE6C4D'}} />
+            </CircleWrapper>
         )
+
     }
 
     return(
@@ -53,12 +55,33 @@ h2{
 }
 `;
 
+const slideIn = keyframes`
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const CircleWrapper = styled.div`
+display: flex;
+height: 100%;
+justify-content: center;
+align-items: center;
+`;
+
 const Container = styled.div`
     display: flex;
 	flex-direction: column-reverse;
     justify-content: flex-end;
     overflow: auto;
     height:calc( 100% - 40px);
+    animation: ${slideIn} 0.4s ease-out both;
 `;
 
 export default Notifications
