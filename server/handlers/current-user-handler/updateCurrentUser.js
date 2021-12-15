@@ -10,12 +10,16 @@ const options = {
 
 const updateCurrentUser = async (req, res) => {
 
-    const { email } = req.params;
-    const query = { email };
+    const { email, password } = req.query;
+    const query = { email, password };
 
     if( email === ''){
         return res.status(400).json({status: 404, message: "Please enter your email address"})
     }
+    else if( password === ''){
+        return res.status(400).json({status: 404, message: "Please enter your password"})
+    }
+
 try {
     const client = new MongoClient(MONGO_URI, options);
     await client.connect();
@@ -33,7 +37,7 @@ try {
         else {
             client.close();
             console.log("disconnected");
-            return res.status(404).json({status: 404, message: "There is no account associated with this email address"})
+            return res.status(404).json({status: 404, message: "Incorrect email address or password, please try again"})
         }
         });
 

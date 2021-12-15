@@ -7,6 +7,9 @@ import {
   FiMapPin,
   FiImage,
   FiCalendar,
+  FiEye,
+  FiKey,
+  FiChevronRight
 } from "react-icons/fi";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { useHistory } from "react-router";
@@ -23,6 +26,8 @@ const SignupPage = () => {
     DOB: "",
     gender: "",
     location: "",
+    password:"",
+    confirmPassword:"",
   };
 
   const { updateCurrentUser } = useContext(CurrentUserContext);
@@ -42,6 +47,7 @@ const SignupPage = () => {
     setErrorStatus({ status: "idle", error: "no error" });
   };
 
+
   const handleSubmit = (ev) => {
     SetSignupButtonStatus("loading");
     ev.preventDefault();
@@ -60,7 +66,7 @@ const SignupPage = () => {
         if (status === 200) {
           console.log(data);
           console.log(message);
-          updateCurrentUser(history, data.email);
+          updateCurrentUser(history, data.email, data.password);
         } else {
           setErrorStatus({ status: "error", error: message });
           console.log(data);
@@ -79,22 +85,42 @@ const SignupPage = () => {
         }}
       >
         <InputContainer>
-          <FiUser size={IconSize} />
-          <Input
-            placeholder="Full Name"
-            type="text"
-            onChange={(ev) => {
-              handleInputChnage("displayName", ev.target.value);
-            }}
-          />
-        </InputContainer>
-        <InputContainer>
           <HiOutlineMail size={IconSize} />
           <Input
             placeholder="Email Address"
             type="email"
             onChange={(ev) => {
               handleInputChnage("email", ev.target.value);
+            }}
+          />
+        </InputContainer>
+        <InputContainer>
+          <FiKey size={IconSize} />
+          <Input
+            placeholder="Password"
+            type="password"
+            onChange={(ev) => {
+              handleInputChnage("password", ev.target.value);
+            }}
+          />
+        </InputContainer>
+        <InputContainer>
+          <Input
+            placeholder="Confirm Password"
+            type="password"
+            onChange={(ev) => {
+              handleInputChnage("confirmPassword", ev.target.value);
+            }}
+            style = {{ marginLeft:'36px'}}
+          />
+        </InputContainer>
+        <InputContainer>
+          <FiUser size={IconSize} />
+          <Input
+            placeholder="Full Name"
+            type="text"
+            onChange={(ev) => {
+              handleInputChnage("displayName", ev.target.value);
             }}
           />
         </InputContainer>

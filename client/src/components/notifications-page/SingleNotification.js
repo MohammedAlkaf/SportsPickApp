@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, memo } from "react";
 import styled from "styled-components";
 import moment from 'moment';
+import noImg from'../assests/noImg.png';
 import { useHistory } from "react-router";
 
 const SingleNotification = ({notification}) => {
@@ -18,7 +19,10 @@ const SingleNotification = ({notification}) => {
     return(
         <Wrapper>
             <Container>
-                <Img src = {notification.user.imgSrc} onClick={()=> handleUserProfile()}/>
+                <Img 
+                src = { notification.user.imgSrc !== '' ? notification.user.imgSrc : noImg }
+                onClick={()=> handleUserProfile()}
+                />
                 <SubContainer>
                     <NotificationDate>
                         {moment(notification.date).calendar()}

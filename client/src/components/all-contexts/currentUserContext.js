@@ -18,9 +18,10 @@ export const CurrentUserProvider = ({ children }) => {
         }
     }, []);
     
-    const updateCurrentUser = (history,email) => {
+    
+    const updateCurrentUser = (history,email,password) => {
         setCurrentUserStatus('loading')
-        fetch(`/loggedin/${email}`)
+        fetch(`/loggedin?email=${email}&password=${password}`)
         .then((res) => res.json())
         .then((data) => {
             if ( data.status === 200 ){

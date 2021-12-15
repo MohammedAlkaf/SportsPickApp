@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { HiOutlineMail } from "react-icons/hi";
+import { HiOutlineMail, HiOutlineKey } from "react-icons/hi";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import LoadingCircule from "../loading-components/loadingCircule";
@@ -8,6 +8,7 @@ import LoadingCircule from "../loading-components/loadingCircule";
 const LoginPage = () => {
 
     const [ userEmail, setUserEmaill ] = useState("");
+    const [ userPassword, setUserPassword ] = useState("");
     const history = useHistory();
 
     const {
@@ -16,15 +17,20 @@ const LoginPage = () => {
         currentUserStatus,
         errorStatus } = useContext(CurrentUserContext);
 
-    const handleInputChnage = (value) => {
+    const handleEmailInput = (value) => {
         setUserEmaill(value);
+        setErrorStatus({status: 'idle', error: 'no error'});
+    }
+
+    const handlePasswordInput = (value) => {
+        setUserPassword(value);
         setErrorStatus({status: 'idle', error: 'no error'});
     }
 
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        updateCurrentUser(history,userEmail);
+        updateCurrentUser(history,userEmail,userPassword);
 
     }
     return (
@@ -36,7 +42,15 @@ const LoginPage = () => {
                         <Input 
                             placeholder = 'Email Address' 
                             type = 'email'
-                            onChange = {(ev) => {handleInputChnage(ev.target.value)}}
+                            onChange = {(ev) => {handleEmailInput(ev.target.value)}}
+                        />
+                </InputContainer>
+                <InputContainer>
+                        <HiOutlineKey size = {35}/>
+                        <Input 
+                            placeholder = 'Password' 
+                            type = 'password'
+                            onChange = {(ev) => {handlePasswordInput(ev.target.value)}}
                         />
                 </InputContainer>
                 <Error>

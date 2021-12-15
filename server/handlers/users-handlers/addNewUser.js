@@ -16,7 +16,9 @@ const addNewUser = async (req, res) => {
             displayName,
             email,
             DOB,
-            location 
+            location,
+            password,
+            confirmPassword
         } = req.body;
 
 
@@ -30,10 +32,17 @@ const addNewUser = async (req, res) => {
             following:[],
             joined: todayDate,
             postedActivities: [],
-            joinedActivities: []
+            joinedActivities: [],
+            notifications:[]
         }
 
-        if( displayName === ""){
+        if( password === "" ){
+            return res.status(400).json({ status: 400, data:newUserInfo,  message: "Your password is missing"})
+        }
+        else if( password !== confirmPassword ){
+            return res.status(400).json({ status: 400, data:newUserInfo,  message: "Passwords don't match"})
+        }
+        else if( displayName === ""){
             return res.status(400).json({ status: 400, data:newUserInfo,  message: "Your full name is missing"})
         }
         else if ( email === ""){
@@ -45,6 +54,7 @@ const addNewUser = async (req, res) => {
         else if ( location === ""){
             return res.status(400).json({ status: 400,data:newUserInfo, message: "Your city is missing"})
         }
+
 
         const client = new MongoClient(MONGO_URI, options);
         await client.connect();

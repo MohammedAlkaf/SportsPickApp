@@ -18,18 +18,34 @@ const Notifications = () => {
         fetch(`/users/${currentUser._id}`)
         .then(res => res.json())
         .then(data => {
-            setNotifications(data.user.notifications);
+            // data.user.notifications array order is reversed to in order to have the most
+            // notification first. PS: using flex-box styling to display componenets in reverse
+            // caused some issues with scrolling vertically 
+            setNotifications(data.user.notifications.reverse());
             setNotificationsStatus("idle");
         })
     },[]);
 
+
     if( notificationsStatus === 'loading'){
         return (
-            <CircleWrapper>
-                <CircularProgress style={{'color': '#EE6C4D'}} />
-            </CircleWrapper>
+            <Wrapper>
+                <h2>Notifications</h2>
+                <CircleWrapper>
+                    <CircularProgress style={{'color': '#EE6C4D'}} />
+                </CircleWrapper>
+            </Wrapper>
         )
-
+    }
+    else if(notifications.length === 0){
+        return (
+            <Wrapper>
+                <h2>Notifications</h2>
+                <CircleWrapper>
+                    You have not received any notifications 
+                </CircleWrapper>
+            </Wrapper>
+        )
     }
 
     return(
@@ -47,9 +63,6 @@ const Notifications = () => {
 const Wrapper = styled.div`
     height:100%;
 h2{
-    display: flex;
-    align-items: center;
-    justify-content:center;
     height:40px;
     text-align:center;
 }
@@ -76,11 +89,10 @@ align-items: center;
 `;
 
 const Container = styled.div`
-    display: flex;
-	flex-direction: column-reverse;
-    justify-content: flex-end;
     overflow: auto;
-    height:calc( 100% - 40px);
+    display: flex;
+	flex-direction: column;
+    height:calc(100% - 40px);
     animation: ${slideIn} 0.4s ease-out both;
 `;
 

@@ -31,7 +31,7 @@ app.get("/users/:_id", getUserById);
 // When a user signs up with a new account, post the new user info 
 app.post("/users/add", addNewUser);
 // Store user info in 'current user collection' when a user sigs in or sings up
-app.get("/loggedin/:email", updateCurrentUser);
+app.get("/loggedin", updateCurrentUser);
 // When a user signs out, clear the data from 'currentUser' collection
 app.delete("/loggedout/:email", deleteCurrentUser);
 // Update the following array for the current user and the followers arrays for the user that's being followed

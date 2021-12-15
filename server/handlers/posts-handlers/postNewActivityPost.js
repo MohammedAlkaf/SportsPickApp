@@ -107,7 +107,7 @@ const postNewActivityPost = async (req, res) => {
             .status(400)
             .json({
                 status: 404,
-                message: "Please describe your activity in more than 10 letter",
+                message: "Please describe your activity in more than 10 letters",
             });
         }
         

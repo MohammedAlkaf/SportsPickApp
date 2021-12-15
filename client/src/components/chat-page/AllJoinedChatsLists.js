@@ -28,17 +28,23 @@ const ChatLists = () => {
 
     if( postsStatus === 'loading'){
         return (
-            <CircleWrapper>
-                <CircularProgress style={{'color': '#EE6C4D'}} />
-            </CircleWrapper>
+            <Wrapper>
+                <h2>Joined Activties Chats</h2>
+                <CircleWrapper>
+                    <CircularProgress style={{'color': '#EE6C4D'}} />
+                </CircleWrapper>
+            </Wrapper>
         )
     }
 
     if( joinedActivities.length === 0){
         return(
-            <CircleWrapper>
-                you have not joined any activity
-            </CircleWrapper>
+            <Wrapper>
+                <h2>Joined Activties Chats</h2>
+                <CircleWrapper>
+                    you have not joined any activity
+                </CircleWrapper>
+            </Wrapper>
         )
     }
     return(
