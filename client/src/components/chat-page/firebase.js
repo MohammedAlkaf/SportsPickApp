@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 
 const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyDQw01LUpGFxPoDMy2yCsE9MFOK8dQ7ECY",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "mysportspicksapp.firebaseapp.com",
     projectId: "mysportspicksapp",
     storageBucket: "mysportspicksapp.appspot.com",
