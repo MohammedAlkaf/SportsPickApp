@@ -65,8 +65,10 @@ const ActivityForm = () => {
         handleCloseBar();
     };
 
-    console.log(postForm);
-
+    // handle resetting the form
+    const handleFormRest = () => {
+        setPostForm(initialFormValues);
+    }
     // The function handles the submission of the form by calling the endpoint handler in charge of adding a new post
     const handleSubmit = (ev) => {
         setFormStatus('loading');
@@ -210,6 +212,7 @@ const ActivityForm = () => {
                     </SubmitButton>
                     <RestButton
                         type="reset"
+                        onClick={()=>handleFormRest()}
                     >
                         Clear
                     </RestButton>

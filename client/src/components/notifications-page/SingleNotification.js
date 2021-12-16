@@ -1,17 +1,21 @@
-import React, { useContext, useEffect, useState, memo } from "react";
+import React from "react";
 import styled from "styled-components";
 import moment from 'moment';
 import noImg from'../assests/noImg.png';
 import { useHistory } from "react-router";
-
+//*****************************************************************
+// This component is used to render a single notification block in
+// the notification page
+//*****************************************************************
 const SingleNotification = ({notification}) => {
 
     const history = useHistory();
 
+    // Clicking on user image navigates to the user profile
     const handleUserProfile = () => {
         history.push(`/profile/${notification.user._id}`);
     }
-
+    // Clicking on the activity navigates to activity details
     const handleActivity = () => {
         history.push(`/activity/${notification.activity._id}`)
     }

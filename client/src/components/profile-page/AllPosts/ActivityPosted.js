@@ -3,7 +3,10 @@ import styled from "styled-components";
 import SingleActivity from "../../acitivity-components/SingleActivity";
 import { CurrentUserContext } from '../../all-contexts/currentUserContext';
 import CircularProgress from '@mui/material/CircularProgress';
-
+// **********************************************************
+// This components is rendered inside the user profile page
+// It shows the activities the user of the profile  has posted
+// ***********************************************************
 const ActivityPosted = ({ profileData }) => {
     const { currentUser } = useContext(CurrentUserContext)
     const [ postsData, setPostsData ] = useState([]);
@@ -19,6 +22,7 @@ const ActivityPosted = ({ profileData }) => {
             setPostDataStatus('idle');
         })
 
+        // Clean up when this components is unmounted
         return () => {
             setPostsData([]);
             setPostDataStatus('loading');

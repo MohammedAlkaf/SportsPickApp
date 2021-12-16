@@ -4,6 +4,11 @@ import SingleActivity from "../../acitivity-components/SingleActivity";
 import { CurrentUserContext } from '../../all-contexts/currentUserContext';
 import CircularProgress from '@mui/material/CircularProgress';
 
+// **********************************************************
+// This components is rendered inside the user profile page
+// It shows the activities the user of the profile  has joined
+// ***********************************************************
+
 const ActivityJoined = ( { profileData }) => {
     const { currentUser } = useContext(CurrentUserContext)
     const [ postsData, setPostsData ] = useState([]);
@@ -19,6 +24,7 @@ const ActivityJoined = ( { profileData }) => {
             setPostDataStatus('idle');
         })
 
+        // Clean up when this components is unmounted
         return()=>{
             setPostsData([]);
             setPostDataStatus('loading');

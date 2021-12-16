@@ -4,6 +4,10 @@ import SingleNotification from "./SingleNotification";
 import { CurrentUserContext } from "../all-contexts/currentUserContext"
 import CircularProgress from '@mui/material/CircularProgress';
 
+//*****************************
+// This the notifications page
+//*****************************
+
 const Notifications = () => {
 
     const { currentUser } = useContext(CurrentUserContext);

@@ -3,8 +3,14 @@ import styled from "styled-components";
 import ToggleBar from "./ToggleBar";
 import ActivityJoined from "./ActivitedJoined";
 import ActivityPosted from "./ActivityPosted";
-const Posts = ({ profileData }) => {
 
+// *********************************************************************************
+// This component takes both ActivityJoined and ActivityPosted components
+// and render them here in post. This post component is rendered in the profile page
+// *********************************************************************************
+const Posts = ({ profileData }) => {
+    // This variable is used to control the Toggle bar
+    // inialized with 1 to highlight the 'Activities Posted' first at rendering
     const [ displayedPage, setDisplayedPage ] = useState(1);
     
     return(

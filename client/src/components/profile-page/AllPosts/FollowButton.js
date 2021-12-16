@@ -1,5 +1,9 @@
 import React,{ useState } from "react";
 import styled from "styled-components";
+// ***************************************************************
+// This components handles follow/unfollow button that is shown in
+// the user profile. 
+// ***************************************************************
 
 const FollowButton = ({ currentUser, targetedUser, numOfFollowers, setNumOfFollowers })=>{
 

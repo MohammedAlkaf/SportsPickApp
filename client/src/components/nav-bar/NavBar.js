@@ -4,12 +4,18 @@ import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { FiBell, FiUser, FiMessageCircle, FiHome, FiPlusCircle } from "react-icons/fi";
 
+//*****************************************************************
+// This the nav bar in the main app, it navagates between
+// profile, chat, posting an activity, notification, and home feed
+//*****************************************************************
 const NavBar = () => {
 
+    // A state variable to control nav bar active page
     const [active, setActive] = useState(1);
     const { currentUser } = useContext(CurrentUserContext)
     let history = useHistory();
 
+    // Clicking on nav bar items should take to proper page, and highlight that item with proper tabId
     const handleClick = (tabId,path) => {
         setActive(tabId);
         history.push(`/${path}`);

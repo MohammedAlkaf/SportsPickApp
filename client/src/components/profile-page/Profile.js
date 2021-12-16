@@ -9,7 +9,10 @@ import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { FiChevronLeft } from "react-icons/fi";
 import FollowButton from "./AllPosts/FollowButton";
 import moment from 'moment';
-
+// **********************************************
+// This component is to render the profile page
+// for both the current user and others
+// **********************************************
 
 const Profile = () => {
     
@@ -111,23 +114,6 @@ justify-content: center;
 align-items: center;
 `;
 
-const PuffInCenter = keyframes`
-    0% {
-        -webkit-transform: scale(2);
-                transform: scale(2);
-        -webkit-filter: blur(4px);
-                filter: blur(4px);
-        opacity: 0;
-    }
-    100% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
-        -webkit-filter: blur(0px);
-                filter: blur(0px);
-        opacity: 1;
-    }
-`;
-
 const slideIn = keyframes`
   0% {
     -webkit-transform: translateX(1000px);
@@ -145,7 +131,6 @@ const Wrapper = styled.div`
 display:flex;
 flex-direction: column;
 height: 100%;
-/* animation: ${PuffInCenter} 0.4s both; */
 animation: ${slideIn} 0.4s ease-out both;
 
 `;
@@ -153,7 +138,6 @@ animation: ${slideIn} 0.4s ease-out both;
 const UserInfoContainer = styled.div`
 display:flex;
 flex-direction: column;
-/* border:1px red solid; */
 justify-content: flex-end;
 height: 30%;
 background: #293241;
@@ -163,7 +147,6 @@ padding-bottom: 10px;
 const Banner = styled.div`
 width:100%;
 height:20%;
-/* border: 1px solid red; */
 `;
 
 const ProfileImg = styled.img`
@@ -180,7 +163,6 @@ const SubContainer = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-/* border: 1px solid green; */
 height: 50px;
 `
 
@@ -197,13 +179,11 @@ div{
 const Bio = styled.div`
 margin: 10px;
 font-size: 0.9em;
-/* border: 1px solid yellow; */
 `;
 
 const AccountStats = styled.div`
 display: flex;
 justify-content: space-between;
-/* border: 1px solid yellow; */
 `
 
 const Stat = styled.div`
@@ -212,12 +192,9 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-
-`
-
+`;
 
 const ReturnBar = styled.div`
-/* border: 1px solid red; */
 padding: 5px 5px;
 `;
 

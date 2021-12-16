@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import GlobalStyles from "./GlobalStyles";
 import LoginSignupPage from "./components/login-signup-pages/LoginSignupPage";
 import LoginPage from "./components/login-signup-pages/LoginPage";
@@ -33,14 +33,12 @@ function App() {
           <Route path="/login">
             <LoginPage/>
           </Route>
-          {/* { isUserLoggedIn && */}
-          { true &&
+          { isUserLoggedIn &&
             <MainAppContainer>
               <Container>
                 <Route exact path="/profile/:_id">
                   <Profile/>
                 </Route>
-
                 <Route path="/group-chats">
                   <ChatLists />
                 </Route>
