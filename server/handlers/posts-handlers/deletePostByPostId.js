@@ -14,6 +14,12 @@ const options = {
     useUnifiedTopology: true,
 };
 
+// ************************************************************************************
+// This is a very important handler that is used to delete all activity related data of
+// of specific post in the databse. It's not being used in the client side (frontend) of 
+// this version of the app.Rather, it is important to be used to in the testing process
+// in case an activity post needs to be deleted completely.
+// *************************************************************************************
 
 const deletePostById = async (req, res) => {
 

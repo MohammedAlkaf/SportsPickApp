@@ -7,6 +7,10 @@ const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
+// ****************************************************************
+// This handler is used to get the activity posts by the creator _id
+// The posts data is then displayed the that creator user profile
+// *****************************************************************
 
 const getPostsByCreatorId = async (req, res) => {
 try {
@@ -19,6 +23,7 @@ try {
     const query = { 'creator_id':_id };
 
     const db = client.db("SportsPickApp");
+    // Look up all posts that are created by the user with the provided _id ( creator_id )
     const posts = await db.collection("posts").find(query).toArray();
 
     client.close();

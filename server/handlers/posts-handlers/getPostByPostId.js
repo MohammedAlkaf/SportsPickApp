@@ -1,6 +1,3 @@
-// ***********************************************************************************
-// This handler is used to get a post by that's post unique _id
-// ***********************************************************************************
 const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
@@ -10,6 +7,9 @@ const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
+// *************************************************************************
+// The handler gets an activity post data from the database
+// *************************************************************************
 
 const getPostById = async (req,res) => {
 

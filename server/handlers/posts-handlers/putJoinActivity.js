@@ -1,8 +1,3 @@
-// *******************************************************************************************
-//This handler is to manage joining and withdrawing from an activity
-// If the user has not joined the activity yet, the handler will allow the user to join
-// If the user has already joined the activity, the handler will allow the useer to withdraw
-// *******************************************************************************************
 const { v4: uuidv4 } = require("uuid");
 const { MongoClient } = require("mongodb");
 
@@ -13,6 +8,12 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
+// *******************************************************************************************
+//This handler is to manage joining and withdrawing from an activity
+// If the user has not joined the activity yet, the handler will allow the user to join
+// If the user has already joined the activity, the handler will allow the user to withdraw
+// *******************************************************************************************
 
 const putjoinByUserId = async (req, res) => {
     try {

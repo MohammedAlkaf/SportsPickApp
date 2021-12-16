@@ -8,6 +8,11 @@ const options = {
     useUnifiedTopology: true,
 };
 
+// ***********************************************************************************
+// This handler is used to let the user log in. It validates the user credentials and 
+// save the current user info in the database in 'currentUser' collection
+// ************************************************************************************
+
 const updateCurrentUser = async (req, res) => {
 
     const { email, password } = req.query;

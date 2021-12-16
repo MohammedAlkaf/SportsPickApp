@@ -8,6 +8,11 @@ const options = {
     useUnifiedTopology: true,
 };
 
+// ***********************************************************************
+// This handler function is used to retrieve a user's information based on
+// on the user unique _id
+// ***********************************************************************
+
 const getUserById = async (req, res) => {
 
     const { _id } = req.params;

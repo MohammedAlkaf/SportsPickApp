@@ -7,6 +7,10 @@ const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
+// ************************************************************************
+// This handler gets all the activity posts that a specific user has joined.
+// The posts data is then displayed the that user profile
+// ************************************************************************
 
 const getPostsByJoinerId = async (req, res) => {
 try {
@@ -19,6 +23,7 @@ try {
     const query = { 'joining._id':_id };
 
     const db = client.db("SportsPickApp");
+    // Go through all posts and find the posts that have the trageted user in 'joining' array
     const posts = await db.collection("posts").find(query).toArray();
 
     client.close();

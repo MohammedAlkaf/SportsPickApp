@@ -9,11 +9,15 @@ const options = {
     useUnifiedTopology: true,
 };
 
+// **************************************************************************************
+// The handler manages posting a new activity. It's called in the create activity page
+// **************************************************************************************
+
 const postNewActivityPost = async (req, res) => {
 
     try{
 
-        // Deconstruct all body keys
+        // destructure all body keys that need validation
         const {
             limit,
             activityDate,
@@ -79,7 +83,7 @@ const postNewActivityPost = async (req, res) => {
             .json({ status: 404, message: "Please enter a valid address  info" });
         } 
         
-        else if (activityType === "Select") {
+        else if (activityType === "Select" || activityType === "All") {
             return res
             .status(400)
             .json({ status: 404, message: "Please select the type of activity" });

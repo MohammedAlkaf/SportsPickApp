@@ -8,6 +8,11 @@ const options = {
     useUnifiedTopology: true,
 };
 
+// ************************************************************************
+// This handler is only for testing. It's used to get all users information
+// in the database. It's not being used in or called from the client side
+//*************************************************************************
+
 const getUsers = async (req, res) => {
 try {
     const client = new MongoClient(MONGO_URI, options);

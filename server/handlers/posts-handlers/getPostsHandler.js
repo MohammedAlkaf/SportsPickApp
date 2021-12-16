@@ -7,6 +7,11 @@ const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
+// *******************************************************************************
+// This handler gets all the posts based in the database. Giving that the initial
+// data there for posts are small, the homefeed displays all posts in the database.
+// 2 queries have been added to filter the posts: activity type, and level required
+// *******************************************************************************
 
 const getPosts = async (req, res) => {
 try {
@@ -15,6 +20,7 @@ try {
 
     let query = {};
 
+    // Check the filters and create a query based on filters values
     if( activityType === "All" && level === "All" ){
         query = {};
     }
