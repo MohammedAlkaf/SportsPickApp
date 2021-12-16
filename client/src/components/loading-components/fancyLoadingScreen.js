@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
+//****************************************************************
+// This si ust a fancy loading screen component. It is not being
+// used in this version of the app.
+//****************************************************************
 
 const FancyLoadingScreen = () => {
 

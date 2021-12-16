@@ -27,6 +27,8 @@ const Map = ({ postsData, postDataStatus }) => {
         mapRef.current = map;
     }, []);
 
+    // PanTo function that takes the user to the provided location in the map
+    // e.g: if you pass lat,and lng to panTo, the map will take you to that location
     const panTo = useCallback( ({ lat, lng })=>{
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(11);

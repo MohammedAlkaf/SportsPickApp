@@ -4,6 +4,12 @@ import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { FiLogOut } from "react-icons/fi";
 
+//*****************************************************************
+// A log out button in the current user profile. It calls the endpoint
+// that clears all currentUser data info in the database collection
+// 'currentUser' 
+//*****************************************************************
+
 const LogoutButton = () => {
     const history = useHistory();
     const { setIsUserLoggedIn, currentUser } = useContext(CurrentUserContext);

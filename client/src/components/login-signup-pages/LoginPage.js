@@ -4,7 +4,12 @@ import { HiOutlineMail, HiOutlineKey } from "react-icons/hi";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import LoadingCircule from "../loading-components/loadingCircule";
-
+//*****************************************************************
+// This the log in page. It asks for the user email and password.
+// it calls updateCurrentUser function from CurrentUserContext.
+// updateCurrentUser handles signing in and returns reponse if
+// signing in fails 
+//*****************************************************************
 const LoginPage = () => {
 
     const [ userEmail, setUserEmaill ] = useState("");

@@ -5,11 +5,21 @@ import Map from "./all-activities-map";
 import Search from "./all-activities-search";
 import FilterBar from "./filterBar";
 import { CurrentUserLocation } from "../all-contexts/currentLocationContext";
+//*********************************************************************
+// This the homepage, it navegates between a map, and regulat homefeed
+//*********************************************************************
+
 const Home = () => {
+    // Get current user location, and getDistance function
+    // These helpers are used to calculate the activity distance
+    // from current user location
     const { currentLocation, getDistance } = useContext(CurrentUserLocation);
 
+    // A state variable to control the toggle bar
     const [ displayedPage, setDisplayedPage ] = useState(1);
+    // A state variable to store the posts data
     const [ postsData, setPostsData ] = useState([]);
+    // A state variable to control the loading screen
     const [ postDataStatus, setPostDataStatus ] = useState('loading');
 
     const [ sportType, setSportType ] = useState('All');

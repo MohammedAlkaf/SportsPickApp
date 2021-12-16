@@ -2,6 +2,11 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import SingleActivity from "../acitivity-components/SingleActivity";
 import CircularProgress from '@mui/material/CircularProgress';
+//****************************************************************
+// This component renders the home feed. It displayed all posts with
+// the chosen filter
+//****************************************************************
+
 
 const Search = ({postsData, postDataStatus}) => {
 

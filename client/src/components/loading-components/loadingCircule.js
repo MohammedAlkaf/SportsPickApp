@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { ImSpinner9 } from "react-icons/im";
+//****************************************************************
+// This is loading icon for the buttons only
+//****************************************************************
+
 const LoadingCircule = () => {
     return (
         <Wrapper>

@@ -3,7 +3,10 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import SportsBackground from '../assests/SportsBackground1.jpg'
 import bgImg from '../assests/bgImg.png';
-
+//*****************************************************************
+// This page is the fist page in the app, it gives the use the option
+// to sign in or log in
+//*****************************************************************
 const LoginSignupPage = () => {
 
     let history = useHistory();

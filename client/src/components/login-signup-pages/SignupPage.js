@@ -7,17 +7,20 @@ import {
   FiMapPin,
   FiImage,
   FiCalendar,
-  FiEye,
   FiKey,
-  FiChevronRight
 } from "react-icons/fi";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { useHistory } from "react-router";
 import LoadingCircule from "../loading-components/loadingCircule";
 
+//*****************************************************************
+// This is the sign up page, it contains the sign up form
+//*****************************************************************
+
 const SignupPage = () => {
   const history = useHistory();
 
+  // Set initial values for the form
   const initialUserInfo = {
     displayName: "",
     imgSrc: "",
@@ -30,24 +33,35 @@ const SignupPage = () => {
     confirmPassword:"",
   };
 
+  // Update current user info when a suer sign up, it makes sure that the user gets logged in
+  // right after signing up
   const { updateCurrentUser } = useContext(CurrentUserContext);
 
   const IconSize = 35;
 
+  // A user ref to display a placeholder when the date input is on blur
   const ref = useRef();
+
+  // State variable for user information in the form
   const [newUserInfo, setNewUserInfo] = useState(initialUserInfo);
+  // State variable for the loading button after submission
   const [signupButtonStatus, SetSignupButtonStatus] = useState("idle");
+  // Setting the error received from backend endpoint
   const [errorStatus, setErrorStatus] = useState({
     status: "idle",
     error: "no error",
   });
 
+  // Function to handle the change in all form inputs
   const handleInputChnage = (name, value) => {
     setNewUserInfo({ ...newUserInfo, [name]: value });
     setErrorStatus({ status: "idle", error: "no error" });
   };
 
 
+  // handle the form submission by sending the mew form data to /users/add endpoint
+  // The endpoint handles the new user info, and returns an error if there is any error
+  // while filling up the form
   const handleSubmit = (ev) => {
     SetSignupButtonStatus("loading");
     ev.preventDefault();
