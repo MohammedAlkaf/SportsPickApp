@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, memo } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import SingleNotification from "./SingleNotification";
 import { CurrentUserContext } from "../all-contexts/currentUserContext"

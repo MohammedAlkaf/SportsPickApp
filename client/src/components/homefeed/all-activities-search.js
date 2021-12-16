@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import SingleActivity from "../acitivity-components/SingleActivity";
 import CircularProgress from '@mui/material/CircularProgress';

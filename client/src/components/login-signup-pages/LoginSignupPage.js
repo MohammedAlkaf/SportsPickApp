@@ -79,11 +79,6 @@ opacity: 0.8;
 width:350px;
 `;
 
-
-const Title = styled.div`
-    font-size: 2em;
-`;
-
 const Quotes = styled.div`
     margin:20px;
     font-size: 1.3em;

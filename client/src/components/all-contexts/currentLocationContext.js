@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 
 export const CurrentUserLocation = createContext(null);
 export const CurrentUserLocationProvider = ({children}) => {
@@ -17,7 +17,7 @@ export const CurrentUserLocationProvider = ({children}) => {
     const getDistance = (pos1, pos2) => {
         // return Math.sqrt( Math.pow(pos1.lat - pos2.lat, 2) + Math.pow(pos1.lng - pos2.lng, 2) );
         // Code source: https://www.geodatasource.com/resources/tutorials/how-to-calculate-the-distance-between-2-locations-using-javascript/
-        if ((pos1.lat ==  pos2.lat) && (pos1.lng == pos2.lng)) {
+        if ((pos1.lat ===  pos2.lat) && (pos1.lng === pos2.lng)) {
             return 0;
         }
         else {

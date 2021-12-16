@@ -36,11 +36,6 @@ const JoinButton = ({ postData, numOfRemaniningSpots, SetNumOfRemaniningSpots })
         })
     }
 
-    const handleClickTest = () => {
-        setIsCurreuntUserJoined(!isCurrentUserJoined);
-        
-    }
-
     if( postData.limit - postData.joining.length === 0 && !initialJoiningStatus ){
 
         return(

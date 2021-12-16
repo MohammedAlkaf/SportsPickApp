@@ -1,7 +1,7 @@
 // *******************************************************************************
 // This file is used authnticate user logged in and update the current user info
 // *******************************************************************************
-import React, { useState, createContext, useEffect, useContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 
 export const CurrentUserContext = createContext(null);
 export const CurrentUserProvider = ({ children }) => {

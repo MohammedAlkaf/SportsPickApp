@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, memo } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import CircularProgress from '@mui/material/CircularProgress';

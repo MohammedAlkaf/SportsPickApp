@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { sports, levels } from "./FormConstants";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
 import AddressSearchBox from "./AddressSearchBox";
 import LoadingCircule from "../loading-components/loadingCircule";
 
@@ -75,7 +74,7 @@ const ActivityForm = () => {
         ev.preventDefault();
         fetch('/posts/add',{
             method: "POST",
-            body: JSON.stringify({ ... postForm }),
+            body: JSON.stringify({ ...postForm }),
             headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -83,7 +82,7 @@ const ActivityForm = () => {
         })
         .then( res => res.json())
         .then( json =>{
-            const { data, status, message } = json;
+            const { status, message } = json;
             if( status === 200 ){
                 setFormError({ status: false, message: 'no error'});
                 setPostForm(initialFormValues);

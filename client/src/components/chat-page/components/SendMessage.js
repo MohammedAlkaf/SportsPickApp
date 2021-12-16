@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import { db, auth } from '../firebase';
-import firebase from 'firebase';
+import { db } from '../firebase';
 import noImg from '../../assests/noImg.png';
 
 function SendMessage({ scroll, currentUser, activityId }) {
@@ -11,7 +10,7 @@ function SendMessage({ scroll, currentUser, activityId }) {
 
         ev.preventDefault()
         const { _id, imgSrc, displayName} = currentUser
-        const date = new Date;
+        const date = new Date();
 
         await db.collection(`activityId_${activityId}`).add({
             displayName,
