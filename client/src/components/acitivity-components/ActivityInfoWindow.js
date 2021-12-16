@@ -16,7 +16,7 @@ const SingleActivityInfoWindow = ({ post }) => {
     const handleClick = () => {
         history.push(`/activity/${post._id}`)
     }
-    console.log(post);
+    
     return (
         <Wrapper onClick = {() => handleClick()}>
             <Conatiner>

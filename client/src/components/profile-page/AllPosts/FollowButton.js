@@ -33,10 +33,6 @@ const FollowButton = ({ currentUser, targetedUser, numOfFollowers, setNumOfFollo
             "Content-Type": "application/json",
             },
         })
-        .then( res => res.json())
-        .then( data =>{
-            console.log(data.message);
-        })
     }
 
     return(

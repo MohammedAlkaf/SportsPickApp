@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { useParams, useHistory } from "react-router";
 import { FaShieldAlt, FaArrowLeft } from "react-icons/fa";
 import CircularProgress from '@mui/material/CircularProgress';
-import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard, FiCheckCircle, FiXCircle} from "react-icons/fi";
+import { FiMapPin, FiClipboard} from "react-icons/fi";
 import moment from 'moment';
 import JoinButton from './JoinButton';
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
@@ -33,7 +33,6 @@ const ActivityDetails = () => {
         fetch(`/posts/${_id}`)
         .then( res => res.json())
         .then( data =>{
-            console.log(data.post);
             setPostData(data.post);
             setPostStatus('idle');
             SetNumOfRemaniningSpots(data.post.limit - data.post.joining.length);

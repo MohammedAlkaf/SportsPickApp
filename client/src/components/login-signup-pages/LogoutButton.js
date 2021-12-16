@@ -16,15 +16,12 @@ const LogoutButton = () => {
 
     const handleLogout = () => {
 
-        console.log('logged out');
-
         fetch(`/loggedout/${currentUser.email}`,
         {
             method: 'DELETE',
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data.message);
             history.push('/');
             localStorage.clear();
             setIsUserLoggedIn(false);

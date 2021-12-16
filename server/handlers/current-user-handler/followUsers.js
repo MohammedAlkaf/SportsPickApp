@@ -44,14 +44,11 @@ const updateFollowingUsers = async (req, res) => {
 
             // Update the users both the follower ( current user ) and the followed user in users collection
             const resultFollowingUser = await db.collection("users").updateOne({ _id: currentUser._id }, updateFollowing );
-            console.log("Followed User: ", resultFollowingUser);
 
             const resultFollowedUSer = await db.collection("users").updateOne({ _id: targetedUser._id }, updateFollowers);
-            console.log("Following User: ", resultFollowedUSer);
 
             // Update the current user info in the currentUser collection
             const resultCurrentUser = await db.collection("currentUser").updateOne({ _id: currentUser._id }, updateFollowing );
-            console.log("Current User: ", resultCurrentUser);
 
             client.close();
             console.log("disconnected");
@@ -90,14 +87,11 @@ const updateFollowingUsers = async (req, res) => {
 
             // Update the users both the follower ( current user ) and the followed user in users collection
             const resultFollowingUser = await db.collection("users").updateOne({ _id: currentUser._id }, updateFollowing );
-            console.log("Followed User: ", resultFollowingUser);
 
             const resultFollowedUSer = await db.collection("users").updateOne({ _id: targetedUser._id }, updateFollowers);
-            console.log("Following User: ", resultFollowedUSer);
 
             // Update the current user info in the currentUser collection
             const resultCurrentUser = await db.collection("currentUser").updateOne({ _id: currentUser._id }, updateFollowing );
-            console.log("Current User: ", resultCurrentUser);
 
             //Add the notifications to the targeted user profile
             const resultNotifications = await db.collection("users").updateOne({ _id: targetedUser._id }, updateNotifications); 

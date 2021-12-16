@@ -24,8 +24,6 @@ const ChatLists = () => {
         });
     },[]);
 
-    console.log(joinedActivities);
-
     if( postsStatus === 'loading'){
         return (
             <Wrapper>

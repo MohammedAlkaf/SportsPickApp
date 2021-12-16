@@ -13,7 +13,6 @@ const AddressSearchBox = ( { postForm, setPostForm }) => {
             geocodeByAddress(address.label)
             .then(results => getLatLng(results[0]))
             .then(({ lat, lng }) => {
-                console.log('Successfully got latitude and longitude', { lat, lng });
                 setPostForm({
                     ...postForm,
                     activityAddress:{
@@ -29,8 +28,6 @@ const AddressSearchBox = ( { postForm, setPostForm }) => {
         }
 
     },[address])
-
-    console.log(address);
 
     return (
         <Wrapper>

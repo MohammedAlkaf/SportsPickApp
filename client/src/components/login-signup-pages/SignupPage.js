@@ -78,13 +78,9 @@ const SignupPage = () => {
       .then((json) => {
         const { data, status, message } = json;
         if (status === 200) {
-          console.log(data);
-          console.log(message);
           updateCurrentUser(history, data.email, data.password);
         } else {
           setErrorStatus({ status: "error", error: message });
-          console.log(data);
-          console.log(message);
         }
         SetSignupButtonStatus("idle");
       })

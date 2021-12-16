@@ -20,7 +20,6 @@ const ActivityJoined = ( { profileData }) => {
         .then(res=> res.json())
         .then(data => {
             setPostsData(data.posts); // Store all posts data in postsData state variable
-            console.log(data.posts);
             setPostDataStatus('idle');
         })
 

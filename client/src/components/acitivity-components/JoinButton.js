@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import CircularProgress from '@mui/material/CircularProgress';
 import { CurrentUserContext } from '../all-contexts/currentUserContext';
 import { FiCheckCircle, FiXCircle} from "react-icons/fi";
 
@@ -12,7 +11,6 @@ const JoinButton = ({ postData, numOfRemaniningSpots, SetNumOfRemaniningSpots })
     // Check the current status of joining ( before clicking on the join/withdraw button )
     // If the user has already joined, then the initial value for isCurrentUserJoined is set to true
     // If the user has not joined, then the initial value for isCurrentUserJoined is set to false
-    console.log(currentUser);
     const initialJoiningStatus = postData.joining.some( (user) => user._id === currentUser._id) ? true: false;
     const [ isCurrentUserJoined, setIsCurreuntUserJoined ] = useState(initialJoiningStatus);
 
@@ -35,10 +33,6 @@ const JoinButton = ({ postData, numOfRemaniningSpots, SetNumOfRemaniningSpots })
             Accept: "application/json",
             "Content-Type": "application/json",
             },
-        })
-        .then( res => res.json())
-        .then( data =>{
-            console.log(data.message);
         })
     }
 

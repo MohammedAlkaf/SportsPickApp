@@ -25,11 +25,9 @@ export const CurrentUserProvider = ({ children }) => {
         .then((res) => res.json())
         .then((data) => {
             if ( data.status === 200 ){
-                console.log(data.result);
                 setCurrentUser(data.result);
                 localStorage.setItem('currentUser', JSON.stringify(data.result));
                 setIsUserLoggedIn(true);
-                console.log(data.message);
                 history.push(`/profile/${data.result._id}`);
                 setCurrentUserStatus('idle')
             }

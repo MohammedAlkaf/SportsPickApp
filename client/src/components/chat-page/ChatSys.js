@@ -15,8 +15,6 @@ const ChatSys = () => {
     return <div> ...Loading </div>
 
   }
-
-  console.log(_id);
   
   return (
     <Wrapper>

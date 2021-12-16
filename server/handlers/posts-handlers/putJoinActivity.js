@@ -61,7 +61,6 @@ const putjoinByUserId = async (req, res) => {
             const removeUserfromPost = { $pull: { joining: { _id: currentUser._id } } };
             // Find the post and remove the current user from the activity
             const resultPostUpdate = await db.collection("posts").updateOne(postQuery, removeUserfromPost);
-            console.log('Post update: ', resultPostUpdate);
 
             // Query to find a user and remove the joined activity from the profile
             const userQuery = { _id: currentUser._id };
@@ -69,16 +68,13 @@ const putjoinByUserId = async (req, res) => {
             const removeActivityFromUser = { $pull: { joinedActivities: { _id: postData._id} } };
             // Find the user with remove the post from the user profile
             const resultUserUpdate = await db.collection("users").updateOne(userQuery, removeActivityFromUser);
-            console.log('User update: ',resultUserUpdate);
             // Also remove the user from current logged in user profile
             const resultCurrentUSerUpdate = await db.collection("currentUser").updateOne(userQuery,removeActivityFromUser);
-            console.log('CurrentUser update: ', resultCurrentUSerUpdate);
 
             // Now send notifications to the activity creator to let her/him know that the current user joined her/his activity
             const postCreatorQuery = {_id: postData.creator_id };
             const updateNotifications = { $addToSet: { notifications: { ... notification }} };
             const resultUpdateNotifiations = await db.collection("users").updateOne(postCreatorQuery, updateNotifications); 
-            console.log('Notification update: ', resultUpdateNotifiations);
 
             client.close();
             console.log("disconnected");
@@ -114,7 +110,6 @@ const putjoinByUserId = async (req, res) => {
             const addUserToPost = { $push: { joining: { _id: currentUser._id } } }
             // Find the post and add the current user To the activity
             const resultPostUpdate = await db.collection('posts').updateOne(postQuery,addUserToPost);
-            console.log('Post update: ',resultPostUpdate);
 
             // Query to find a user and remove the joined activity from the profile
             const userQuery = { _id: currentUser._id };
@@ -122,11 +117,9 @@ const putjoinByUserId = async (req, res) => {
             const addPostToUser = { $push: { joinedActivities: { _id: postData._id} } };
             // Find the user with remove the post from the user profile
             const resultUserUpdate = await db.collection("users").updateOne(userQuery,addPostToUser);
-            console.log('User update: ',resultUserUpdate);
 
             // Also remove the user from current logged in user profile
             const resultCurrentUSerUpdate = await db.collection("currentUser").updateOne(userQuery,addPostToUser);
-            console.log('CurrentUser update: ', resultCurrentUSerUpdate);
 
             // Now send notifications to the activity creator to let her/him know that the current user joined her/his activity
             const postCreatorQuery = {_id: postData.creator_id };
