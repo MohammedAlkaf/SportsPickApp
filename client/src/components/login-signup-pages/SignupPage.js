@@ -53,10 +53,24 @@ const SignupPage = () => {
   });
 
   // Function to handle the change in all form inputs
-  const handleInputChnage = (name, value) => {
+  const handleInputChange = (name, value) => {
     setNewUserInfo({ ...newUserInfo, [name]: value });
     setErrorStatus({ status: "idle", error: "no error" });
   };
+
+  const handleInputImg = (name, value) => {
+    // value = ev.target.files[0]
+
+    var reader = new FileReader();
+    reader.onload = function(){
+      var imgURL = reader.result;
+      setNewUserInfo({ ...newUserInfo, [name]: imgURL });
+      setErrorStatus({ status: "idle", error: "no error" });
+    };
+
+    reader.readAsDataURL(value);
+
+  }
 
 
   // handle the form submission by sending the mew form data to /users/add endpoint
@@ -100,7 +114,7 @@ const SignupPage = () => {
             placeholder="Email Address"
             type="email"
             onChange={(ev) => {
-              handleInputChnage("email", ev.target.value);
+              handleInputChange("email", ev.target.value);
             }}
           />
         </InputContainer>
@@ -110,7 +124,7 @@ const SignupPage = () => {
             placeholder="Password"
             type="password"
             onChange={(ev) => {
-              handleInputChnage("password", ev.target.value);
+              handleInputChange("password", ev.target.value);
             }}
           />
         </InputContainer>
@@ -119,9 +133,9 @@ const SignupPage = () => {
             placeholder="Confirm Password"
             type="password"
             onChange={(ev) => {
-              handleInputChnage("confirmPassword", ev.target.value);
+              handleInputChange("confirmPassword", ev.target.value);
             }}
-            style = {{ marginLeft:'36px'}}
+            style = {{ marginLeft:'40px'}}
           />
         </InputContainer>
         <InputContainer>
@@ -130,7 +144,7 @@ const SignupPage = () => {
             placeholder="Full Name"
             type="text"
             onChange={(ev) => {
-              handleInputChnage("displayName", ev.target.value);
+              handleInputChange("displayName", ev.target.value);
             }}
           />
         </InputContainer>
@@ -143,7 +157,7 @@ const SignupPage = () => {
             onFocus={() => (ref.current.type = "date")}
             onBlur={() => (ref.current.type = "text")}
             onChange={(ev) => {
-              handleInputChnage("DOB", ev.target.value);
+              handleInputChange("DOB", ev.target.value);
             }}
           />
         </InputContainer>
@@ -153,27 +167,27 @@ const SignupPage = () => {
             placeholder="Tell us a little about about yourself"
             type="text"
             onChange={(ev) => {
-              handleInputChnage("bio", ev.target.value);
+              handleInputChange("bio", ev.target.value);
             }}
           />
         </InputContainer>
-        <InputContainer>
+        <InputContainerImage>
           <FiImage size={IconSize} />
-          <Input
-            placeholder="Profile Img URL"
-            type="text"
+          <InputImg
+            type='file'
+            accept='image/*'
             onChange={(ev) => {
-              handleInputChnage("imgSrc", ev.target.value);
+              handleInputImg("imgSrc",ev.target.files[0]);
             }}
           />
-        </InputContainer>
+        </InputContainerImage>
         <InputContainer>
           <FiMapPin size={IconSize} />
           <Input
             placeholder="City"
             type="text"
             onChange={(ev) => {
-              handleInputChnage("location", ev.target.value);
+              handleInputChange("location", ev.target.value);
             }}
           />
         </InputContainer>
@@ -219,6 +233,36 @@ const InputContainer = styled.div`
   margin-top: 20px;
   justify-content: space-between;
   padding: 0px 5px;
+`;
+const InputContainerImage = styled.div`
+  display: flex;
+  margin-top: 20px;
+  align-items:center;
+  padding: 0px 5px;
+`;
+
+const InputImg = styled.input`
+  margin-left: 10px ;
+  color: grey;
+  padding:20px 0px;
+  font-size:1.1em;
+
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+    width:0px;
+  }
+
+  &::before{
+    content: 'Choose Profile Img';
+    color: white;
+    background: #3D5A80;
+    border: 2px solid white;
+    cursor: pointer;
+    border-radius: 5px;
+    padding:5px 10px;
+    font-family: 'Roboto Slab', serif;
+  }
+
 `;
 
 const Input = styled.input`

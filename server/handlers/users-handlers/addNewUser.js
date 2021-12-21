@@ -1,5 +1,8 @@
 const { MongoClient } = require("mongodb");
 const { v4: uuidv4 } = require("uuid");
+const bcrypt = require("bcrypt");
+
+const saltRounds = 10;
 
 require("dotenv").config();
 const { MONGO_URI } = process.env;
@@ -26,6 +29,9 @@ const addNewUser = async (req, res) => {
             confirmPassword
         } = req.body;
 
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+
         // Write the date in ISO format YYYY-MM-DDTHH:mm:ss.sssZ
         const d = new Date();
         let todayDate = d.toISOString();
@@ -33,6 +39,7 @@ const addNewUser = async (req, res) => {
         // add the new data user data with all other initial values for a new user
         const newUserInfo = 
         { ...req.body,
+            password:hashedPassword,// used the hashed password
             _id: uuidv4(), // create a new _id for the new user
             followers:[], // followers are saved in an array of follower users _ids. Example: [{ _id: <follower1_id> }, { _id: <follower2_id> }, ... ]
             following:[], // similar to followers array, following users are saved in an array of following users _ids

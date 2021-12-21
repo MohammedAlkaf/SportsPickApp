@@ -65,7 +65,8 @@ const Profile = () => {
                 }
             </Banner>
             <UserInfoContainer>
-                <ProfileImg src = { profileData.imgSrc !== '' ? profileData.imgSrc : noImg }/>
+                {/* <ProfileImg src = { profileData.imgSrc !== '' ? profileData.imgSrc : noImg }/> */}
+                <ProfileImgSquared style = {{ backgroundImage: `url(${profileData.imgSrc})`}} ></ProfileImgSquared>
                 <SubContainer>
                     <DisplayName>
                         <span>{profileData.displayName}</span>
@@ -149,6 +150,7 @@ width:100%;
 height:20%;
 `;
 
+// This has an issue when imge is not squared
 const ProfileImg = styled.img`
 position: absolute;
 width: 150px;
@@ -159,6 +161,20 @@ border: 5px solid #293241;
 top: 28px;
 left: 13px;
 `
+// This fixes the issue when the image is not squared
+const ProfileImgSquared = styled.div`
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+position: absolute;
+width: 150px;
+height: 150px;
+border-radius: 50%;
+background-color: grey;
+border: 5px solid #293241;
+top: 28px;
+left: 13px;
+`;
 const SubContainer = styled.div`
 display: flex;
 justify-content: space-between;

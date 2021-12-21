@@ -38,7 +38,6 @@ const updateFollowingUsers = async (req, res) => {
             // We want to update two thing
             // 1- the following array that contains all the accounts the current user is following
             // 2- the followers array that contains the accounts that follow a user
-
             const updateFollowing = { $pull: { following: { _id: targetedUser._id } } };
             const updateFollowers = { $pull: { followers: { _id: currentUser._id }} };
 
