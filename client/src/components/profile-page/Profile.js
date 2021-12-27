@@ -34,19 +34,23 @@ const Profile = () => {
     // When the profile component is mounted, fetch the profile data of the
     // user with the provided _id in useParams();
     useEffect( () => {
-
-        setProfileDataStatus('loading')
-        fetch(`/users/${_id}`)
-        .then(res => res.json())
-        .then(data => {
-            setProfileData(data.user);
-            setProfileDataStatus("idle");
-            setNumOfFollowers(data.user.followers.length);
-        })
+        if(_id === currentUser._id){
+            setProfileData(currentUser)
+        }
+        else{
+            setProfileDataStatus('loading')
+            fetch(`/users/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                setProfileData(data.user);
+                setProfileDataStatus("idle");
+                setNumOfFollowers(data.user.followers.length);
+            })
+        }
 
     },[_id]);
 
-    if( profileDataStatus === 'loading' ){
+    if( profileDataStatus === 'loading' || profileData == null || profileData === undefined){
         return (
         <CircleWrapper>
             <CircularProgress style={{'color': '#EE6C4D'}} />

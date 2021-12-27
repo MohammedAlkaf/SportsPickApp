@@ -12,9 +12,12 @@ export const CurrentUserProvider = ({ children }) => {
     const [errorStatus, setErrorStatus] = useState({ status: "idle", error: "no error" });
     
     useEffect(() => {
-        const ls = window.localStorage.getItem("currentUser");
+        const ls = sessionStorage.getItem("currentUser");
+        console.log(JSON.parse(ls));
+
         if (ls !== undefined && ls !== null) {
             setCurrentUser(JSON.parse(ls));
+            setIsUserLoggedIn(true);
         }
     }, []);
     
@@ -26,7 +29,7 @@ export const CurrentUserProvider = ({ children }) => {
         .then((data) => {
             if ( data.status === 200 ){
                 setCurrentUser(data.result);
-                localStorage.setItem('currentUser', JSON.stringify(data.result));
+                sessionStorage.setItem('currentUser', JSON.stringify(data.result));
                 setIsUserLoggedIn(true);
                 history.push(`/profile/${data.result._id}`);
                 setCurrentUserStatus('idle')
