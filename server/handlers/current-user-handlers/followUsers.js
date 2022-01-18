@@ -89,8 +89,8 @@ const updateFollowingUsers = async (req, res) => {
 
             const resultFollowedUSer = await db.collection("users").updateOne({ _id: targetedUser._id }, updateFollowers);
 
-            // Update the current user info in the currentUser collection
-            const resultCurrentUser = await db.collection("currentUser").updateOne({ _id: currentUser._id }, updateFollowing );
+            // // Update the current user info in the currentUser collection
+            // const resultCurrentUser = await db.collection("currentUser").updateOne({ _id: currentUser._id }, updateFollowing );
 
             //Add the notifications to the targeted user profile
             const resultNotifications = await db.collection("users").updateOne({ _id: targetedUser._id }, updateNotifications); 

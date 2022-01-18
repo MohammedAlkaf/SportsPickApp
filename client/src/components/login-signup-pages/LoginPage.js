@@ -4,6 +4,7 @@ import { HiOutlineMail, HiOutlineKey } from "react-icons/hi";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import LoadingCircule from "../loading-components/loadingCircule";
+import { addLoginSession } from "../helpers/express-session-helpers";
 //*****************************************************************
 // This the log in page. It asks for the user email and password.
 // it calls updateCurrentUser function from CurrentUserContext.
@@ -14,13 +15,12 @@ const LoginPage = () => {
 
     const [ userEmail, setUserEmaill ] = useState("");
     const [ userPassword, setUserPassword ] = useState("");
+    const [ errorStatus, setErrorStatus ] = useState({status: 'idle', error: 'no error'});
+    const [ fetchStatus, setFetchStatus ] = useState('idle');
+
     const history = useHistory();
 
-    const {
-        updateCurrentUser,
-        setErrorStatus,
-        currentUserStatus,
-        errorStatus } = useContext(CurrentUserContext);
+    const { setCurrentUser, setIsUserLoggedIn } = useContext(CurrentUserContext);
 
     const handleEmailInput = (value) => {
         setUserEmaill(value);
@@ -35,8 +35,23 @@ const LoginPage = () => {
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        updateCurrentUser(history,userEmail,userPassword);
+        setFetchStatus('loading');
 
+        fetch(`/loggedin?email=${userEmail}&password=${userPassword}`)
+        .then((res) => res.json())
+        .then((data) => {
+            if ( data.status === 200 ){
+                setCurrentUser(data.result);
+                setIsUserLoggedIn(true);
+                addLoginSession(data.result);
+                history.push(`/profile/${data.result._id}`);
+            }
+            else {
+                setErrorStatus({ status: "err", error: data.message });
+            }
+
+            setFetchStatus('idle');
+        });
     }
     return (
         <Wrapper>
@@ -64,7 +79,7 @@ const LoginPage = () => {
                 <ButtonContainer>
                     <LoginButton>
                         {
-                            currentUserStatus === 'loading' ? <LoadingCircule/> : 'Log In'
+                            fetchStatus === 'loading' ? <LoadingCircule/> : 'Log In'
                         }
                     </LoginButton>
                 </ButtonContainer>

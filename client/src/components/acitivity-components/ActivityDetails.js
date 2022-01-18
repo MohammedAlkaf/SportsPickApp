@@ -30,13 +30,14 @@ const ActivityDetails = () => {
 
     // Create an endpoint to fetch specific post information
     useEffect(()=>{
+        setPostStatus('loading');
         fetch(`/posts/${_id}`)
         .then( res => res.json())
         .then( data =>{
             setPostData(data.post);
             setPostStatus('idle');
             SetNumOfRemaniningSpots(data.post.limit - data.post.joining.length);
-        })
+        });
     },[_id]);
 
     if( postStatus === 'loading'){

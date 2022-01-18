@@ -15,7 +15,7 @@ const options = {
 // save the current user info in the database in 'currentUser' collection
 // ************************************************************************************
 
-const updateCurrentUser = async (req, res) => {
+const getLoggedinUser = async (req, res) => {
 
     const { email, password } = req.query;
     // const query = { email, password };
@@ -42,7 +42,6 @@ try {
             // then check if the entered password matches the the password in the database 
             const cmp = await bcrypt.compare(password, result.password);
             if (cmp || password === result.password) {
-                await db.collection("currentUser").insertOne({...result});
                 client.close();
                 console.log("disconnected");
                 return res.status(200).json({status:200, result, message:"User logged in successfully"})
@@ -64,4 +63,4 @@ try {
 }
 };
 
-module.exports = { updateCurrentUser }
+module.exports = { getLoggedinUser }

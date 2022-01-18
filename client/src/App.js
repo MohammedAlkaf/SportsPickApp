@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import GlobalStyles from "./GlobalStyles";
 import LoginSignupPage from "./components/login-signup-pages/LoginSignupPage";
 import LoginPage from "./components/login-signup-pages/LoginPage";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import SignupPage from "./components/login-signup-pages/SignupPage";
 import styled from "styled-components";
 import ChatLists from "./components/chat-page/AllJoinedChatsLists";
@@ -17,7 +17,7 @@ import Notifications from "./components/notifications-page/Notifications";
 
 function App() {
 
-  const { isUserLoggedIn } = useContext(CurrentUserContext);
+  const { isUserLoggedIn, currentUser } = useContext(CurrentUserContext);
 
   return (
       <BrowserRouter>
@@ -25,7 +25,7 @@ function App() {
       <Wrapper>
         <Switch>
           <Route exact path="/">
-            <LoginSignupPage/>
+            { isUserLoggedIn ? <Redirect to ={ `/profile/${currentUser._id}` } /> : <LoginSignupPage/> }
           </Route>
           <Route path="/signup">
             <SignupPage/>

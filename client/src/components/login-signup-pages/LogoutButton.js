@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { FiLogOut } from "react-icons/fi";
+import { deleteLoginSession } from "../helpers/express-session-helpers";
 
 //*****************************************************************
 // A log out button in the current user profile. It calls the endpoint
@@ -12,21 +13,13 @@ import { FiLogOut } from "react-icons/fi";
 
 const LogoutButton = () => {
     const history = useHistory();
-    const { setIsUserLoggedIn, currentUser } = useContext(CurrentUserContext);
+    const { setIsUserLoggedIn, setCurrentUser} = useContext(CurrentUserContext);
 
     const handleLogout = () => {
-
-        fetch(`/loggedout/${currentUser.email}`,
-        {
-            method: 'DELETE',
-        })
-        .then(res => res.json())
-        .then(data => {
-            history.push('/');
-            sessionStorage.clear();
-            setIsUserLoggedIn(false);
-        });
-
+        deleteLoginSession();
+        setIsUserLoggedIn(false);
+        setCurrentUser(null);
+        history.push('/');
     }
     return(
         <Button onClick = {() => handleLogout()}>

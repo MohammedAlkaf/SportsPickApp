@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { useParams, useHistory } from "react-router";
 import CircularProgress from '@mui/material/CircularProgress';
-import noImg from '../assests/noImg.png';
+// import noImg from '../assests/noImg.png';
 import LogoutButton from "../login-signup-pages/LogoutButton";
 import Posts from "./AllPosts/Posts";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
@@ -22,7 +22,7 @@ const Profile = () => {
     // Get current user information from the currentUser Context
     const { currentUser } = useContext(CurrentUserContext);
     // A state variable to store the data for the user profile
-    const [profileData,setProfileData] = useState(currentUser);
+    const [profileData,setProfileData] = useState(null);
     const [profileDataStatus,setProfileDataStatus] = useState("idle");
 
     // A state variable to update the number of followers in profile in the 
@@ -34,11 +34,6 @@ const Profile = () => {
     // When the profile component is mounted, fetch the profile data of the
     // user with the provided _id in useParams();
     useEffect( () => {
-        if(_id === currentUser._id){
-            setProfileData(currentUser);
-            setNumOfFollowers(currentUser.followers.length);
-        }
-        else{
             setProfileDataStatus('loading')
             fetch(`/users/${_id}`)
             .then(res => res.json())
@@ -46,8 +41,7 @@ const Profile = () => {
                 setProfileData(data.user);
                 setProfileDataStatus("idle");
                 setNumOfFollowers(data.user.followers.length);
-            })
-        }
+            });
 
     },[_id]);
 
@@ -156,16 +150,16 @@ height:20%;
 `;
 
 // This has an issue when imge is not squared
-const ProfileImg = styled.img`
-position: absolute;
-width: 150px;
-height: 150px;
-border-radius: 50%;
-background-color: grey;
-border: 5px solid #293241;
-top: 28px;
-left: 13px;
-`
+// const ProfileImg = styled.img`
+// position: absolute;
+// width: 150px;
+// height: 150px;
+// border-radius: 50%;
+// background-color: grey;
+// border: 5px solid #293241;
+// top: 28px;
+// left: 13px;
+// `
 // This fixes the issue when the image is not squared
 const ProfileImgSquared = styled.div`
 background-repeat: no-repeat;

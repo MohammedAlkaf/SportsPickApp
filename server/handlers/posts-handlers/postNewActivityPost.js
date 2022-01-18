@@ -133,9 +133,9 @@ const postNewActivityPost = async (req, res) => {
         await db.collection("users").updateOne(query, newValueForPostedActivities );
         await db.collection("users").updateOne(query, newValueForJoinedActivities );
 
-        // Update the user profile in 'currentUser' collection
-        await db.collection("currentUser").updateOne(query, newValueForPostedActivities );
-        await db.collection("currentUser").updateOne(query, newValueForJoinedActivities );
+        // // Update the user profile in 'currentUser' collection
+        // await db.collection("currentUser").updateOne(query, newValueForPostedActivities );
+        // await db.collection("currentUser").updateOne(query, newValueForJoinedActivities );
 
         client.close();
         console.log("disconnected");

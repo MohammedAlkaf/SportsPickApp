@@ -25,7 +25,7 @@ const NavBar = () => {
     
     return(
         <Wrapper>
-            <Button active = {active === 1} onClick = {() => handleClick(1,`profile/${currentUser?._id}`)}>
+            <Button active = {active === 1} onClick = {() => handleClick(1,`profile/${currentUser._id}`)}>
                 <FiUser size = {iconSize} color = {'EE6C4D'}/>
             </Button>
             <Button active = {active === 2} onClick = {() => handleClick(2,'group-chats')}>

@@ -12,7 +12,8 @@ import {
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { useHistory } from "react-router";
 import LoadingCircule from "../loading-components/loadingCircule";
-
+import { addLoginSession } from "../helpers/express-session-helpers";
+import uploadImageToCloudinary from "../helpers/uploadImgtoCloudinary";
 //*****************************************************************
 // This is the sign up page, it contains the sign up form
 //*****************************************************************
@@ -35,7 +36,7 @@ const SignupPage = () => {
 
   // Update current user info when a suer sign up, it makes sure that the user gets logged in
   // right after signing up
-  const { updateCurrentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser, setIsUserLoggedIn } = useContext(CurrentUserContext);
 
   const IconSize = 35;
 
@@ -45,7 +46,7 @@ const SignupPage = () => {
   // State variable for user information in the form
   const [newUserInfo, setNewUserInfo] = useState(initialUserInfo);
   // State variable for the loading button after submission
-  const [signupButtonStatus, SetSignupButtonStatus] = useState("idle");
+  const [fetchStatus, setFetchStatus] = useState("idle");
   // Setting the error received from backend endpoint
   const [errorStatus, setErrorStatus] = useState({
     status: "idle",
@@ -58,28 +59,12 @@ const SignupPage = () => {
     setErrorStatus({ status: "idle", error: "no error" });
   };
 
-  const handleInputImg = (name, value) => {
-    // value = ev.target.files[0]
-
-    var reader = new FileReader();
-    reader.onload = function(){
-      var imgURL = reader.result;
-      setNewUserInfo({ ...newUserInfo, [name]: imgURL });
-      setErrorStatus({ status: "idle", error: "no error" });
-    };
-
-    reader.readAsDataURL(value);
-
-  }
-
-
   // handle the form submission by sending the mew form data to /users/add endpoint
   // The endpoint handles the new user info, and returns an error if there is any error
   // while filling up the form
   const handleSubmit = (ev) => {
-    SetSignupButtonStatus("loading");
+    setFetchStatus("loading");
     ev.preventDefault();
-
     fetch("/users/add", {
       method: "POST",
       body: JSON.stringify(newUserInfo),
@@ -88,16 +73,20 @@ const SignupPage = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .then((json) => {
-        const { data, status, message } = json;
-        if (status === 200) {
-          updateCurrentUser(history, data.email, data.password);
-        } else {
-          setErrorStatus({ status: "error", error: message });
-        }
-        SetSignupButtonStatus("idle");
-      })
+    .then((res) => res.json())
+    .then((json) => {
+      const { data, status, message } = json;
+      if (status === 200) {
+        setCurrentUser(data);
+        setIsUserLoggedIn(true);
+        addLoginSession(data);
+        console.log(data);
+        history.push(`/profile/${data._id}`);
+      } else {
+        setErrorStatus({ status: "error", error: message });
+      }
+      setFetchStatus("idle");
+    })
   };
 
   return (
@@ -177,7 +166,7 @@ const SignupPage = () => {
             type='file'
             accept='image/*'
             onChange={(ev) => {
-              handleInputImg("imgSrc",ev.target.files[0]);
+              uploadImageToCloudinary(ev.target.files[0], handleInputChange);
             }}
           />
         </InputContainerImage>
@@ -197,7 +186,7 @@ const SignupPage = () => {
         <ButtonContainer>
           <SignUpButton type="submit">
           {
-            signupButtonStatus === 'loading' ? <LoadingCircule/> : 'Sign Up'
+            fetchStatus === 'loading' ? <LoadingCircule/> : 'Sign Up'
           }
           </SignUpButton>
         </ButtonContainer>

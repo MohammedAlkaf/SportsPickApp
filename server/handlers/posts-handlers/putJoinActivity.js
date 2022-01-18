@@ -68,8 +68,8 @@ const putjoinByUserId = async (req, res) => {
             const removeActivityFromUser = { $pull: { joinedActivities: { _id: postData._id} } };
             // Find the user with remove the post from the user profile
             const resultUserUpdate = await db.collection("users").updateOne(userQuery, removeActivityFromUser);
-            // Also remove the user from current logged in user profile
-            const resultCurrentUSerUpdate = await db.collection("currentUser").updateOne(userQuery,removeActivityFromUser);
+            // // Also remove the user from current logged in user profile
+            // const resultCurrentUSerUpdate = await db.collection("currentUser").updateOne(userQuery,removeActivityFromUser);
 
             // Now send notifications to the activity creator to let her/him know that the current user joined her/his activity
             const postCreatorQuery = {_id: postData.creator_id };
@@ -118,8 +118,8 @@ const putjoinByUserId = async (req, res) => {
             // Find the user with remove the post from the user profile
             const resultUserUpdate = await db.collection("users").updateOne(userQuery,addPostToUser);
 
-            // Also remove the user from current logged in user profile
-            const resultCurrentUSerUpdate = await db.collection("currentUser").updateOne(userQuery,addPostToUser);
+            // // Also remove the user from current logged in user profile
+            // const resultCurrentUSerUpdate = await db.collection("currentUser").updateOne(userQuery,addPostToUser);
 
             // Now send notifications to the activity creator to let her/him know that the current user joined her/his activity
             const postCreatorQuery = {_id: postData.creator_id };
