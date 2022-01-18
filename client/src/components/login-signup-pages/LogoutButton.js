@@ -23,7 +23,7 @@ const LogoutButton = () => {
         .then(res => res.json())
         .then(data => {
             history.push('/');
-            localStorage.clear();
+            sessionStorage.clear();
             setIsUserLoggedIn(false);
         });
 

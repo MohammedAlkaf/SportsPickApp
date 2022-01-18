@@ -3,7 +3,7 @@ export const sports = [
     'Soccer',
     'Basketball',
     'Tennis',
-    'Vollyball',
+    'Volleyball',
     'Hockey',
     'Table Tennis',
     'Baseball',

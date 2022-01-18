@@ -16,7 +16,7 @@ const ActivityParticipant = ({ role, _id }) => {
             setUserData(data.user);
             setUserDataStatus("idle");
         })
-    },[]);
+    },[_id]);
 
     const handleUserProfile = () => {
         history.push(`/profile/${_id}`);

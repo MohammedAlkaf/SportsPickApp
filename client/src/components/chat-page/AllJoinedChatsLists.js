@@ -16,15 +16,15 @@ const ChatLists = () => {
     // Get the data of all joined Activities for the current user
     useEffect( ()=> {
         setPostsStatus('loading');
-        fetch(`/posts/joiner/${currentUser?._id}`)
+        fetch(`/posts/joiner/${currentUser._id}`)
         .then( res => res.json())
         .then( (data) => {
             setJoinedActivities(data.posts);
             setPostsStatus('idle');
         });
-    },[]);
+    },[currentUser._id]);
 
-    if( postsStatus === 'loading'){
+    if( postsStatus === 'loading' || currentUser === null || currentUser === undefined ){
         return (
             <Wrapper>
                 <h2>Joined Activties Chats</h2>

@@ -35,7 +35,8 @@ const Profile = () => {
     // user with the provided _id in useParams();
     useEffect( () => {
         if(_id === currentUser._id){
-            setProfileData(currentUser)
+            setProfileData(currentUser);
+            setNumOfFollowers(currentUser.followers.length);
         }
         else{
             setProfileDataStatus('loading')

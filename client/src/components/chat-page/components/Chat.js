@@ -26,26 +26,26 @@ const Chat = ({ currentUser, activityId })=> {
                 </ReturnButton>
             </ReturnBar>
             <MessagesContainer ref={scroll}>
-                {messages.map(({ id, text, photoURL, uid, displayName, createdAt }) => (
-                    <div>
+                {messages.map(({ text, photoURL, uid, displayName, createdAt }) => (
+                    <div key = {createdAt}>
                         {
                             uid === currentUser._id 
                             ? 
-                            <MessageContainerSent key={id}>
-                                <UserImg src={photoURL} alt="" key={id} />
+                            <MessageContainerSent key={createdAt}>
+                                <UserImg src={photoURL} alt="" key={createdAt} />
                                 <MessageInfoSent>
-                                    <MessageSent key={id} >
+                                    <MessageSent key={createdAt} >
                                         <Text>{text}</Text>
                                     </MessageSent>
                                     <Time>{moment(createdAt).calendar()}</Time>
                                 </MessageInfoSent>
                             </MessageContainerSent>
                             :
-                            <MessageContainerReceived key={id}>
-                                <UserImg src={photoURL} alt="" key={id} />
+                            <MessageContainerReceived key={createdAt}>
+                                <UserImg src={photoURL} alt="" key={createdAt} />
                                 <MessageInfo>
                                     <Sender>{displayName}</Sender>
-                                    <MessageReceived key={id} >
+                                    <MessageReceived key={createdAt} >
                                         <Text>{text}</Text>
                                     </MessageReceived>
                                     <Time>{moment(createdAt).calendar()}</Time>

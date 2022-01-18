@@ -37,7 +37,7 @@ const ActivityDetails = () => {
             setPostStatus('idle');
             SetNumOfRemaniningSpots(data.post.limit - data.post.joining.length);
         })
-    },[]);
+    },[_id]);
 
     if( postStatus === 'loading'){
         return (

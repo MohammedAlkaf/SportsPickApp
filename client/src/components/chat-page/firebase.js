@@ -7,7 +7,7 @@ const firebaseApp = firebase.initializeApp({
     storageBucket: "mysportspicksapp.appspot.com",
     messagingSenderId: "180171390057",
     appId: "1:180171390057:web:f6abf468ce9001722d36f8",
-    measurementId: "${config.measurementId}"
+    measurementId: "G-VZ88BJQ71Y"
 })
 
 const db = firebaseApp.firestore()
