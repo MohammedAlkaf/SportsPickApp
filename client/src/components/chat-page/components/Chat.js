@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 import { db } from '../firebase';
+import socketIoClient from "socket.io-client";
 import SendMessage from './SendMessage';
 import moment from 'moment';
 import { FiChevronLeft } from "react-icons/fi";
 import { useHistory } from "react-router";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Chat = ({ currentUser, activityId })=> {
 
@@ -12,11 +14,47 @@ const Chat = ({ currentUser, activityId })=> {
 
     const scroll = useRef();
     const [messages, setMessages] = useState([]);
-    useEffect(() => {
-        db.collection(`activityId_${activityId}`).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
-            setMessages(snapshot.docs.map(doc => doc.data()))
-        })
-    }, [activityId]);
+    const [ chatStatus, setChatStatus ] = useState('loading');
+    const [ socket, setSocket ] = useState(null);
+
+    // useEffect(() => {
+    //     db.collection(`activityId_${activityId}`).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
+    //         setMessages(snapshot.docs.map(doc => doc.data()))
+    //     })
+    // }, [activityId]);
+
+    useEffect( () => {
+            setSocket(
+                socketIoClient("http://localhost:8000",
+                { query: `activityId=activityId_${activityId}` })
+            );
+    },[activityId]);
+
+    useEffect(()=> {
+        if( socket === null){
+            return null
+        }
+        setChatStatus('loading');
+
+        socket.on('connect', () => console.log('New client with id: ', socket.id));
+
+        socket.on("get-messages", (messages) => {
+            // expect server to send us the latest messages
+            setMessages(messages);
+            setChatStatus('idle');
+        });
+
+        // CLEAN UP THE EFFECT
+        return () => socket.disconnect();
+    }, [socket, activityId]);
+
+    if ( chatStatus === 'loading'){
+        return(
+            <LoadingContainer>
+                <CircularProgress style={{'color': '#EE6C4D'}} />
+            </LoadingContainer>
+        )
+    }
 
     return (
         <Wrapper>
@@ -55,7 +93,7 @@ const Chat = ({ currentUser, activityId })=> {
                     </div>
                 ))}
             </MessagesContainer>
-            <SendMessage scroll={scroll} currentUser = { currentUser } activityId = { activityId }/>
+            <SendMessage scroll={scroll} currentUser = { currentUser } activityId = { activityId } socket = {socket }/>
         </Wrapper>
     )
 }
@@ -64,6 +102,12 @@ const Wrapper = styled.div`
 height:100%;
 `;
 
+const LoadingContainer = styled.div`
+height:100%;
+display: flex;
+justify-content: center;
+align-items: center;
+`;
 const MessagesContainer = styled.div`
     display: flex;
     height: calc( 100% - 60px - 40px);

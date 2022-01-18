@@ -14,12 +14,16 @@ const { deletePostById } = require('./handlers/posts-handlers/deletePostByPostId
 const { getPostById } = require('./handlers/posts-handlers/getPostByPostId');
 const { putjoinByUserId } = require('./handlers/posts-handlers/putJoinActivity');
 const { updateFollowingUsers} = require('./handlers/current-user-handlers/followUsers');
-const { getLoginSession, postLoginSession, deleteLoginSession } = require('./handlers/express-sessoin-handlers/express-session-handlers')
+const { chatSocket } = require('./chat-socket/index');
+const { getLoginSession, postLoginSession, deleteLoginSession } = require('./handlers/express-sessoin-handlers/express-session-handlers');
+const socketIo = require("socket.io");
+
 
 const cors = require("cors");
 var bodyParser = require('body-parser');
 
 const PORT = 8000;
+const frontUrl = "http://localhost:3000";
 
 const app = express();
 
@@ -76,3 +80,11 @@ app.delete("/delete-login-session", deleteLoginSession);
 var server = app.listen(PORT, function () {
     console.info("🌍 Listening on port " + PORT);
 });
+
+const io = socketIo(server, {
+    cors: {
+        origin: [frontUrl],
+    },
+});
+
+io.on("connection", (socket) => chatSocket(io,socket));
