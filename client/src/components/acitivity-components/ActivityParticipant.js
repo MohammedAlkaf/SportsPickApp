@@ -34,7 +34,10 @@ const ActivityParticipant = ({ role, _id }) => {
                     {role}
                 </Role>
                 <SubContainer>
-                    <UserImg src = { userData.imgSrc !== '' ? userData.imgSrc : noImg } />
+                    <ProfileImgSquared 
+                        style = { { backgroundImage: `url(${userData.imgSrc !== '' ? userData.imgSrc : noImg})`} } 
+                        alt="user image" 
+                    ></ProfileImgSquared>
                     <Username>
                         {userData.displayName}
                     </Username>
@@ -84,5 +87,16 @@ margin-right: 5px;
 const Username = styled.div`
 font-size: 0.8em;
 `;
+
+const ProfileImgSquared = styled.div`
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background-color: grey;
+border: 1px solid white;
+margin-right: 5px;`;
 
 export default ActivityParticipant

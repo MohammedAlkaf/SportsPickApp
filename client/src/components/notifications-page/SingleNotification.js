@@ -3,6 +3,8 @@ import styled from "styled-components";
 import moment from 'moment';
 import noImg from'../assests/noImg.png';
 import { useHistory } from "react-router";
+// import singleChatItemBackground from "../../assests/chat-low-poly-grid-haikei.svg";
+import singleChatItemBackground from "../assests/chat-low-poly-grid-haikei.svg";
 //*****************************************************************
 // This component is used to render a single notification block in
 // the notification page
@@ -28,7 +30,7 @@ const SingleNotification = ({notification}) => {
                 onClick={()=> handleUserProfile()}
                 /> */}
                 <ProfileImgSquared 
-                    style = {{ backgroundImage: `url(${notification.user.imgSrc})`}}
+                    style = {{ backgroundImage: `url(${notification.user.imgSrc !== '' ? notification.user.imgSrc  : noImg})`}}
                     onClick={()=> handleUserProfile()}
                 >
                 </ProfileImgSquared>
@@ -66,9 +68,13 @@ const Container = styled.div`
     display:flex;
     align-items: center;
     padding:7px 5px;
-    background: #293241;
+    /* background: #293241; */
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border-radius:6px;
+    background-image: url(${singleChatItemBackground});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 `;
 
 const ProfileImgSquared = styled.div`

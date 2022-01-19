@@ -4,7 +4,7 @@ import moment from 'moment';
 import { keyframes } from 'styled-components'
 import { useHistory } from "react-router";
 import { FiCalendar, FiMapPin, FiUsers } from "react-icons/fi";
-
+import singleChatItemBackground from "../../assests/chat-low-poly-grid-haikei.svg";
 const SingleGroupChatItem = ({activity}) => {
 
     let history = useHistory();
@@ -65,12 +65,14 @@ display: flex;
 flex-direction: column;
 margin: 15px;
 border-radius:10px;
-/* border: 1px solid white; */
 padding:10px;
-background-color: #293241;
+/* background-color: #293241; */
 box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 animation: ${slideIn} 0.5s ease-in-out;
-
+background-image: url(${singleChatItemBackground});
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
 `;
 
 const Wrapper = styled.div`

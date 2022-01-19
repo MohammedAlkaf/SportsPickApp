@@ -2,14 +2,14 @@ import React, { useEffect, useState, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { useParams, useHistory } from "react-router";
 import CircularProgress from '@mui/material/CircularProgress';
-// import noImg from '../assests/noImg.png';
+import noImg from '../assests/noImg.png';
 import LogoutButton from "../login-signup-pages/LogoutButton";
 import Posts from "./AllPosts/Posts";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { FiChevronLeft } from "react-icons/fi";
 import FollowButton from "./AllPosts/FollowButton";
 import moment from 'moment';
-import Skeleton from "react-loading-skeleton";
+import BannerBackground from "../../components/assests/circle-scatter-haikei.svg";
 
 // **********************************************
 // This component is to render the profile page
@@ -69,7 +69,7 @@ const Profile = () => {
             </Banner>
             <UserInfoContainer>
                 {/* <ProfileImg src = { profileData.imgSrc !== '' ? profileData.imgSrc : noImg }/> */}
-                <ProfileImgSquared style = {{ backgroundImage: `url(${profileData.imgSrc})`}} ></ProfileImgSquared>
+                <ProfileImgSquared style = {{ backgroundImage: `url(${profileData.imgSrc !== '' ? profileData.imgSrc  : noImg})`}} ></ProfileImgSquared>
                 <SubContainer>
                     <DisplayName>
                         <span>{profileData.displayName}</span>
@@ -151,6 +151,10 @@ padding-bottom: 10px;
 const Banner = styled.div`
 width:100%;
 height:20%;
+background-image: url(${BannerBackground});
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
 `;
 
 // This has an issue when imge is not squared

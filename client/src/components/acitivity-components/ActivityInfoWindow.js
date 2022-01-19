@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { keyframes } from 'styled-components'
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
 import moment from 'moment';
-import SportsBackground from '../assests/SportsBackground.jpg';
+import ActivityITemBackground from '../assests/low-poly-grid-haikei.svg';
 import { useHistory } from "react-router";
 
 // Here I should be passing the data of the activity I want to show.. no fetch here 
@@ -20,7 +20,7 @@ const SingleActivityInfoWindow = ({ post }) => {
     return (
         <Wrapper onClick = {() => handleClick()}>
             <Conatiner>
-                <BackgroundImg src = {SportsBackground} />
+                <BackgroundImg src = {ActivityITemBackground} />
                 <FiCalendar size = {45}/>
                 <SubContainer1>
                         <ActivityDate>

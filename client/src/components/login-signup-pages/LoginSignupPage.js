@@ -86,9 +86,11 @@ width:350px;
 height: 350px;
 font-size: 1em;
 color: grey;
+
 span {
-    font-size: 3em;
-    margin-bottom: 8px;
+    font-size: 4em;
+    margin-bottom: 2px;
+    font-family: 'Bebas Neue', cursive;
     color: #EE6C4D;
 }
 `;

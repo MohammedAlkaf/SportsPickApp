@@ -19,7 +19,8 @@ const Chat = ({ currentUser, activityId })=> {
     useEffect( () => {
             setSocket(
                 socketIoClient("http://localhost:8000",
-                { query: `activityId=activityId_${activityId}` })
+                // { query: `activityId=activityId_${activityId}` })
+                { query: `activityId=${activityId}` })
             );
     },[activityId]);
 
