@@ -106,16 +106,16 @@ const putjoinByUserId = async (req, res) => {
             
             // Query to find the targetted post activity
             const postQuery = { _id: postData._id };
-            // The update to add the current user from the activity
+            // The update to add the current user to the activity
             const addUserToPost = { $push: { joining: { _id: currentUser._id } } }
             // Find the post and add the current user To the activity
             const resultPostUpdate = await db.collection('posts').updateOne(postQuery,addUserToPost);
 
-            // Query to find a user and remove the joined activity from the profile
+            // Query to find a user and add the joined activity to the profile
             const userQuery = { _id: currentUser._id };
-            // The update to remove the activity _id from the user profile
+            // The update to add the activity _id to the user profile
             const addPostToUser = { $push: { joinedActivities: { _id: postData._id} } };
-            // Find the user with remove the post from the user profile
+            // Find the user with userQuery and add the post id to the user profile
             const resultUserUpdate = await db.collection("users").updateOne(userQuery,addPostToUser);
 
             // // Also remove the user from current logged in user profile

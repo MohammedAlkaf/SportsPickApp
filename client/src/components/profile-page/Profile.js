@@ -9,6 +9,8 @@ import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import { FiChevronLeft } from "react-icons/fi";
 import FollowButton from "./AllPosts/FollowButton";
 import moment from 'moment';
+import Skeleton from "react-loading-skeleton";
+
 // **********************************************
 // This component is to render the profile page
 // for both the current user and others
@@ -49,7 +51,9 @@ const Profile = () => {
         return (
         <CircleWrapper>
             <CircularProgress style={{'color': '#EE6C4D'}} />
-        </CircleWrapper>)
+        </CircleWrapper>
+        
+        )
     }
 
     return(

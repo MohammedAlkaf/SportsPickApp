@@ -1,28 +1,9 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import { db } from '../firebase';
 import noImg from '../../assests/noImg.png';
 
 function SendMessage({ scroll, currentUser, socket }) {
     const [msg, setMsg] = useState('')
-
-    // const sendMessage = async (ev) => {
-
-    //     ev.preventDefault()
-    //     const { _id, imgSrc, displayName} = currentUser
-    //     const date = new Date();
-
-    //     await db.collection(`activityId_${activityId}`).add({
-    //         displayName,
-    //         text: msg,
-    //         photoURL: imgSrc !== '' ? imgSrc : noImg ,
-    //         uid: _id,
-    //         createdAt: date.toISOString()
-    //     })
-    //     setMsg('')
-    //     scroll.current.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-    //     scroll.current.scrollTop = scroll.current.scrollHeight - scroll.current.clientHeight;
-    // };
 
     const sendMessage = (ev) => {
         ev.preventDefault();

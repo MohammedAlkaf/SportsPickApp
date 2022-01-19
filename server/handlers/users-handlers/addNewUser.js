@@ -26,8 +26,12 @@ const addNewUser = async (req, res) => {
             DOB,
             location,
             password,
-            confirmPassword
+            confirmPassword,
+            imgSrc,
         } = req.body;
+
+        // query to check if an account associated with this email already exists
+        const query = { email };
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
@@ -65,6 +69,9 @@ const addNewUser = async (req, res) => {
         else if ( DOB === ""){
             return res.status(400).json({ status: 400,data:newUserInfo, message: "Your date of birth is missing"})
         }
+        else if ( imgSrc === ""){
+            return res.status(400).json({ status: 400,data:newUserInfo, message: "Your profile image is missing"})
+        }
         else if ( location === ""){
             return res.status(400).json({ status: 400,data:newUserInfo, message: "Your city is missing"})
         }
@@ -75,6 +82,16 @@ const addNewUser = async (req, res) => {
         console.log("connected");
 
         const db = client.db("SportsPickApp");
+
+        // Check if there is already an account with the registered email
+        const result = await db.collection("users").find(query).toArray();
+
+        if(result.length !== 0){
+            client.close();
+            console.log("disconnected");
+            return res.status(400).json({ status: 400, result:newUserInfo,  message: "An account with the provided email already exists"})
+        };
+
         await db.collection("users").insertOne(newUserInfo);
 
         client.close();

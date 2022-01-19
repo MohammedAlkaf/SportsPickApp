@@ -23,10 +23,15 @@ const SingleNotification = ({notification}) => {
     return(
         <Wrapper>
             <Container>
-                <Img 
+                {/* <Img 
                 src = { notification.user.imgSrc !== '' ? notification.user.imgSrc : noImg }
                 onClick={()=> handleUserProfile()}
-                />
+                /> */}
+                <ProfileImgSquared 
+                    style = {{ backgroundImage: `url(${notification.user.imgSrc})`}}
+                    onClick={()=> handleUserProfile()}
+                >
+                </ProfileImgSquared>
                 <SubContainer>
                     <NotificationDate>
                         {moment(notification.date).calendar()}
@@ -66,10 +71,15 @@ const Container = styled.div`
     border-radius:6px;
 `;
 
-const Img = styled.img`
-    border-radius: 50%;
-    height: 45px;
-    border: 2px solid white;
+const ProfileImgSquared = styled.div`
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+width: 45px;
+height: 45px;
+border-radius: 50%;
+background-color: grey;
+border: 2px solid white;
 `;
 
 const SubContainer = styled.div`

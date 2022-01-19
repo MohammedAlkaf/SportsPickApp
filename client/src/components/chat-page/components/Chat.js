@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
-import { db } from '../firebase';
 import socketIoClient from "socket.io-client";
 import SendMessage from './SendMessage';
 import moment from 'moment';
@@ -16,12 +15,6 @@ const Chat = ({ currentUser, activityId })=> {
     const [messages, setMessages] = useState([]);
     const [ chatStatus, setChatStatus ] = useState('loading');
     const [ socket, setSocket ] = useState(null);
-
-    // useEffect(() => {
-    //     db.collection(`activityId_${activityId}`).orderBy('createdAt').limit(50).onSnapshot(snapshot => {
-    //         setMessages(snapshot.docs.map(doc => doc.data()))
-    //     })
-    // }, [activityId]);
 
     useEffect( () => {
             setSocket(
@@ -70,7 +63,7 @@ const Chat = ({ currentUser, activityId })=> {
                             uid === currentUser._id 
                             ? 
                             <MessageContainerSent key={createdAt}>
-                                <UserImg src={photoURL} alt="" key={createdAt} />
+                                {/* <UserImg src={photoURL} alt="" key={createdAt} /> */}
                                 <MessageInfoSent>
                                     <MessageSent key={createdAt} >
                                         <Text>{text}</Text>
@@ -80,7 +73,11 @@ const Chat = ({ currentUser, activityId })=> {
                             </MessageContainerSent>
                             :
                             <MessageContainerReceived key={createdAt}>
-                                <UserImg src={photoURL} alt="" key={createdAt} />
+                                <UserImg 
+                                    style = {{ backgroundImage: `url(${photoURL})`}} 
+                                    alt="user image" 
+                                    key={createdAt} 
+                                ></UserImg>
                                 <MessageInfo>
                                     <Sender>{displayName}</Sender>
                                     <MessageReceived key={createdAt} >
@@ -180,10 +177,15 @@ const MessageReceived = styled(Message)`
     float: left;
 `;
 
-const UserImg = styled.img`
-    border-radius: 50%;
-    height: 45px;
-    border: 2px solid white;
+const UserImg = styled.div`
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+width: 45px;
+height: 45px;
+border-radius: 50%;
+background-color: grey;
+border: 2px solid white;
 `;
 
 const Text = styled.p`

@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { HiOutlineMail, HiOutlineKey } from "react-icons/hi";
+import { FiAtSign, FiLock, FiEye, FiEyeOff, FiAlertCircle } from "react-icons/fi";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "../all-contexts/currentUserContext";
 import LoadingCircule from "../loading-components/loadingCircule";
 import { addLoginSession } from "../helpers/express-session-helpers";
+import SportsBackground from '../assests/wave-haikei.svg'
+
 //*****************************************************************
 // This the log in page. It asks for the user email and password.
 // it calls updateCurrentUser function from CurrentUserContext.
@@ -15,11 +18,12 @@ const LoginPage = () => {
 
     const [ userEmail, setUserEmaill ] = useState("");
     const [ userPassword, setUserPassword ] = useState("");
+    const [ isPasswordShown, setIsPasswordShown ] = useState(false);
     const [ errorStatus, setErrorStatus ] = useState({status: 'idle', error: 'no error'});
     const [ fetchStatus, setFetchStatus ] = useState('idle');
 
     const history = useHistory();
-
+    const iconSize = 35;
     const { setCurrentUser, setIsUserLoggedIn } = useContext(CurrentUserContext);
 
     const handleEmailInput = (value) => {
@@ -56,22 +60,35 @@ const LoginPage = () => {
     return (
         <Wrapper>
             <h1>Welcome Back !</h1>
+            <BackgroundImg src = {SportsBackground}/>
             <Form onSubmit = {(ev)=>handleSubmit(ev)}>
                 <InputContainer>
-                        <HiOutlineMail size = {35}/>
+                        <FiAtSign size = {iconSize}/>
                         <Input 
                             placeholder = 'Email Address' 
                             type = 'email'
                             onChange = {(ev) => {handleEmailInput(ev.target.value)}}
                         />
+                        <EyeIcon>
+                            <FiEye size = {30} color = {'transparent'}/>
+                        </EyeIcon>
                 </InputContainer>
                 <InputContainer>
-                        <HiOutlineKey size = {35}/>
+                        <FiLock size = {iconSize}/>
                         <Input 
                             placeholder = 'Password' 
-                            type = 'password'
+                            type={ isPasswordShown ? 'text' : 'password' }
                             onChange = {(ev) => {handlePasswordInput(ev.target.value)}}
                         />
+                        <EyeIcon
+                            onClick={() => setIsPasswordShown(!isPasswordShown)}
+                        >
+                            {
+                                isPasswordShown
+                                ? <FiEye size = {30}/>
+                                : <FiEyeOff size = {30}/>
+                            }
+                        </EyeIcon>
                 </InputContainer>
                 <Error>
                     { errorStatus.status === 'err' ? `* ${errorStatus.error} *` : ""}
@@ -100,6 +117,7 @@ const Wrapper = styled.div`
     align-items: center;
     font-weight: 400;
     color: white;
+    overflow: hidden;
 `;
 
 const Form = styled.form`
@@ -110,6 +128,7 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 `;
 
 const ButtonContainer = styled.div`
@@ -117,6 +136,12 @@ const ButtonContainer = styled.div`
     flex-direction: column;
     width: 100%;
     margin-top: 10px;
+`;
+
+const BackgroundImg = styled.img`
+position:absolute;
+height: 100%;
+top:0;
 `;
 
 const LoginButton = styled.button`
@@ -134,10 +159,11 @@ const LoginButton = styled.button`
 
 const InputContainer = styled.div`
     display: flex;
-    width:100%;
+    width:90%;
     margin-top:20px;
     justify-content: space-between;
     padding: 0px 5px;
+    border-bottom: 1px solid grey;
 `;
 
 const Input = styled.input`
@@ -146,11 +172,18 @@ const Input = styled.input`
     font-size: 1.3em;
     outline: none;
     border:none;
-    border-bottom: 1px solid grey;
+    /* border-bottom: 1px solid grey; */
     color: white;
     background-image:none;
     background-color:transparent;
     box-shadow: none;
+`;
+
+const EyeIcon = styled.div`
+float: right;
+display:flex;
+align-items: center;
+margin: 0px 5px;
 `;
 
 const Error = styled.div`

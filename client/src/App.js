@@ -61,7 +61,9 @@ function App() {
               <NavBar/>
             </MainAppContainer>
           }
-          <Route path="">404: Oops!</Route>
+          <Route path="">
+              <Redirect to ='/'/>  
+          </Route>
 
         </Switch>
       </Wrapper>

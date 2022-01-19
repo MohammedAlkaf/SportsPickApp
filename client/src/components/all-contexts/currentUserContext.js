@@ -19,6 +19,7 @@ export const CurrentUserProvider = ({ children }) => {
                 console.log(data.message)
             }
             else {
+                setIsUserLoggedIn(false);
                 console.log(data.message);
             }
         })

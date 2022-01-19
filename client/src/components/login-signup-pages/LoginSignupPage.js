@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import SportsBackground from '../assests/SportsBackground1.jpg'
+import SportsBackground from '../assests/wave-haikei.svg'
 import bgImg from '../assests/bgImg.png';
 //*****************************************************************
 // This page is the fist page in the app, it gives the use the option
@@ -24,7 +24,11 @@ const LoginSignupPage = () => {
             <BackgroundImg src = {SportsBackground}/>
             {/* <Title>SportsPick</Title> */}
             <ButtonContainer>
-                <Logo src = {bgImg}/>
+                <Logo>
+                    <span>SPORTS</span>
+                    <span>PICK</span>
+                    Get Together with One Click
+                </Logo>
                 <Quotes>
                     <p>“One man can be a crucial ingredient on a team, but one man cannot make a team.”</p>
                     <span>-Kareem Abdul-Jabbar</span>
@@ -36,9 +40,9 @@ const LoginSignupPage = () => {
                 </LoginButton>
                 
                 <HorizontalLineContainer>
-                    <hr style = {{ width: '145px'}}/>
+                    <hr style = {{ marginRight: '5px', width: '145px'}}/>
                     or
-                    <hr style = {{ width: '145px'}}/>
+                    <hr style = {{ marginLeft: '5px', width: '145px'}}/>
                 </HorizontalLineContainer>
                 <SignInButton
                     onClick = {() => {handleSignup()}}
@@ -69,21 +73,32 @@ overflow: hidden;
 
 const BackgroundImg = styled.img`
 position:absolute;
-left:-50%;
-opacity: 0.2;
-transform: rotate(-90deg);
+height: 100%;
+top:0;
 `;
 
-const Logo = styled.img`
-opacity: 0.8;
+const Logo = styled.div`
+display:flex;
+justify-content: center;
+align-items:center;
+flex-direction: column;
 width:350px;
+height: 350px;
+font-size: 1em;
+color: grey;
+span {
+    font-size: 3em;
+    margin-bottom: 8px;
+    color: #EE6C4D;
+}
 `;
 
 const Quotes = styled.div`
     margin:20px;
-    font-size: 1.3em;
+    font-size: 1.2em;
     span {
         margin-top:5px;
+        font-size: 0.8em;
         float:right;
         font-style: italic;
     }

@@ -14,6 +14,8 @@ import { useHistory } from "react-router";
 import LoadingCircule from "../loading-components/loadingCircule";
 import { addLoginSession } from "../helpers/express-session-helpers";
 import uploadImageToCloudinary from "../helpers/uploadImgtoCloudinary";
+import SportsBackground from '../assests/wave-haikei.svg'
+
 //*****************************************************************
 // This is the sign up page, it contains the sign up form
 //*****************************************************************
@@ -92,6 +94,7 @@ const SignupPage = () => {
   return (
     <Wrapper>
       <h2>Create an account</h2>
+      <BackgroundImg src = {SportsBackground}/>
       <Form
         onSubmit={(ev) => {
           handleSubmit(ev);
@@ -207,6 +210,7 @@ const Wrapper = styled.div`
   align-items: center;
   font-weight: 400;
   color: white;
+  overflow: hidden;
 `;
 
 const Form = styled.form`
@@ -214,6 +218,12 @@ const Form = styled.form`
   width: 100%;
   height: 100%;
   margin-top: 20px;
+`;
+
+const BackgroundImg = styled.img`
+position:absolute;
+height: 100%;
+top:0;
 `;
 
 const InputContainer = styled.div`
@@ -315,7 +325,7 @@ const ButtonContainer = styled.div`
 const Error = styled.div`
   margin-top: 30px;
   color: red;
-  font-size: 1.2em;
+  font-size: 1em;
   text-align: center;
 `;
 
