@@ -1,5 +1,8 @@
 # Sports Pick App
 SportsPick is a full-stack mobile application. It's a social platform where users can join nearby sport activities and invite other users to join their activities.
+
+## Important Note
+Design Responsiveness is very important for mobile web apps. This is something I am still working on for this project. If you plan to fork or clone it, please make sure to use 'mobile view' from the browser Dev Tools. To get a full experience of how the app should look like, use IPhone 6,7,8 plus dimensions view
 ## Demo
 https://www.youtube.com/watch?v=BVm9BsRPkzM
 ## Front-end
