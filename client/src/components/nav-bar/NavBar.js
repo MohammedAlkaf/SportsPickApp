@@ -50,6 +50,7 @@ const Button = styled.button`
     background-color: #3C4552;
     border-bottom: 7px solid rgba(255,255,255,0.1);
     width: 25%;
+    cursor: pointer;
 
     ${({ active }) => active && ` border-bottom: 7px solid #EE6C4D; `}
 

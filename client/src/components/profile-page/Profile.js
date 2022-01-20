@@ -181,6 +181,11 @@ background-color: grey;
 border: 5px solid #293241;
 top: 28px;
 left: 13px;
+
+@media (max-height: 736px) {
+        height: 15vh;
+        width: 15vh;
+}
 `;
 const SubContainer = styled.div`
 display: flex;
@@ -197,16 +202,30 @@ div{
     font-size: 0.8em;
     color:grey;
 }
+
+@media (max-height: 736px) {
+    font-size: 0.75em;
+}
+
 `;
 
 const Bio = styled.div`
 margin: 10px;
 font-size: 0.9em;
+
+@media (max-height: 736px) {
+    font-size: 0.75em;
+}
+
 `;
 
 const AccountStats = styled.div`
 display: flex;
 justify-content: space-between;
+
+@media (max-height: 736px) {
+    font-size: 0.75em;
+}
 `
 
 const Stat = styled.div`

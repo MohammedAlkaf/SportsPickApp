@@ -67,6 +67,7 @@ margin: 15px;
 border-radius:10px;
 padding:10px;
 /* background-color: #293241; */
+cursor: pointer;
 box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 animation: ${slideIn} 0.5s ease-in-out;
 background-image: url(${singleChatItemBackground});

@@ -33,6 +33,7 @@ const Button = styled.button`
     width: 50%;
     color: #EE6C4D;
     font-size: 1.02em;
+    cursor: pointer;
 
     ${({ active }) => active && ` border-bottom: 7px solid #EE6C4D; `}
 

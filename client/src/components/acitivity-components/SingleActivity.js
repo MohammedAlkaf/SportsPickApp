@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { keyframes } from 'styled-components'
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi";
 import moment from 'moment';
-import ActivityITemBackground from '../assests/low-poly-grid-haikei.svg';
+import ActivityItemBackground from '../assests/low-poly-grid-haikei.svg';
 import { useHistory } from "react-router";
 
 // Here I should be passing the data of the activity I want to show.. no fetch here 
@@ -20,7 +20,7 @@ const SingleActivity = ({ post }) => {
     return (
         <Wrapper onClick = {() => handleClick()}>
             <Conatiner>
-                <BackgroundImg src = {ActivityITemBackground} />
+                {/* <BackgroundImg></BackgroundImg> */}
                 <FiCalendar size = {45}/>
                 <SubContainer1>
                         <ActivityDate>
@@ -78,6 +78,7 @@ border-radius: 10px;
 background: #293241;
 box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 animation: ${slideIn} 0.5s ease-in-out;
+cursor: pointer;
 
 `
 const Conatiner = styled.div`
@@ -92,16 +93,26 @@ border-radius: 10px 10px 0px 0px;
 padding:20px 10px;
 z-index: 1;
 color: white;
-text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);`
+text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);
+background-image: url(${ActivityItemBackground});
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+`
 
-const BackgroundImg = styled.img`
-position: absolute;
-right:-50%;
-top:-100%;
-z-index: -1;
-opacity: 1;
-transform: scale(0.7);
-`;
+// const BackgroundImg = styled.div`
+// position: absolute;
+// right:-50%;
+// /* top:-100%; */
+// z-index: -1;
+// opacity: 1;
+// background-image: url(${ActivityItemBackground});
+// background-repeat: no-repeat;
+// background-position: center;
+// background-size: cover;
+// height: 30px;
+// border: 1px solid red;
+// `;
 
 const SubContainer1 = styled.div`
 margin-left: 10px;

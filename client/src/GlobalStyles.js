@@ -6,8 +6,14 @@ export default createGlobalStyle`
 *:after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Roboto'
+    font-family: 'Roboto';
 }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+*::-webkit-scrollbar {
+  display: none;
+}
+
 
 html, body {
     max-width: 100vw;

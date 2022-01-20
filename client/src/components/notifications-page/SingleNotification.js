@@ -62,6 +62,7 @@ const SingleNotification = ({notification}) => {
 const Wrapper = styled.div`
     /* border: 1px solid red; */
     margin:8px;
+    cursor: pointer;
 `;
 
 const Container = styled.div`

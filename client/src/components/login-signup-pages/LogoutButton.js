@@ -38,8 +38,12 @@ const Button = styled.div`
     color:white;
     border:2px solid white;
     border-radius: 6px;
+    cursor: pointer;
     span{
         margin-right: 4px;
+    }
+    @media (max-height: 736px) {
+    font-size: 0.75em;
     }
 `;
 

@@ -316,6 +316,11 @@ const TimeContainer = styled.div`
     margin: 7px 0px;
     align-items: center;
     font-size: 1.2em;
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+        align-items: baseline;
+    }
 `;
 
 const TypeContainer = styled.div`
@@ -325,15 +330,19 @@ const TypeContainer = styled.div`
 const SubContainer = styled.div`
     display: flex;
     margin: 7px 0px;
-    align-items: center;
+    /* align-items: center; */
     font-size: 1.2em;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+    }
 `;
 
 const SubSubContainer = styled.div`
-    flex:1;
+    /* flex:1; */
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 `;
 

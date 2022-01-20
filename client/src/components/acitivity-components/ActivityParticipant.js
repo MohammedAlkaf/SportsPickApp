@@ -51,6 +51,8 @@ const Wrapper = styled.div`
 width:50%;
 /* border: 1px solid red; */
 padding: 5px;
+cursor: pointer;
+
 `;
 
 const Container = styled.div`

@@ -23,49 +23,51 @@ function App() {
       <BrowserRouter>
       <GlobalStyles />
       <Wrapper>
-        <Switch>
-          <Route exact path="/">
-            { isUserLoggedIn ? <Redirect to ={ `/profile/${currentUser._id}` } /> : <LoginSignupPage/> }
-          </Route>
-          <Route path="/signup">
-            <SignupPage/>
-          </Route>
-          <Route path="/login">
-            <LoginPage/>
-          </Route>
-          { isUserLoggedIn &&
-            <MainAppContainer>
-              <Container>
-                <Route exact path="/profile/:_id">
-                  <Profile/>
-                </Route>
-                <Route path="/group-chats">
-                  <ChatLists />
-                </Route>
-                <Route path ="/chats/:_id">
-                  <ChatSys/>
-                </Route>
-                <Route path="/create-acitvity">
-                  <ActivityForm/>
-                </Route>
-                <Route path="/home">
-                  <Home/>
-                </Route>
-                <Route path="/activity/:_id">
-                  <ActivityDetails/>
-                </Route>
-                <Route path="/notifications">
-                  <Notifications/>
-                </Route>
-              </Container>
-              <NavBar/>
-            </MainAppContainer>
-          }
-          <Route path="">
-              <Redirect to ='/'/>  
-          </Route>
+        <Conatiner>
+          <Switch>
+            <Route exact path="/">
+              { isUserLoggedIn ? <Redirect to ={ `/profile/${currentUser._id}` } /> : <LoginSignupPage/> }
+            </Route>
+            <Route path="/signup">
+              <SignupPage/>
+            </Route>
+            <Route path="/login">
+              <LoginPage/>
+            </Route>
+            { isUserLoggedIn &&
+              <MainAppContainer>
+                <SubContainer>
+                  <Route exact path="/profile/:_id">
+                    <Profile/>
+                  </Route>
+                  <Route path="/group-chats">
+                    <ChatLists />
+                  </Route>
+                  <Route path ="/chats/:_id">
+                    <ChatSys/>
+                  </Route>
+                  <Route path="/create-acitvity">
+                    <ActivityForm/>
+                  </Route>
+                  <Route path="/home">
+                    <Home/>
+                  </Route>
+                  <Route path="/activity/:_id">
+                    <ActivityDetails/>
+                  </Route>
+                  <Route path="/notifications">
+                    <Notifications/>
+                  </Route>
+                </SubContainer>
+                <NavBar/>
+              </MainAppContainer>
+            }
+            <Route path="">
+                <Redirect to ='/'/>  
+            </Route>
 
-        </Switch>
+          </Switch>
+        </Conatiner>
       </Wrapper>
     </BrowserRouter>
   );
@@ -74,6 +76,23 @@ function App() {
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2C2C2C;
+`;
+
+const Conatiner = styled.div`
+  width: 414px;
+  height: 736px;
+
+  @media (max-width: 414px) {
+        width: 100%;
+  }
+
+  @media (max-height: 736px) {
+        height: 100%;
+  }
 `;
 
 const MainAppContainer = styled.div`
@@ -83,7 +102,7 @@ const MainAppContainer = styled.div`
   flex-direction: column;
 `
 
-const Container = styled.div`
+const SubContainer = styled.div`
   height: calc(100% - 60px);
   background: #293241;
   background: -webkit-linear-gradient(to bottom, #141e30, #243b55); 
