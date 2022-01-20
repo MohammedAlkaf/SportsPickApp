@@ -6,7 +6,7 @@ https://www.youtube.com/watch?v=BVm9BsRPkzM
 ## Front-end
 I used React, and styled-comonents for the front-end design
 ## Back-end
-I used NodeJS, Express, and MongoDB for the back-end. I also used Firebase for the chat system in the app to get that real-time update. In my next version of this app I will be using socket I.O for chat system and use only MongoDB as the database 
+I used NodeJS, Express, and MongoDB for the back-end. I used Socket.io library for the chat system in the app to get that real-time update.
 
 
 ## ScreenShots
