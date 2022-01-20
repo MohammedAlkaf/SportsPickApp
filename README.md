@@ -1,10 +1,17 @@
 # Sports Pick App
 SportsPick is a full-stack mobile application. It's a social platform where users can join nearby sport activities and invite other users to join their activities.
-### Front-end
+
+## Important Note
+Design Responsiveness is very important for mobile web apps. This is something I am still working on for this project. If you plan to fork or clone it, please make sure to use 'mobile view' from the browser Dev Tools. To get a full experience of how the app should look like, use IPhone 6,7,8 plus dimensions view
+## Demo
+https://www.youtube.com/watch?v=BVm9BsRPkzM
+## Front-end
 I used React, and styled-comonents for the front-end design
-### Back-end
-I used NodeJS, Express, and MongoDB for the back-end. I also used Firebase for the chat system in the app to get that real-time update. In my next version of this app I will be using socket I.O for chat system and use only MongoDB as the database 
-### ScreenShots
+## Back-end
+I used NodeJS, Express, and MongoDB for the back-end. I used Socket.io library for the chat system in the app to get that real-time update.
+
+
+## ScreenShots
 ![alt text](https://i.ibb.co/myLmfb5/preview-1.png)
 ![alt text](https://i.ibb.co/L06Qtcs/preview-2.png)
 ![alt text](https://i.ibb.co/kySXcpj/preview-3.png)
