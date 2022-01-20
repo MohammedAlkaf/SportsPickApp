@@ -2,7 +2,6 @@
 SportsPick is a full-stack mobile application. It's a social platform where users can join nearby sport activities and invite other users to join their activities.
 ## Demo
 https://www.youtube.com/watch?v=BVm9BsRPkzM
-
 ## Front-end
 I used React, and styled-comonents for the front-end design
 ## Back-end
